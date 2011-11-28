@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0A516FF1-1CC2-498E-9A70-5E56D1B0254F}"
+	ProjectSection(SolutionItems) = preProject
+		DoddleReport.vsmdi = DoddleReport.vsmdi
+		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doddle.Reporting", "Doddle.Reporting\Doddle.Reporting.csproj", "{F08B2994-4D05-423E-A8FE-7D1E8A63472B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doddle.Reporting.Tests", "Doddle.Reporting.Tests\Doddle.Reporting.Tests.csproj", "{E01A0F10-B551-4ABB-9CF7-E6DD42FDA7C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doddle.Reporting.AbcPdf", "Doddle.Reporting.AbcPdf\Doddle.Reporting.AbcPdf.csproj", "{355CAFF3-F806-4194-BE54-2F7640463CED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoddleReporting.Example.Web", "DoddleReporting.Example.Web\DoddleReporting.Example.Web.csproj", "{28FBF83C-A8A3-418B-A32E-3A725BD37A5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doddle.Reporting.ExcelOpenXml", "Doddle.Reporting.ExcelOpenXml\Doddle.Reporting.ExcelOpenXml.csproj", "{0646C575-0EA6-4331-809C-10DC000929F3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{521F1A31-68F0-4EE2-8647-86EC6CEA6304}"
+	ProjectSection(SolutionItems) = preProject
+		..\nuget\DoddleReport.AbcPdf.nuspec = ..\nuget\DoddleReport.AbcPdf.nuspec
+		..\nuget\DoddleReport.Excel.nuspec = ..\nuget\DoddleReport.Excel.nuspec
+		..\nuget\DoddleReport.nuspec = ..\nuget\DoddleReport.nuspec
+		..\nuget\web.config.transform = ..\nuget\web.config.transform
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = DoddleReport.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F08B2994-4D05-423E-A8FE-7D1E8A63472B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F08B2994-4D05-423E-A8FE-7D1E8A63472B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F08B2994-4D05-423E-A8FE-7D1E8A63472B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F08B2994-4D05-423E-A8FE-7D1E8A63472B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E01A0F10-B551-4ABB-9CF7-E6DD42FDA7C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E01A0F10-B551-4ABB-9CF7-E6DD42FDA7C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E01A0F10-B551-4ABB-9CF7-E6DD42FDA7C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E01A0F10-B551-4ABB-9CF7-E6DD42FDA7C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{355CAFF3-F806-4194-BE54-2F7640463CED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{355CAFF3-F806-4194-BE54-2F7640463CED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{355CAFF3-F806-4194-BE54-2F7640463CED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{355CAFF3-F806-4194-BE54-2F7640463CED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28FBF83C-A8A3-418B-A32E-3A725BD37A5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28FBF83C-A8A3-418B-A32E-3A725BD37A5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28FBF83C-A8A3-418B-A32E-3A725BD37A5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28FBF83C-A8A3-418B-A32E-3A725BD37A5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0646C575-0EA6-4331-809C-10DC000929F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0646C575-0EA6-4331-809C-10DC000929F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0646C575-0EA6-4331-809C-10DC000929F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0646C575-0EA6-4331-809C-10DC000929F3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
