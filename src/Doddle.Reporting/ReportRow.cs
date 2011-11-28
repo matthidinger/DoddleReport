@@ -2,7 +2,7 @@ namespace Doddle.Reporting
 {
     public class ReportRow
     {
-        private FieldDataDictionary _fieldData = new FieldDataDictionary();
+        private readonly FieldDataDictionary _fieldData = new FieldDataDictionary();
 
         public RowFieldCollection Fields { get; set; }
         public ReportRowType RowType { get; set; }
@@ -14,10 +14,11 @@ namespace Doddle.Reporting
             DataItem = dataItem;
 
             Fields = new RowFieldCollection(fields);
-            foreach (ReportField field in fields)
+            foreach (var field in fields)
             {
-                RowField rowField = new RowField(field);
-                _fieldData[rowField] = source.GetFieldValue(dataItem, field.Name);
+                var rowField = new RowField(field);
+                var value = source.GetFieldValue(dataItem, field.Name) ?? string.Empty;
+                _fieldData[rowField] = value;
             }
         }
 
