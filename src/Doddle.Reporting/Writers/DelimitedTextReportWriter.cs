@@ -45,10 +45,8 @@ namespace Doddle.Reporting.Writers
                 builder.Append(Environment.NewLine);
             }
 
-            using (var sw = new StreamWriter(destination))
-            {
-                sw.Write(builder);
-            }
+            var sw = new StreamWriter(destination);
+            sw.Write(builder);
         }
 
         private static string GetRowDataFormatted(ReportRow row, RowField field, RenderHintsCollection hints)

@@ -69,20 +69,6 @@
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Abstractions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dependencies\System.Web.Abstractions.dll</HintPath>
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dependencies\System.Web.Mvc.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web.Routing, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Dependencies\System.Web.Routing.dll</HintPath>
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -100,8 +86,6 @@
     <Compile Include="Configuration\WriterElement.cs" />
     <Compile Include="Configuration\WriterElementCollection.cs" />
     <Content Include="SharePoint\SPListReportSource.txt" />
-    <Compile Include="Web\ControllerExtensions.cs" />
-    <Compile Include="Web\ReportResult.cs" />
     <Compile Include="ReportSources\DataTableReportSource.cs" />
     <Compile Include="ReportSources\EnumerableReportSource.cs" />
     <Compile Include="FieldDataDictionary.cs" />
@@ -127,8 +111,6 @@
     <Compile Include="RowField.cs" />
     <Compile Include="RowFieldCollection.cs" />
     <Compile Include="VerticalAlignment.cs" />
-    <Compile Include="Web\ReportRouteConstraint.cs" />
-    <Compile Include="Web\WebReport.cs" />
     <Compile Include="Writers\DelimitedTextReportWriter.cs" />
     <Compile Include="Writers\ExcelReportWriter.cs" />
     <Compile Include="Writers\HtmlReportWriter.cs" />
