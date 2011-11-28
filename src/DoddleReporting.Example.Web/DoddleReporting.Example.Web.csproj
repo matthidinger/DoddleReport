@@ -110,9 +110,9 @@
       <Project>{355CAFF3-F806-4194-BE54-2F7640463CED}</Project>
       <Name>Doddle.Reporting.AbcPdf</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Doddle.Reporting.ExcelOpenXml\Doddle.Reporting.ExcelOpenXml.csproj">
+    <ProjectReference Include="..\Doddle.Reporting.OpenXml\Doddle.Reporting.OpenXml.csproj">
       <Project>{0646C575-0EA6-4331-809C-10DC000929F3}</Project>
-      <Name>Doddle.Reporting.ExcelOpenXml</Name>
+      <Name>Doddle.Reporting.OpenXml</Name>
     </ProjectReference>
     <ProjectReference Include="..\Doddle.Reporting.Web\Doddle.Reporting.Web.csproj">
       <Project>{BE322B77-B669-42A6-871E-C9C418ADAD54}</Project>
