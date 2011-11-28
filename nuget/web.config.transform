@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <configSections>
+        <sectionGroup name="doddle">
+            <section name="reporting" type="Doddle.Reporting.Configuration.ReportSection, Doddle.Reporting" />
+        </sectionGroup>
+    </configSections>
+
+    <doddle>
+        <reporting defaultWriter="Html" dataRowStyle="DataRowStyle" headerRowStyle="HeaderRowStyle" footerRowStyle="FooterRowStyle">
+            <styles>
+                <style name="DataRowStyle" />
+                <style name="HeaderRowStyle" bold="true" underline="true" />
+                <style name="FooterRowStyle" bold="true" />
+                <style name="Footer" italic="true" />
+                <style name="Title" fontSize="16" />
+            </styles>
+            <writers>
+                <clear />
+                <add format="Html" type="Doddle.Reporting.Writers.HtmlReportWriter, Doddle.Reporting" contentType="text/html" fileExtension=".html" />
+                <add format="Text" type="Doddle.Reporting.Writers.DelimitedTextReportWriter, Doddle.Reporting" contentType="text/plain" fileExtension=".txt" offerDownload="true" />
+                <add format="Excel" type="Doddle.Reporting.Writers.ExcelReportWriter, Doddle.Reporting" contentType="application/vnd.ms-excel" offerDownload="true" fileExtension=".xls" />
+                <add format="PDF" type="Doddle.Reporting.AbcPdf.PdfReportWriter, Doddle.Reporting.AbcPdf" contentType="application/pdf" offerDownload="false" fileExtension=".pdf" />
+            </writers>
+        </reporting>
+    </doddle>
+
+
+</configuration>
