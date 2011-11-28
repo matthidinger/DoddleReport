@@ -4,9 +4,9 @@ using System.IO;
 using System.Linq;
 using ClosedXML.Excel;
 
-namespace Doddle.Reporting.ExcelOpenXml
+namespace Doddle.Reporting.OpenXml
 {
-    public class ExcelOpenXmlReportWriter : IReportWriter
+    public class ExcelReportWriter : IReportWriter
     {
         public const string SheetName = "SheetName";
         public const string TitleStyle = "TitleStyle";

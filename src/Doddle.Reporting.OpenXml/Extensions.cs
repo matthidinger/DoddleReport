@@ -5,14 +5,12 @@
 // -----------------------------------------------------------------------
 
 using System.IO;
+using System;
+using System.Drawing;
+using ClosedXML.Excel;
 
-namespace Doddle.Reporting.ExcelOpenXml
+namespace Doddle.Reporting.OpenXml
 {
-    using System;
-    using System.Drawing;
-    using ClosedXML.Excel;
-    using Reporting;
-
     internal static class Extensions
     {
         public static void CopyTo(this Stream input, Stream output)

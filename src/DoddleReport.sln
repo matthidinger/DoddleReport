@@ -9,23 +9,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doddle.Reporting", "Doddle.Reporting\Doddle.Reporting.csproj", "{F08B2994-4D05-423E-A8FE-7D1E8A63472B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doddle.Reporting.Tests", "Doddle.Reporting.Tests\Doddle.Reporting.Tests.csproj", "{E01A0F10-B551-4ABB-9CF7-E6DD42FDA7C6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doddle.Reporting.AbcPdf", "Doddle.Reporting.AbcPdf\Doddle.Reporting.AbcPdf.csproj", "{355CAFF3-F806-4194-BE54-2F7640463CED}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoddleReporting.Example.Web", "DoddleReporting.Example.Web\DoddleReporting.Example.Web.csproj", "{28FBF83C-A8A3-418B-A32E-3A725BD37A5C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doddle.Reporting.ExcelOpenXml", "Doddle.Reporting.ExcelOpenXml\Doddle.Reporting.ExcelOpenXml.csproj", "{0646C575-0EA6-4331-809C-10DC000929F3}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{521F1A31-68F0-4EE2-8647-86EC6CEA6304}"
 	ProjectSection(SolutionItems) = preProject
-		..\nuget\DoddleReport.AbcPdf.nuspec = ..\nuget\DoddleReport.AbcPdf.nuspec
-		..\nuget\DoddleReport.Excel.nuspec = ..\nuget\DoddleReport.Excel.nuspec
+		Doddle.Reporting\Doddle.Reporting.nuspec = Doddle.Reporting\Doddle.Reporting.nuspec
 		..\nuget\DoddleReport.nuspec = ..\nuget\DoddleReport.nuspec
 		..\nuget\web.config.transform = ..\nuget\web.config.transform
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doddle.Reporting.Web", "Doddle.Reporting.Web\Doddle.Reporting.Web.csproj", "{BE322B77-B669-42A6-871E-C9C418ADAD54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doddle.Reporting.OpenXml", "Doddle.Reporting.OpenXml\Doddle.Reporting.OpenXml.csproj", "{0646C575-0EA6-4331-809C-10DC000929F3}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
@@ -40,10 +37,6 @@ Global
 		{F08B2994-4D05-423E-A8FE-7D1E8A63472B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F08B2994-4D05-423E-A8FE-7D1E8A63472B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F08B2994-4D05-423E-A8FE-7D1E8A63472B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E01A0F10-B551-4ABB-9CF7-E6DD42FDA7C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E01A0F10-B551-4ABB-9CF7-E6DD42FDA7C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E01A0F10-B551-4ABB-9CF7-E6DD42FDA7C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E01A0F10-B551-4ABB-9CF7-E6DD42FDA7C6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{355CAFF3-F806-4194-BE54-2F7640463CED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{355CAFF3-F806-4194-BE54-2F7640463CED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{355CAFF3-F806-4194-BE54-2F7640463CED}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -52,14 +45,14 @@ Global
 		{28FBF83C-A8A3-418B-A32E-3A725BD37A5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28FBF83C-A8A3-418B-A32E-3A725BD37A5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28FBF83C-A8A3-418B-A32E-3A725BD37A5C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0646C575-0EA6-4331-809C-10DC000929F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0646C575-0EA6-4331-809C-10DC000929F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0646C575-0EA6-4331-809C-10DC000929F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0646C575-0EA6-4331-809C-10DC000929F3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BE322B77-B669-42A6-871E-C9C418ADAD54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BE322B77-B669-42A6-871E-C9C418ADAD54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE322B77-B669-42A6-871E-C9C418ADAD54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BE322B77-B669-42A6-871E-C9C418ADAD54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0646C575-0EA6-4331-809C-10DC000929F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0646C575-0EA6-4331-809C-10DC000929F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0646C575-0EA6-4331-809C-10DC000929F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0646C575-0EA6-4331-809C-10DC000929F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
