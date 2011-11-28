@@ -41,7 +41,8 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -70,6 +71,10 @@
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -79,7 +84,7 @@
     <Compile Include="Configuration\StyleElementCollection.cs" />
     <Compile Include="Configuration\WriterElement.cs" />
     <Compile Include="Configuration\WriterElementCollection.cs" />
-    <Content Include="SharePoint\SPListReportSource.txt" />
+    <None Include="SharePoint\SPListReportSource.txt" />
     <Compile Include="ReportSources\DataTableReportSource.cs" />
     <Compile Include="ReportSources\EnumerableReportSource.cs" />
     <Compile Include="FieldDataDictionary.cs" />
@@ -105,12 +110,18 @@
     <Compile Include="RowField.cs" />
     <Compile Include="RowFieldCollection.cs" />
     <Compile Include="VerticalAlignment.cs" />
+    <Compile Include="Web\ControllerExtensions.cs" />
+    <Compile Include="Web\ReportResult.cs" />
+    <Compile Include="Web\ReportRouteConstraint.cs" />
+    <Compile Include="Web\WebReport.cs" />
     <Compile Include="Writers\DelimitedTextReportWriter.cs" />
     <Compile Include="Writers\ExcelReportWriter.cs" />
     <Compile Include="Writers\HtmlReportWriter.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Doddle.Reporting.nuspec" />
     <None Include="Properties\Doddle.Reporting.snk" />
+    <None Include="web.config.transform" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

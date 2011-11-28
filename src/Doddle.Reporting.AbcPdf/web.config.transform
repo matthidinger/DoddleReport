@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <doddle>
+    <reporting>
+      <writers>
+        <add format="PDF" type="Doddle.Reporting.AbcPdf.PdfReportWriter, Doddle.Reporting.AbcPdf" contentType="application/pdf" offerDownload="false" fileExtension=".pdf" />
+      </writers>
+    </reporting>
+  </doddle>
+</configuration>

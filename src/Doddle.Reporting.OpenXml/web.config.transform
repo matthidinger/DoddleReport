@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <doddle>
+    <reporting>
+      <writers>
+        <add format="ExcelOpenXml" type="Doddle.Reporting.OpenXml.ExcelReportWriter, Doddle.Reporting.OpenXml" contentType="application/vnd.ms-excels" offerDownload="true" fileExtension=".xlsx" />
+      </writers>
+    </reporting>
+  </doddle>
+</configuration>
