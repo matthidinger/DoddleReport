@@ -237,10 +237,8 @@ namespace Doddle.Reporting.Writers
         {
             BuildReportHtml(report.TextFields, report.RenderHints, report.GetRows());
 
-            using (var sw = new StreamWriter(destination))
-            {
-                sw.Write(Html.ToString());
-            }
+            var sw = new StreamWriter(destination);
+            sw.Write(Html.ToString());
         }
 
         public virtual void AppendReport(Report source, Report destination)

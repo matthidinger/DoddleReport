@@ -1,15 +1,19 @@
 ﻿using System;
-using System.Web.UI;
 using System.Reflection;
 
 namespace Doddle.Reporting
 {
     public static class ReflectionExtensions
     {
-        // TODO: Remove dependency on System.Web/DataBinder
-        public static T GetProperty<T>(this object item, string expresssion)
+        public static T GetProperty<T>(this object item, string property)
         {
-            return (T)DataBinder.Eval(item, expresssion);
+            var pi = item.GetType().GetProperty(property);
+            if(pi != null)
+            {
+                return (T)pi.GetValue(item, null);
+            }
+
+            return default(T);
         }
 
         public static bool HasAttribute(this Type t, Type attrType)
