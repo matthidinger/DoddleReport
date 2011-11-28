@@ -2,7 +2,7 @@
 using System.Web.Routing;
 using Doddle.Reporting.Web;
 
-namespace DoddleReporting.Example.Web
+namespace DoddleReporting.Sample.Web
 {
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
@@ -18,7 +18,7 @@ namespace DoddleReporting.Example.Web
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
+                new { controller = "Doddle", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
         }
 

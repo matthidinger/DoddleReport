@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <copyright>Copyright 2011</copyright>
-    <tags>Tag1 Tag2</tags>
+    <tags>doddlereport doddle reporting</tags>
   </metadata>
   <files>
     <file src="web.config.transform" target="Content" />

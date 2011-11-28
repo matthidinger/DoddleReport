@@ -1,19 +1,14 @@
 ﻿using System;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Doddle.Reporting;
-using Doddle.Reporting.AbcPdf;
 using Doddle.Reporting.Web;
-using DoddleReporting.Example.Web.Models;
-using Doddle.Reporting.Writers;
-using System.IO;
 using System.Drawing;
+using DoddleReporting.Sample.Web.Models;
 
-namespace DoddleReporting.Example.Web.Controllers
+namespace DoddleReporting.Sample.Web.Controllers
 {
-    //[HandleError]
-    public class HomeController : Controller
+    public class DoddleController : Controller
     {
         public ActionResult Index()
         {
@@ -26,7 +21,7 @@ namespace DoddleReporting.Example.Web.Controllers
         public ReportResult ProductReport()
         {
             // Get the data for the report (any IEnumerable will work)
-            var query = ProductRepository.GetAll();
+            var query = DoddleProductRepository.GetAll();
             var totalProducts = query.Count;
             var totalOrders = query.Sum(p => p.OrderCount);
 
