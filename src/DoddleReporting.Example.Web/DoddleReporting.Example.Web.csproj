@@ -114,10 +114,6 @@
       <Project>{0646C575-0EA6-4331-809C-10DC000929F3}</Project>
       <Name>Doddle.Reporting.OpenXml</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Doddle.Reporting.Web\Doddle.Reporting.Web.csproj">
-      <Project>{BE322B77-B669-42A6-871E-C9C418ADAD54}</Project>
-      <Name>Doddle.Reporting.Web</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Doddle.Reporting\Doddle.Reporting.csproj">
       <Project>{F08B2994-4D05-423E-A8FE-7D1E8A63472B}</Project>
       <Name>Doddle.Reporting</Name>

@@ -12,7 +12,8 @@
     <AssemblyName>Doddle.Reporting.OpenXml</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -58,7 +59,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Doddle.Reporting.OpenXml.nuspec">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
+    <None Include="web.config.transform" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
