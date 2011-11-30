@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <metadata>
-    <id>$id$</id>
+    <id>DoddleReport</id>
     <version>$version$</version>
     <title>$title$</title>
     <authors>$author$</authors>
@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <copyright>Copyright 2011</copyright>
-    <tags>doddlereport doddle reporting</tags>
+    <tags>doddle.report doddle.reporting doddle reporting</tags>
   </metadata>
   <files>
     <file src="web.config.transform" target="Content" />
