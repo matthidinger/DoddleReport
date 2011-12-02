@@ -13,6 +13,13 @@ namespace DoddleReport.Sample.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+
+            routes.MapRoute("LegacyUrl",
+                    "home/{action}.{extension}",
+                    new { controller = "Doddle" },
+                    new { extension = new ReportRouteConstraint() }
+                );
+
             routes.MapReportingRoute();
 
             routes.MapRoute(
