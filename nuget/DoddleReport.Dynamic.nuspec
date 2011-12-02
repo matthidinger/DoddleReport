@@ -9,7 +9,7 @@
     <licenseUrl>http://doddlereport.codeplex.com/license</licenseUrl>
     <projectUrl>http://doddlereport.codeplex.com/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Added dynamic ExpandoObject support for DoddleReport</description>
+    <description>Adds a DynamicReportSource to DoddleReport, allowing ExpandoObject's to be used as a ReportSource</description>
     <copyright>Copyright 2011</copyright>
     <tags>doddle.report doddle.reporting doddle reporting dynamic</tags>
     <dependencies>

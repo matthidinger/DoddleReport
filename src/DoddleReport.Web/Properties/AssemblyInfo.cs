@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("DoddleReport.Web")]
-[assembly: AssemblyDescription("DoddleReport.Web")]
+[assembly: AssemblyDescription("Adds Web Reporting support to DoddleReport. MVC apps can use the new ActionResult called ReportResult. WebForms apps can use the WebReport IHttpHandler (.ashx)")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Matt Hidinger")]
 [assembly: AssemblyProduct("DoddleReport.Web")]

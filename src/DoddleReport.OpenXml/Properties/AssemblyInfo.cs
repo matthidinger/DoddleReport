@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("DoddleReport.OpenXml")]
-[assembly: AssemblyDescription("DoddleReport.OpenXml")]
+[assembly: AssemblyDescription("Adds OpenXML support to DoddleReport. The currently supported format is Excel and is more robust than the default ExcelReportWriter in DoddleReport.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Matt Hidinger")]
 [assembly: AssemblyProduct("DoddleReport.OpenXml")]
