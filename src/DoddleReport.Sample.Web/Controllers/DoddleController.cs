@@ -9,10 +9,11 @@ namespace DoddleReport.Sample.Web.Controllers
 {
     // **********************
     //  
-    // Don't forget to edit Global.asax and call:
+    // Don't forget to edit Global.asax and call the following method within RegisterRoutes()
     //
     //      routes.MapReportingRoute();
-    // 
+    //
+    // See http://doddlereport.codeplex.com/wikipage?title=Web%20Reporting for details
     // **********************
 
 
@@ -20,13 +21,12 @@ namespace DoddleReport.Sample.Web.Controllers
     {
         public ActionResult Index()
         {
-            ViewData["Message"] = "Welcome to ASP.NET MVC!";
-
             return View();
         }
 
         //
-        // Sample URLs:
+        // Try the following sample URLs:
+        //
         //  http://localhost:X/doddle/ProductReport.html
         //  http://localhost:X/doddle/ProductReport.xls
         //  http://localhost:X/doddle/ProductReport.txt

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <metadata>
-    <id>DoddleReport.OpenXml</id>
+    <id>$id$</id>
     <version>$version$</version>
     <title>$title$</title>
     <authors>$author$</authors>
@@ -11,8 +11,8 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <copyright>Copyright 2011</copyright>
-    <tags>doddlereport doddle reporting</tags>
-  <dependencies>
+    <tags>doddle.report doddle.reporting doddle reporting pdf excel csv</tags>
+    <dependencies>
       <dependency id="DoddleReport" version="1.1" />
     </dependencies>
   </metadata>
