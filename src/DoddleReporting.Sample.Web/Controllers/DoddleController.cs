@@ -19,42 +19,6 @@ namespace DoddleReporting.Sample.Web.Controllers
             return View();
         }
 
-        public ReportResult Expando()
-        {
-            var all = new List<ExpandoObject>(); 
-            dynamic d = new ExpandoObject();
-            d.DistrictNumber = 1566;
-            d.SchoolId = 1;
-            d.FullName = "Matt Hidinger";
-
-            dynamic d2 = new ExpandoObject();
-            d2.DistrictNumber = 1566;
-            d2.SchoolId = 1;
-            d2.FullName = "Matt Hidinger";
-         
-   
-            all.Add(d);
-            all.Add(d2);
-            
-            var report = new Report(new DynamicReportSource(all));
-
-
-            // Customize the Text Fields
-            report.TextFields.Title = "Products Report";
-            report.TextFields.SubTitle = "This is a sample report showing how Doddle Report works";
-            report.TextFields.Footer = "Copyright 2011 &copy; The Doddle Project";
-            report.TextFields.Header = string.Format(@"Report Generated: {0}", DateTime.Now);
-
-
-            // Render hints allow you to pass additional hints to the reports as they are being rendered
-            report.RenderHints.BooleanCheckboxes = true;
-
-
-
-
-            return new ReportResult(report);
-        }
-
         public ReportResult ProductReport()
         {
             // Get the data for the report (any IEnumerable will work)
@@ -94,6 +58,41 @@ namespace DoddleReporting.Sample.Web.Controllers
             // the type of report that is rendered will be determined by the extension in the URL (.pdf, .xls, .html, etc)
             return new ReportResult(report);
         }
+
+
+        public ReportResult Expando()
+        {
+            var all = new List<ExpandoObject>();
+            dynamic d = new ExpandoObject();
+            d.DistrictNumber = 1566;
+            d.SchoolId = 1;
+            d.FullName = "Matt Hidinger";
+
+            dynamic d2 = new ExpandoObject();
+            d2.DistrictNumber = 13566;
+            d2.SchoolId = 1;
+            d2.FullName = "Bob Jones";
+
+
+            all.Add(d);
+            all.Add(d2);
+
+            var report = new Report(all.ToReportSource());
+
+            // Customize the Text Fields
+            report.TextFields.Title = "Expando Report";
+            report.TextFields.SubTitle = "This is a sample report showing how Doddle Report works";
+            report.TextFields.Footer = "Copyright 2011 &copy; The Doddle Project";
+            report.TextFields.Header = string.Format(@"Report Generated: {0}", DateTime.Now);
+
+            report.DataFields["SchoolId"].HeaderText = "School";
+
+            // Render hints allow you to pass additional hints to the reports as they are being rendered
+            report.RenderHints.BooleanCheckboxes = true;
+
+            return new ReportResult(report);
+        }
+
 
 
         void report_RenderingRow(object sender, ReportRowEventArgs e)

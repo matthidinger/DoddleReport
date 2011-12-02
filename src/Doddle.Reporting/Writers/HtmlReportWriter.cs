@@ -239,6 +239,7 @@ namespace Doddle.Reporting.Writers
 
             var sw = new StreamWriter(destination);
             sw.Write(Html.ToString());
+            sw.Flush();
         }
 
         public virtual void AppendReport(Report source, Report destination)

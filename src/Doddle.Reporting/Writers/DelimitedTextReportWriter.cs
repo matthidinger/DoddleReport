@@ -47,6 +47,7 @@ namespace Doddle.Reporting.Writers
 
             var sw = new StreamWriter(destination);
             sw.Write(builder);
+            sw.Flush();
         }
 
         private static string GetRowDataFormatted(ReportRow row, RowField field, RenderHintsCollection hints)
