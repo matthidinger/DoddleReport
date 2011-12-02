@@ -1,1 +1,1 @@
-﻿<%@ WebHandler Language="C#" CodeBehind="ProductReport.ashx.cs" Class="DoddleReporting.Example.Web.WebForms.ProductReport" %>
+﻿<%@ WebHandler Language="C#" CodeBehind="ProductReport.ashx.cs" Class="DoddleReport.Sample.Web.WebForms.ProductReport" %>

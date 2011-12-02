@@ -4,12 +4,12 @@ namespace DoddleReport.Configuration
 {
     public static class Config
     {
-        public static ReportSection Report
+        public static DoddleReportSection Report
         {
             get
             {
-                var section = ConfigurationManager.GetSection("doddle/reporting") as ReportSection;
-                return section ?? new ReportSection();
+                var section = ConfigurationManager.GetSection("doddleReport") as DoddleReportSection;
+                return section ?? new DoddleReportSection();
             }
         }
 

@@ -16,7 +16,7 @@ namespace DoddleReport.Configuration
             var htmlElement = new WriterElement
              {
                  Format = "Html",
-                 TypeName = "Doddle.Reporting.Writers.HtmlReportWriter, Doddle.Reporting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=183ffec7490b24a9",
+                 TypeName = "DoddleReport.Writers.HtmlReportWriter, DoddleReport",
                  ContentType = "text/html",
                  FileExtension = ".htm"
              };
@@ -24,7 +24,7 @@ namespace DoddleReport.Configuration
             var excelElement = new WriterElement
             {
                 Format = "Excel",
-                TypeName = "Doddle.Reporting.Writers.ExcelReportWriter, Doddle.Reporting, Version=1.0.0.0, Culture=neutral, PublicKeyToken=183ffec7490b24a9",
+                TypeName = "DoddleReport.Writers.ExcelReportWriter, DoddleReport",
                 ContentType = "application/vnd.ms-excel",
                 FileExtension = ".xls"
             };
@@ -32,26 +32,15 @@ namespace DoddleReport.Configuration
             var txtElement = new WriterElement
             {
                 Format = "Delimited",
-                TypeName = "Doddle.Reporting.Writers.DelimitedTextReportWriter, Doddle.Reporting",
+                TypeName = "DoddleReport.Writers.DelimitedTextReportWriter, DoddleReport",
                 ContentType = "text/plain",
                 FileExtension = ".txt",
                 OfferDownload = true
             };
-
-
-            var pdfElement = new WriterElement
-            {
-                Format = "PDF",
-                TypeName = "Doddle.Reporting.AbcPdf.PdfReportWriter, Doddle.Reporting.AbcPdf",
-                ContentType = "application/pdf",
-                FileExtension = ".pdf"
-            };
-
    
 
             BaseAdd(htmlElement);
             BaseAdd(txtElement);
-            BaseAdd(pdfElement);
             BaseAdd(excelElement);
         }
 

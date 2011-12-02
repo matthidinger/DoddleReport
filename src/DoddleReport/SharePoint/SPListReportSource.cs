@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Doddle.Reporting.SharePoint
+namespace DoddleReport.SharePoint
 {
     public class SPListReportSource : IReportSource
     {

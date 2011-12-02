@@ -2,7 +2,7 @@
 
 namespace DoddleReport.Configuration
 {
-    public sealed class ReportSection : ConfigurationSection
+    public sealed class DoddleReportSection : ConfigurationSection
     {
         [ConfigurationProperty("writers", IsRequired = true)]
         public WriterElementCollection Writers

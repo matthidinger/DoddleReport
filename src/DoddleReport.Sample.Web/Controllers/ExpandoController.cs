@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Web.Mvc;
-using Doddle.Reporting;
 using DoddleReport.Web;
 
 namespace DoddleReport.Sample.Web.Controllers
