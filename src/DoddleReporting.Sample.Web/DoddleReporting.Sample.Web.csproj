@@ -75,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\DoddleController.cs" />
+    <Compile Include="Controllers\DynamicReportSource.cs" />
     <Compile Include="Models\DoddleProductRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
