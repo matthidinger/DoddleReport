@@ -13,11 +13,11 @@
     <copyright>Copyright 2011</copyright>
     <tags>doddle.report doddle.reporting doddle reporting</tags>
     <dependencies>
-      <dependency id="DoddleReport" version="1.1" />
+      <dependency id="DoddleReport.Web" version="1.1" />
     </dependencies>
   </metadata>
   <files>
-    <file src="..\src\Doddle.Reporting.Sample.Web\Models\DoddleProductRepository.cs" target="Content\Models" />
-    <file src="..\src\Doddle.Reporting.Sample.Web\Controllers\DoddleController.cs" target="Content\Controllers" />
+    <file src="..\src\DoddleReport.Sample.Web\Models\DoddleProductRepository.cs" target="Content\Models" />
+    <file src="..\src\DoddleReport.Sample.Web\Controllers\DoddleController.cs" target="Content\Controllers" />
   </files>
 </package>

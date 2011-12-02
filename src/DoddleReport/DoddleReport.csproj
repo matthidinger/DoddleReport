@@ -75,7 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\Config.cs" />
-    <Compile Include="Configuration\ReportSection.cs" />
+    <Compile Include="Configuration\DoddleReportSection.cs" />
     <Compile Include="Configuration\StyleElement.cs" />
     <Compile Include="Configuration\StyleElementCollection.cs" />
     <Compile Include="Configuration\WriterElement.cs" />

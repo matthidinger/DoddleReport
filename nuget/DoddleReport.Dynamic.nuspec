@@ -17,6 +17,6 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="..\src\Doddle.Reporting\Dynamic\DynamicReportSource.cs" target="Content\Doddle\Reporting" />
+    <file src="..\src\DoddleReport\Dynamic\DynamicReportSource.cs" target="Content\DoddleReport" />
   </files>
 </package>

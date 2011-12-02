@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Doddle.Reporting.OpenXml")]
-[assembly: AssemblyDescription("Doddle.Reporting.OpenXml")]
+[assembly: AssemblyTitle("DoddleReport.OpenXml")]
+[assembly: AssemblyDescription("DoddleReport.OpenXml")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Matt Hidinger")]
-[assembly: AssemblyProduct("Doddle.Reporting.OpenXml")]
+[assembly: AssemblyProduct("DoddleReport.OpenXml")]
 [assembly: AssemblyCopyright("Copyright © 2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

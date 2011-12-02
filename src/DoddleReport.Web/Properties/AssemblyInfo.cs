@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Doddle.Reporting.Web")]
-[assembly: AssemblyDescription("Doddle Reporting Web")]
+[assembly: AssemblyTitle("DoddleReport.Web")]
+[assembly: AssemblyDescription("DoddleReport.Web")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Matt Hidinger")]
-[assembly: AssemblyProduct("Doddle.Reporting.Web")]
+[assembly: AssemblyProduct("DoddleReport.Web")]
 [assembly: AssemblyCopyright("Copyright ©  2011")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.1.0.0")]
+[assembly: AssemblyFileVersion("1.1.0.0")]
