@@ -1,10 +1,4 @@
-﻿// -----------------------------------------------------------------------
-// <copyright file="Extensions.cs" company="Xpertdoc Technologies Inc.">
-//     Copyright © Xpertdoc Technologies Inc. 2011
-// </copyright>
-// -----------------------------------------------------------------------
-
-using System.IO;
+﻿using System.IO;
 using System;
 using System.Drawing;
 using ClosedXML.Excel;

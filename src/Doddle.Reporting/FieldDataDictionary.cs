@@ -16,7 +16,7 @@ namespace Doddle.Reporting
             if (internalValue is string && string.IsNullOrEmpty((string)internalValue))
                 return string.Empty;
 
-            return string.Format(field.DataFormatString, _internalData[field]);
+            return string.Format(field.DataFormatString, internalValue);
         }
 
         public object this[RowField field]

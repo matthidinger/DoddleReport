@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Web.Mvc;
 using Doddle.Reporting;
@@ -17,6 +19,41 @@ namespace DoddleReporting.Sample.Web.Controllers
             return View();
         }
 
+        public ReportResult Expando()
+        {
+            var all = new List<ExpandoObject>(); 
+            dynamic d = new ExpandoObject();
+            d.DistrictNumber = 1566;
+            d.SchoolId = 1;
+            d.FullName = "Matt Hidinger";
+
+            dynamic d2 = new ExpandoObject();
+            d2.DistrictNumber = 1566;
+            d2.SchoolId = 1;
+            d2.FullName = "Matt Hidinger";
+         
+   
+            all.Add(d);
+            all.Add(d2);
+            
+            var report = new Report(new DynamicReportSource(all));
+
+
+            // Customize the Text Fields
+            report.TextFields.Title = "Products Report";
+            report.TextFields.SubTitle = "This is a sample report showing how Doddle Report works";
+            report.TextFields.Footer = "Copyright 2011 &copy; The Doddle Project";
+            report.TextFields.Header = string.Format(@"Report Generated: {0}", DateTime.Now);
+
+
+            // Render hints allow you to pass additional hints to the reports as they are being rendered
+            report.RenderHints.BooleanCheckboxes = true;
+
+
+
+
+            return new ReportResult(report);
+        }
 
         public ReportResult ProductReport()
         {

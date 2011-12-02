@@ -14,7 +14,7 @@ namespace Doddle.Reporting
 
         private IEnumerable<PropertyInfo> GetPropertes()
         {
-            Type itemType = GetItemType();
+            var itemType = GetItemType();
             if (itemType == null)
                 return null;
 
@@ -36,20 +36,19 @@ namespace Doddle.Reporting
             Source = source;
         }
 
-        #region IReportSource Members
-
         public ReportFieldCollection GetFields()
         {
-            ReportFieldCollection fields = new ReportFieldCollection();
+            var fields = new ReportFieldCollection();
             var properties = GetPropertes();
 
             if (properties == null)
                 return fields;
 
-            foreach (PropertyInfo propInfo in properties)
+            foreach (var propInfo in properties)
             {
                 fields.Add(propInfo.Name, propInfo.PropertyType);
             }
+
             return fields;
         }
 
@@ -67,8 +66,5 @@ namespace Doddle.Reporting
 
             return value;
         }
-
-
-        #endregion
     }
 }

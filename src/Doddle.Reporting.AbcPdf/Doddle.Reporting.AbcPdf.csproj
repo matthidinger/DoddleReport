@@ -87,12 +87,6 @@
     <Compile Include="PdfReportWriter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Doddle.Reporting\Doddle.Reporting.csproj">
-      <Project>{F08B2994-4D05-423E-A8FE-7D1E8A63472B}</Project>
-      <Name>Doddle.Reporting</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
@@ -112,6 +106,12 @@
   <ItemGroup>
     <None Include="Doddle.Reporting.AbcPdf.nuspec" />
     <None Include="web.config.transform" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Doddle.Reporting\Doddle.Reporting.csproj">
+      <Project>{F08B2994-4D05-423E-A8FE-7D1E8A63472B}</Project>
+      <Name>Doddle.Reporting</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
