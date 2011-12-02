@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>DoddleReport.OpenXml</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>http://doddlereport.codeplex.com/license</licenseUrl>
+    <projectUrl>http://doddlereport.codeplex.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <copyright>Copyright 2011</copyright>
+    <tags>doddlereport doddle reporting</tags>
+  <dependencies>
+      <dependency id="DoddleReport" version="1.1" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="web.config.transform" target="Content" />
+  </files>
+</package>
