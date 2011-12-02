@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>DoddleReport.Dynamic</id>
+    <version>1.1</version>
+    <title>DoddleReport.Dynamic</title>
+    <authors>Matt Hidinger</authors>
+    <owners>Matt Hidinger</owners>
+    <licenseUrl>http://doddlereport.codeplex.com/license</licenseUrl>
+    <projectUrl>http://doddlereport.codeplex.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Added dynamic ExpandoObject support for DoddleReport</description>
+    <copyright>Copyright 2011</copyright>
+    <tags>doddle.report doddle.reporting doddle reporting dynamic</tags>
+  </metadata>
+  <files>
+    <file src="..\src\Doddle.Reporting\Dynamic\DynamicReportSource.cs" target="Content\Doddle\Reporting" />
+  </files>
+</package>

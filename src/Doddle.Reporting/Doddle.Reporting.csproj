@@ -84,7 +84,8 @@
     <Compile Include="Configuration\StyleElementCollection.cs" />
     <Compile Include="Configuration\WriterElement.cs" />
     <Compile Include="Configuration\WriterElementCollection.cs" />
-    <None Include="SharePoint\SPListReportSource.txt" />
+    <None Include="SharePoint\SPListReportSource.cs" />
+    <None Include="Dynamic\DynamicReportSource.cs" />
     <Compile Include="ReportSources\DataTableReportSource.cs" />
     <Compile Include="ReportSources\EnumerableReportSource.cs" />
     <Compile Include="FieldDataDictionary.cs" />
@@ -140,6 +141,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
