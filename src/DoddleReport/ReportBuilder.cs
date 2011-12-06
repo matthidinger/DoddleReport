@@ -20,8 +20,7 @@ namespace DoddleReport
 
         public static Report ToReport(this IReportSource source, string format)
         {
-            // TODO: Add error handling, central config place to load Providers
-            var writer = Activator.CreateInstance(Config.Report.Writers[format].Type) as IReportWriter;
+            var writer = Config.Report.Writers.GetWriterByName(format);
             return new Report(source, writer);
         }
 
