@@ -1,5 +1,6 @@
 using System.Configuration;
 using System;
+using System.Linq;
 
 namespace DoddleReport.Configuration
 {
@@ -54,27 +55,30 @@ namespace DoddleReport.Configuration
             return ((WriterElement)element).Format;
         }
 
-        public new WriterElement this[string format]
+        public WriterElement GetWriterConfigurationByFormat(string format)
         {
-            get
-            {
-                return ((WriterElement)BaseGet(format));
-            }
+            var key = 
+                BaseGetAllKeys().OfType<string>().FirstOrDefault(
+                    k => k.Equals(format, StringComparison.OrdinalIgnoreCase));
+
+            if(key == null)
+                throw new ArgumentException(string.Format("Unable to locate a ReportWriter Configuration with the format '{0}'. Has this format been registered in web.config?", format));
+
+            return ((WriterElement)BaseGet(key));
         }
 
         public WriterElement GetWriterConfigurationForFileExtension(string extension)
         {
-            foreach (string key in BaseGetAllKeys())
-            {
-                if(this[key].FileExtension.Equals(extension, StringComparison.InvariantCultureIgnoreCase))
-                {
-                    return this[key];
-                }
-            }
-            return null;
+            return
+                BaseGetAllKeys()
+                    .Cast<string>()
+                    .Where(key =>
+                           GetWriterConfigurationByFormat(key).FileExtension.Equals(extension,
+                                                                                    StringComparison.InvariantCultureIgnoreCase))
+                    .Select(GetWriterConfigurationByFormat)
+                    .FirstOrDefault();
         }
 
-        
 
         public IReportWriter GetWriterForFileExtension(string extension)
         {
@@ -93,7 +97,7 @@ namespace DoddleReport.Configuration
         {
             try
             {
-                var writer = Activator.CreateInstance(this[name].Type) as IReportWriter;
+                var writer = Activator.CreateInstance(GetWriterConfigurationByFormat(name).Type) as IReportWriter;
                 return writer;
             }
             catch

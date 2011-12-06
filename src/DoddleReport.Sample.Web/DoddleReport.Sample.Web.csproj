@@ -69,8 +69,11 @@
     <Compile Include="..\DoddleReport\Dynamic\DynamicReportSource.cs">
       <Link>Dynamic\DynamicReportSource.cs</Link>
     </Compile>
+    <Compile Include="Areas\Reporting\Controllers\DoddleController.cs" />
+    <Compile Include="Areas\Reporting\ReportingAreaRegistration.cs" />
     <Compile Include="Controllers\DoddleController.cs" />
     <Compile Include="Controllers\ExpandoController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Models\DoddleProductRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -122,6 +125,13 @@
       <Project>{F08B2994-4D05-423E-A8FE-7D1E8A63472B}</Project>
       <Name>DoddleReport</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Reporting\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Areas\Reporting\Models\" />
+    <Folder Include="Areas\Reporting\Views\Shared\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

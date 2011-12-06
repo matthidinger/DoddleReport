@@ -45,7 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ControllerExtensions.cs" />
+    <Compile Include="Helpers\ControllerExtensions.cs" />
+    <Compile Include="Helpers\RouteExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportResult.cs" />
     <Compile Include="ReportRouteConstraint.cs" />
