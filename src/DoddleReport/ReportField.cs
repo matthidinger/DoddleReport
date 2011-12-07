@@ -23,7 +23,7 @@ namespace DoddleReport
 
         public string DataFormatString { get; set; }
 
-        public ReportStyle DataStyle { get; private set; }
+        public ReportStyle DataStyle { get; set; }
         public ReportStyle HeaderStyle { get; private set;  }
         public ReportStyle FooterStyle { get; private set; }
     

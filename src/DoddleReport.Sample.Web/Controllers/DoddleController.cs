@@ -58,8 +58,9 @@ namespace DoddleReport.Sample.Web.Controllers
 
             // Render hints allow you to pass additional hints to the reports as they are being rendered
             report.RenderHints.BooleanCheckboxes = true;
-            
             report.RenderHints.BooleansAsYesNo = true;
+            //report.RenderHints.Orientation = ReportOrientation.Landscape;
+            
 
             // Customize the data fields
             report.DataFields["Id"].Hidden = true;
