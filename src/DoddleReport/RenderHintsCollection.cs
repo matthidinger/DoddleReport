@@ -52,7 +52,7 @@ namespace DoddleReport
         {
             get
             {
-                return this["Orientation"] as ReportOrientation? ?? ReportOrientation.Landscape;
+                return this["Orientation"] as ReportOrientation? ?? ReportOrientation.Portrait;
             }
             set
             {

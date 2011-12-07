@@ -57,13 +57,13 @@
         <tr>
             <td>
                 <h3>Excel Report - with automatic frozen headers!</h3>
-                <%: Html.ActionLink("See it Live!", "ProductReport", new{ extension = "xls"}) %>
+                <%: Html.ActionLink("See it Live!", "ProductReport", "Doddle", new { extension = "xls"}, null) %>
                 
             </td>
         
             <td>
                 <h3>PDF Report - headers repeat on every page</h3>
-                <%: Html.ActionLink("See Live!", "ProductReport", new{ extension = "pdf"}) %>
+                <%: Html.ActionLink("See Live!", "ProductReport", "Doddle", new { extension = "pdf" }, null)%>
             </td>
         </tr>
         <tr>
@@ -82,11 +82,11 @@
         <tr>
             <td>
                 <h3>HTML Report</h3>
-                <%: Html.ActionLink("See Live!", "ProductReport", new{ extension = "html"}) %>
+                <%: Html.ActionLink("See Live!", "ProductReport", "Doddle", new { extension = "html" }, null)%>
             </td>
             <td>
                 <h3>CSV/Delimited Output</h3>
-                <%: Html.ActionLink("See Live!", "ProductReport", new{ extension = "txt"}) %>
+                <%: Html.ActionLink("See Live!", "ProductReport", "Doddle", new { extension = "txt" }, null)%>
             </td>
         </tr>
         <tr>
