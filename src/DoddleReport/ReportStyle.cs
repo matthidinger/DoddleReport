@@ -26,7 +26,7 @@ namespace DoddleReport
             Italic = false;
             BackColor = Color.White;
             ForeColor = Color.Black;
-            FontSize = 10;
+            FontSize = 8;
             HorizontalAlignment = HorizontalAlignment.Left;
             VerticalAlignment = VerticalAlignment.Middle;
         }

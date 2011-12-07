@@ -13,6 +13,8 @@ namespace DoddleReport.iTextSharp
         public const string FooterStyle = "FooterStyle";
         public const string FontFamily = "FontFamily";
 
+
+
         /// <summary>
         /// Writes the report.
         /// </summary>
@@ -20,7 +22,12 @@ namespace DoddleReport.iTextSharp
         /// <param name="destination">The destination.</param>
         public void WriteReport(Report report, Stream destination)
         {
-            var doc = new Document(PageSize.LETTER);
+            var pageSize = report.RenderHints.Orientation == ReportOrientation.Portrait
+                           ? PageSize.LETTER
+                           : PageSize.LETTER.Rotate();
+
+            var margins = report.RenderHints.Margins;
+            var doc = new Document(pageSize, margins.Width, margins.Width, margins.Height, margins.Height);
             using (PdfWriter.GetInstance(doc, destination))
             {
                 doc.Open();
@@ -258,7 +265,7 @@ namespace DoddleReport.iTextSharp
         public static void CopyStyleToCell(ReportStyle reportStyle, PdfPCell cell)
         {
             cell.BackgroundColor = new BaseColor(reportStyle.BackColor);
-
+            
             switch (reportStyle.HorizontalAlignment)
             {
                 case HorizontalAlignment.Center:

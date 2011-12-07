@@ -24,9 +24,9 @@ namespace DoddleReport
                 html.AppendFormat("color: {0};", ColorTranslator.ToHtml(style.ForeColor));
             }
 
-            if (style.FontSize != 10)
+            if (style.FontSize != 8)
             {
-                html.AppendFormat("font-size: {0};", style.FontSize);
+                html.AppendFormat("font-size: {0} pt;", style.FontSize);
             }
 
             

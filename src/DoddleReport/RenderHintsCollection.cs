@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace DoddleReport
 {
@@ -6,15 +7,27 @@ namespace DoddleReport
     {
         private readonly Dictionary<string, object> _internal = new Dictionary<string, object>();
 
+        public static SizeF DefaultMargins = new SizeF(20f, 20f);
+
         public RenderHintsCollection()
         {
             BooleanCheckboxes = false;
             BooleansAsYesNo = false;
+            Margins = DefaultMargins;
         }
 
         public bool ContainsKey(string hint)
         {
             return _internal.ContainsKey(hint);
+        }
+
+        /// <summary>
+        /// Rendering Margins. Specified in Pixels, but may be interpreted different based on the IReportWriter
+        /// </summary>
+        public SizeF Margins
+        {
+            get { return (SizeF)this["Margins"]; }
+            set { this["Margins"] = value; }
         }
 
         public bool BooleansAsYesNo

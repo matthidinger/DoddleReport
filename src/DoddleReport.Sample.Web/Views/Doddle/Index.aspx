@@ -62,7 +62,7 @@
             </td>
         
             <td>
-                <h3>PDF Report - headers repeat on every page, and automatic page numbers</h3>
+                <h3>PDF Report - headers repeat on every page</h3>
                 <%: Html.ActionLink("See Live!", "ProductReport", new{ extension = "pdf"}) %>
             </td>
         </tr>

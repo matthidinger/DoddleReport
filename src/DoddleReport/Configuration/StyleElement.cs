@@ -34,7 +34,7 @@ namespace DoddleReport.Configuration
         }
 
         [IntegerValidator(MinValue=6, MaxValue=72)]
-        [ConfigurationProperty("fontSize", DefaultValue = 10)]
+        [ConfigurationProperty("fontSize", DefaultValue = 8)]
         public int FontSize
         {
             get { return (int) this["fontSize"]; }
@@ -60,7 +60,7 @@ namespace DoddleReport.Configuration
         {
             get
             {
-                ColorConverter c = new ColorConverter();
+                var c = new ColorConverter();
                 return (Color)c.ConvertFrom(BackColorString);
             }
             set { this["backColor"] = value.ToString(); }
@@ -70,7 +70,7 @@ namespace DoddleReport.Configuration
         {
             get
             {
-                ColorConverter c = new ColorConverter();
+                var c = new ColorConverter();
                 return (Color)c.ConvertFrom(ForeColorString);
             }
             set { this["foreColor"] = value.ToString(); }

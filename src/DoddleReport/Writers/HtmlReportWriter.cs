@@ -128,7 +128,7 @@ namespace DoddleReport.Writers
                     {
                         if (field.DataType == typeof(bool) || field.DataType == typeof(bool?))
                         {
-                            string checkbox = "<input type='checkbox'";
+                            string checkbox = "<input type='checkbox' disabled='disabled'";
 
                             if (GetBooleanValue(row[field.Name]))
                             {

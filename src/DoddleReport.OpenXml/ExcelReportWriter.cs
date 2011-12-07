@@ -155,6 +155,7 @@ namespace DoddleReport.OpenXml
                     }
                     else if (field.DataType.IsNumericType())
                     {
+                        if(field.DataFormatString == "{0:c}")
                         cell.SetDataType(XLCellValues.Number);
                         cell.Value = reportRow[field];
                     }

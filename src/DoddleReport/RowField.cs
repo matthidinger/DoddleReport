@@ -2,9 +2,6 @@
 
 namespace DoddleReport
 {
-    /// <summary>
-    /// Represents a field within a ReportRow
-    /// </summary>
     public class RowField
     {
         public ReportRow Row { get; private set; }
@@ -22,56 +19,34 @@ namespace DoddleReport
         /// <summary>
         /// Gets the name of the field
         /// </summary>
-        public string Name
-        {
-            get { return ReportField.Name; }
-        }
+        public string Name { get; private set; }
 
-        /// <summary>
-        /// It's possible that the DataType could be unique per row if the data is changed in the RenderingRow event
-        /// </summary>
-        public Type DataType { get; set; }
+        public Type DataType { get; internal set; }
 
-        public string DataFormatString
-        {
-            get { return ReportField.DataFormatString; }
-        }
+        public string DataFormatString { get; set; }
 
-        public string HeaderText
-        {
-            get { return ReportField.HeaderText; }
-        }
+        public string HeaderText { get; private set; }
 
-        public bool Hidden
-        {
-            get { return ReportField.Hidden; }
-        }
+        public bool Hidden { get; private set; }
 
-        public ReportStyle DataStyle
-        {
-            get { return ReportField.DataStyle.Copy(); }
-        }
+        public ReportStyle DataStyle { get; private set; }
+        public ReportStyle HeaderStyle { get; private set; }
+        public ReportStyle FooterStyle { get; private set; }
 
-        public ReportStyle HeaderStyle
-        {
-            get { return ReportField.HeaderStyle.Copy(); }
-        }
+        public bool ShowTotals { get; private set; }
 
-        public ReportStyle FooterStyle
+        public RowField(ReportRow row, ReportField field)
         {
-            get { return ReportField.FooterStyle.Copy(); }
-        }
-
-        public bool ShowTotals
-        {
-            get { return ReportField.ShowTotals; }
-        }
-
-        public RowField(ReportRow reportRow, ReportField reportField)
-        {
-            Row = reportRow;
-            ReportField = reportField;
-            DataType = reportField.DataType;
+            Row = row;
+            Hidden = field.Hidden;
+            Name = field.Name;
+            DataType = field.DataType;
+            DataFormatString = field.DataFormatString;
+            HeaderText = field.HeaderText;
+            DataStyle = field.DataStyle.Copy();
+            FooterStyle = field.FooterStyle;
+            HeaderStyle = field.HeaderStyle;
+            ShowTotals = field.ShowTotals;
         }
 
         public override string ToString()
