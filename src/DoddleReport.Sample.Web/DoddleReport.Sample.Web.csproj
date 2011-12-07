@@ -71,9 +71,12 @@
     </Compile>
     <Compile Include="Areas\Reporting\Controllers\DoddleController.cs" />
     <Compile Include="Areas\Reporting\ReportingAreaRegistration.cs" />
+    <Compile Include="Controllers\AbcPdfController.cs" />
     <Compile Include="Controllers\DoddleController.cs" />
     <Compile Include="Controllers\ExpandoController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Helpers\ProductReportHelper.cs" />
     <Compile Include="Models\DoddleProductRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -99,7 +102,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Content\Site.css" />
-    <Content Include="Views\Doddle\Index.aspx" />
+    <Content Include="Views\Home\Index.aspx" />
     <Content Include="Views\Shared\Error.aspx" />
     <Content Include="Views\Shared\LogOnUserControl.ascx" />
     <Content Include="Views\Shared\Site.Master" />

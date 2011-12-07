@@ -19,18 +19,14 @@ namespace DoddleReport.Sample.Web.Controllers
 
     public class DoddleController : Controller
     {
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         //
         // Try the following sample URLs:
         //
         //  http://localhost:X/doddle/ProductReport.html
-        //  http://localhost:X/doddle/ProductReport.xls
         //  http://localhost:X/doddle/ProductReport.txt
-        //  http://localhost:X/doddle/ProductReport.pdf (REQUIRES ABCPDF INSTALLED)
+        //  http://localhost:X/doddle/ProductReport.xls
+        //  http://localhost:X/doddle/ProductReport.xlsx (Requires DoddleReport.OpenXml)
+        //  http://localhost:X/doddle/ProductReport.pdf (Requires DoddleReport.iTextSharp or DoddleReport.AbcPdf)
         //  
 
         public ReportResult ProductReport()
@@ -68,6 +64,8 @@ namespace DoddleReport.Sample.Web.Controllers
             report.DataFields["Price"].ShowTotals = true;
             report.DataFields["LastPurchase"].DataFormatString = "{0:d}";
 
+
+            // Advanced customized on a row-by-row basis
             report.RenderingRow += report_RenderingRow;
 
 
