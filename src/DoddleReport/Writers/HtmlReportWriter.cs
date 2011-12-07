@@ -94,7 +94,7 @@ namespace DoddleReport.Writers
             Html.AppendLine("<table border='0' cellpadding='2' cellspacing='0' width='100%'>");
         }
 
-        private bool GetBooleanValue(object input)
+        private static bool GetBooleanValue(object input)
         {
             if (input == null)
                 return false;
@@ -108,17 +108,15 @@ namespace DoddleReport.Writers
                 if (input.ToString() == "Yes")
                     return true;
 
-                else
-                    return false;
+                return false;
             }
         }
 
         protected virtual void RenderRow(ReportRow row, RenderHintsCollection hints)
         {
-
             Html.AppendLine("<tr>");
 
-            foreach (RowField field in row.Fields)
+            foreach (var field in row.Fields)
             {
                 if (row.RowType == ReportRowType.HeaderRow)
                 {
@@ -130,15 +128,15 @@ namespace DoddleReport.Writers
                     {
                         if (field.DataType == typeof(bool) || field.DataType == typeof(bool?))
                         {
-                            string html = "<input type='checkbox'";
+                            string checkbox = "<input type='checkbox'";
 
-                            if (GetBooleanValue(row[field.Name]) == true)
+                            if (GetBooleanValue(row[field.Name]))
                             {
-                                html += " checked='checked'";
+                                checkbox += " checked='checked'";
                             }
 
-                            html += " />";
-                            row[field] = html;
+                            checkbox += " />";
+                            row[field] = checkbox;
                         }
                     }
 
@@ -157,17 +155,14 @@ namespace DoddleReport.Writers
 
         protected virtual string GetCellStyle(ReportRow row, RowField field)
         {
-            if (row.RowType == ReportRowType.HeaderRow)
+            switch (row.RowType)
             {
-                return field.HeaderStyle.GetHtml();
-            }
-            else if (row.RowType == ReportRowType.DataRow)
-            {
-                return field.DataStyle.GetHtml();
-            }
-            else
-            {
-                return field.FooterStyle.GetHtml();
+                case ReportRowType.HeaderRow:
+                    return field.HeaderStyle.GetHtml();
+                case ReportRowType.DataRow:
+                    return field.DataStyle.GetHtml();
+                default:
+                    return field.FooterStyle.GetHtml();
             }
         }
 
@@ -175,7 +170,7 @@ namespace DoddleReport.Writers
         {
             Html.AppendLine("</table>");
 
-            ReportStyle footerStyle = new ReportStyle { Italic = true };
+            var footerStyle = new ReportStyle { Italic = true };
             Html.AppendFormat("<p style='{1}'>{0}</p>", textFields.Footer, footerStyle.GetHtml());
 
             Html.AppendLine("</div>");

@@ -85,7 +85,7 @@
     <None Include="Dynamic\DynamicReportSource.cs" />
     <Compile Include="ReportSources\DataTableReportSource.cs" />
     <Compile Include="ReportSources\EnumerableReportSource.cs" />
-    <Compile Include="FieldDataDictionary.cs" />
+    <Compile Include="RowFieldDataDictionary.cs" />
     <Compile Include="Helpers\ReflectionExtensions.cs" />
     <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="HorizontalAlignment.cs" />

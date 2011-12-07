@@ -34,12 +34,12 @@ namespace DoddleReport.Sample.Web.Controllers
             all.Add(d);
             all.Add(d2);
 
-            var report = new Report(DynamicReportSourceExtensions.ToReportSource(all));
+            var report = new Report(all.ToReportSource());
 
             // Customize the Text Fields
             report.TextFields.Title = "Expando Report";
             report.TextFields.SubTitle = "This is a sample report showing how Doddle Report works";
-            report.TextFields.Footer = "Copyright 2011 &copy; The Doddle Project";
+            report.TextFields.Footer = "Copyright 2011 (c) The Doddle Project";
             report.TextFields.Header = string.Format(@"Report Generated: {0}", DateTime.Now);
 
             report.DataFields["SchoolId"].HeaderText = "School";

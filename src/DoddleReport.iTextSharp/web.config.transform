@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <doddleReport>
+    <writers>
+      <add format="iTextSharpPdf" type="DoddleReport.iTextSharp.PdfReportWriter, DoddleReport.iTextSharp" contentType="application/pdf" offerDownload="false" fileExtension=".pdf" />
+    </writers>
+  </doddleReport>
+</configuration>

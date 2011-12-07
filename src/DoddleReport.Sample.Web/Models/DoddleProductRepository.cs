@@ -13,9 +13,9 @@ namespace DoddleReport.Sample.Web.Models
         public int OrderCount { get; set; }
         public DateTime LastPurchase { get; set; }
         public int UnitsInStock { get; set; }
-        public bool OutOfStock
+        public bool? LowStock
         {
-            get { return UnitsInStock == 0; }
+            get { return UnitsInStock < 300; }
         }
     }
 
@@ -35,7 +35,6 @@ namespace DoddleReport.Sample.Web.Models
                                      OrderCount = rand.Next(1000),
                                      LastPurchase = DateTime.Now.AddDays(rand.Next(1000)),
                                      UnitsInStock = rand.Next(0, 1000)
-
                                  })
                 .ToList();
         }

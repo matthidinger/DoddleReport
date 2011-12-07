@@ -48,7 +48,7 @@ namespace DoddleReport.Sample.Web.Controllers
             // Customize the Text Fields
             report.TextFields.Title = "Products Report";
             report.TextFields.SubTitle = "This is a sample report showing how Doddle Report works";
-            report.TextFields.Footer = "Copyright 2011 &copy; The Doddle Project";
+            report.TextFields.Footer = "Copyright 2011 (c) The Doddle Project";
             report.TextFields.Header = string.Format(@"
                 Report Generated: {0}
                 Total Products: {1}
@@ -58,11 +58,13 @@ namespace DoddleReport.Sample.Web.Controllers
 
             // Render hints allow you to pass additional hints to the reports as they are being rendered
             report.RenderHints.BooleanCheckboxes = true;
-
+            
+            report.RenderHints.BooleansAsYesNo = true;
 
             // Customize the data fields
             report.DataFields["Id"].Hidden = true;
             report.DataFields["Price"].DataFormatString = "{0:c}";
+            report.DataFields["Price"].ShowTotals = true;
             report.DataFields["LastPurchase"].DataFormatString = "{0:d}";
 
             report.RenderingRow += report_RenderingRow;

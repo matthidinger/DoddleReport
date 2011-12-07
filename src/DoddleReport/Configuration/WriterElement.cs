@@ -57,13 +57,15 @@ namespace DoddleReport.Configuration
 
         public IReportWriter LoadWriter()
         {
-            if (this.Type == null)
+            try
             {
-                throw new ArgumentNullException("TypeName", "Unable to load a type by the name " + TypeName);
+                var writer = Activator.CreateInstance(Type) as IReportWriter;
+                return writer;
             }
-            IReportWriter writer = Activator.CreateInstance(this.Type) as IReportWriter;
-            return writer;
-        }
-     
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException(string.Format("Unable to load the ReportWriter format '{0}' because the type '{1}' could not be created", Format, TypeName), ex);
+            }
+        }     
     }
 }

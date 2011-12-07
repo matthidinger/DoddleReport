@@ -65,22 +65,14 @@ namespace DoddleReport
         }
 
 
-        #region IEnumerable<ReportField> Members
-
         public IEnumerator<ReportField> GetEnumerator()
         {
             return _internalFields.Values.GetEnumerator();
         }
 
-        #endregion
-
-        #region IEnumerable Members
-
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             return _internalFields.Values.GetEnumerator();
         }
-
-        #endregion
     }
 }

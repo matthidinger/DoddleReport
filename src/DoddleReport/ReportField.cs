@@ -2,6 +2,9 @@
 
 namespace DoddleReport
 {
+    /// <summary>
+    /// Represents a data field within a Report
+    /// </summary>
     public class ReportField
     {
         /// <summary>
@@ -24,12 +27,12 @@ namespace DoddleReport
         public ReportStyle HeaderStyle { get; private set;  }
         public ReportStyle FooterStyle { get; private set; }
     
-        public ReportField(string columnName) 
-            : this(columnName, typeof(object)) {}
+        public ReportField(string fieldName) 
+            : this(fieldName, typeof(object)) {}
 
-        public ReportField(string columnName, Type dataType)
+        public ReportField(string fieldName, Type dataType)
         {
-            Name = columnName;
+            Name = fieldName;
             DataType = dataType;
             Hidden = false;
             HeaderText = Name.SplitUpperCaseToString();
@@ -49,16 +52,16 @@ namespace DoddleReport
 
         public override bool Equals(object obj)
         {
-            ReportField field = obj as ReportField;
+            var field = obj as ReportField;
             if (field == null)
                 return false;
 
-            return field.ToString().Equals(this.ToString());
+            return field.ToString().Equals(ToString());
         }
 
         public override int GetHashCode()
         {
-            return this.ToString().GetHashCode();
+            return ToString().GetHashCode();
         }
     }
 }

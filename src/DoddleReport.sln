@@ -22,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoddleReport.Web", "DoddleR
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample Projects", "Sample Projects", "{2E920538-21EC-49E6-BF72-75E82B2E49E2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoddleReport.iTextSharp", "DoddleReport.iTextSharp\DoddleReport.iTextSharp.csproj", "{347D0716-0297-4866-9FD5-5E019B51C408}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = DoddleReport.vsmdi
@@ -95,12 +97,22 @@ Global
 		{A02EF71C-C655-4D93-9CAF-15E527AA4FE0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{A02EF71C-C655-4D93-9CAF-15E527AA4FE0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{A02EF71C-C655-4D93-9CAF-15E527AA4FE0}.Release|x86.ActiveCfg = Release|Any CPU
+		{347D0716-0297-4866-9FD5-5E019B51C408}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{347D0716-0297-4866-9FD5-5E019B51C408}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{347D0716-0297-4866-9FD5-5E019B51C408}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{347D0716-0297-4866-9FD5-5E019B51C408}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{347D0716-0297-4866-9FD5-5E019B51C408}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{347D0716-0297-4866-9FD5-5E019B51C408}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{347D0716-0297-4866-9FD5-5E019B51C408}.Release|Any CPU.Build.0 = Release|Any CPU
+		{347D0716-0297-4866-9FD5-5E019B51C408}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{347D0716-0297-4866-9FD5-5E019B51C408}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{347D0716-0297-4866-9FD5-5E019B51C408}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{28FBF83C-A8A3-418B-A32E-3A725BD37A5C} = {2E920538-21EC-49E6-BF72-75E82B2E49E2}
 		{12A17D7F-C168-4086-8D6A-DFE311E9EE90} = {2E920538-21EC-49E6-BF72-75E82B2E49E2}
+		{28FBF83C-A8A3-418B-A32E-3A725BD37A5C} = {2E920538-21EC-49E6-BF72-75E82B2E49E2}
 	EndGlobalSection
 EndGlobal

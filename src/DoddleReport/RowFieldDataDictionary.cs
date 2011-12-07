@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace DoddleReport
 {
-    internal class FieldDataDictionary
+    internal class RowFieldDataDictionary
     {
         private readonly Dictionary<RowField, object> _internalData = new Dictionary<RowField, object>();
 
@@ -15,6 +15,16 @@ namespace DoddleReport
 
             if (internalValue is string && string.IsNullOrEmpty((string)internalValue))
                 return string.Empty;
+
+
+            if (field.DataType == typeof(bool) || field.DataType == typeof(bool?))
+            {
+                if (field.Report.RenderHints.BooleansAsYesNo)
+                {
+                    return internalValue as bool? == true ? "Yes" : "No";
+                }
+            }
+
 
             return string.Format(field.DataFormatString, internalValue);
         }
