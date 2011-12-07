@@ -37,11 +37,11 @@ namespace DoddleReport
             }
             set
             {
-                if (value != null)
-                {
-                    field.DataType = value.GetType();
+                //if (value != null)
+                //{
+                //    field.DataType = value.GetType();
                     _internalData[field] = value;
-                }
+                //}
             }
         }
     }

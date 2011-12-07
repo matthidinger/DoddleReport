@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("DoddleReport")]
-[assembly: AssemblyDescription("DoddleReport adds tabular reporting over any LINQ Query, IEnumerable, DataTable or SharePoint List, exportable to HTML, PDF, Excel, CSV or your own custom type.\r\n\r\nSee DoddleReport.Web for great Web reporting support")]
+[assembly: AssemblyDescription("DoddleReport adds tabular reporting over any LINQ Query, IEnumerable, DataTable or SharePoint List, exportable to HTML, PDF, Excel, CSV or your own custom type.\r\n\r\nSee DoddleReport.Web for great Web reporting support, and the other DoddleReport packages for even more Report Writers")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Matt Hidinger")]
 [assembly: AssemblyProduct("DoddleReport")]

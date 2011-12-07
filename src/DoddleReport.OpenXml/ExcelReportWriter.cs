@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -14,7 +15,24 @@ namespace DoddleReport.OpenXml
         public const string HeaderStyle = "HeaderStyle";
         public const string FooterStyle = "FooterStyle";
 
- 
+        /// <summary>
+        /// This Dictionary maps standard .NET format strings (like {0:c}) to OpenXML Format strings like "$ #,##0.00"
+        /// A list of examples can be found here http://closedxml.codeplex.com/wikipage?title=NumberFormatId%20Lookup%20Table&referringTitle=Styles%20-%20NumberFormat
+        /// </summary>
+        public static Dictionary<string, string> OpenXmlDataFormatStringMap =
+            new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+                {
+                    {"{0:c}", "$ #,##0.00"}
+                };
+
+        private static string GetOpenXmlDataFormatString(string dataFormatString)
+        {
+            if (OpenXmlDataFormatStringMap.ContainsKey(dataFormatString))
+                return OpenXmlDataFormatStringMap[dataFormatString];
+
+            return dataFormatString;
+        }
+
         /// <summary>
         /// Writes the report.
         /// </summary>
@@ -155,9 +173,16 @@ namespace DoddleReport.OpenXml
                     }
                     else if (field.DataType.IsNumericType())
                     {
-                        if(field.DataFormatString == "{0:c}")
                         cell.SetDataType(XLCellValues.Number);
-                        cell.Value = reportRow[field];
+                        if (!string.Equals("{0}", field.DataFormatString))
+                        {
+                            cell.Style.NumberFormat.Format = GetOpenXmlDataFormatString(field.DataFormatString);
+                            cell.Value = reportRow[field];
+                        }
+                        else
+                        {
+                            cell.Value = reportRow.GetFormattedValue(field);
+                        }
                     }
                     else if (field.DataType == typeof(DateTime) || field.DataType == typeof(DateTime?))
                     {
@@ -166,7 +191,7 @@ namespace DoddleReport.OpenXml
                     }
                     else
                     {
-                        cell.Value = reportRow.GetFormattedValue(field);                        
+                        cell.Value = reportRow.GetFormattedValue(field);
                     }
 
                 }
@@ -176,6 +201,7 @@ namespace DoddleReport.OpenXml
                     {
                         var cell = dataRow.Cell(colCount);
                         cell.FormulaA1 = string.Format(CultureInfo.InvariantCulture, "=SUM({0}{1}:{0}{2})", cell.Address.ColumnLetter, 2, rowCount - 1);
+                        cell.Style.NumberFormat.Format = GetOpenXmlDataFormatString(field.DataFormatString);
                         field.FooterStyle.CopyToXlStyle(cell.Style);
                     }
                 }

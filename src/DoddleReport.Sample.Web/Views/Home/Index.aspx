@@ -56,8 +56,8 @@
     <table width="100%">
         <tr>
             <td>
-                <h3>Excel Report - with automatic frozen headers!</h3>
-                <%: Html.ActionLink("See it Live!", "ProductReport", "Doddle", new { extension = "xls"}, null) %>
+                <h3>Excel Report - using OpenXML</h3>
+                <%: Html.ActionLink("See it Live!", "ProductReport", "Doddle", new { extension = "xlsx"}, null) %>
                 
             </td>
         
