@@ -9,6 +9,7 @@ namespace DoddleReport
         public RenderHintsCollection()
         {
             BooleanCheckboxes = false;
+            BooleansAsYesNo = false;
         }
 
         public bool ContainsKey(string hint)
@@ -16,6 +17,11 @@ namespace DoddleReport
             return _internal.ContainsKey(hint);
         }
 
+        public bool BooleansAsYesNo
+        {
+            get { return (bool)this["BooleansAsYesNo"]; }
+            set { this["BooleansAsYesNo"] = value; }
+        }
 
         public bool BooleanCheckboxes
         {
@@ -40,6 +46,7 @@ namespace DoddleReport
                 this["Orientation"] = value;
             }
         }
+
 
         public object this[string hint]
         {

@@ -2,7 +2,7 @@
 <configuration>
   <doddleReport>
     <writers>
-      <add format="PDF" type="DoddleReport.AbcPdf.PdfReportWriter, DoddleReport.AbcPdf" contentType="application/pdf" offerDownload="false" fileExtension=".pdf" />
+      <add format="AbcPdf" type="DoddleReport.AbcPdf.PdfReportWriter, DoddleReport.AbcPdf" contentType="application/pdf" offerDownload="false" fileExtension=".pdf" />
     </writers>
   </doddleReport>
 </configuration>

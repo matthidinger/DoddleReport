@@ -147,21 +147,27 @@ namespace DoddleReport.OpenXml
                 else if (reportRow.RowType == ReportRowType.DataRow)
                 {
                     var cell = dataRow.Cell(colCount);
+                    field.DataStyle.CopyToXlStyle(cell.Style);
                     if (field.DataType == typeof(bool))
                     {
                         cell.SetDataType(XLCellValues.Boolean);
+                        cell.Value = reportRow[field];
                     }
                     else if (field.DataType.IsNumericType())
                     {
                         cell.SetDataType(XLCellValues.Number);
+                        cell.Value = reportRow[field];
                     }
                     else if (field.DataType == typeof(DateTime) || field.DataType == typeof(DateTime?))
                     {
                         cell.SetDataType(XLCellValues.DateTime);
+                        cell.Value = reportRow.GetFormattedValue(field);
+                    }
+                    else
+                    {
+                        cell.Value = reportRow.GetFormattedValue(field);                        
                     }
 
-                    cell.Value = reportRow.GetFormattedValue(field);
-                    field.DataStyle.CopyToXlStyle(cell.Style);
                 }
                 else if (reportRow.RowType == ReportRowType.FooterRow)
                 {

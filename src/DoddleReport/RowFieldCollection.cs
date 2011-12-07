@@ -9,18 +9,18 @@ namespace DoddleReport
     /// </summary>
     public class RowFieldCollection : IEnumerable<RowField>
     {
-        private Dictionary<string, RowField> _internalFields;
+        private readonly Dictionary<string, RowField> _internalFields;
 
-        public RowFieldCollection(ReportFieldCollection reportFields)
+        public RowFieldCollection(ReportRow row)
         {
             _internalFields = new Dictionary<string, RowField>();
 
-            foreach (ReportField field in reportFields)
+            foreach (var reportField in row.Report.DataFields)
             {
-                _internalFields.Add(field.Name, new RowField(field));
-                //if (field.Hidden == false)
+                _internalFields.Add(reportField.Name, new RowField(row, reportField));
+                //if (!reportField.Hidden)
                 //{
-                //    _internalFields.Add(field.Name, new RowField(field));
+                //    _internalFields.Add(reportField.Name, new RowField(row, reportField));
                 //}
             }
         }
@@ -47,22 +47,14 @@ namespace DoddleReport
         }
 
 
-        #region IEnumerable<ReportField> Members
-
         public IEnumerator<RowField> GetEnumerator()
         {
             return _internalFields.Values.Where(f => f.Hidden == false).GetEnumerator();
         }
 
-        #endregion
-
-        #region IEnumerable Members
-
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
         }
-
-        #endregion
     }
 }

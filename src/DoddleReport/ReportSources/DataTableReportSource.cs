@@ -13,7 +13,7 @@ namespace DoddleReport.ReportSources
 
         public ReportFieldCollection GetFields()
         {
-            ReportFieldCollection fields = new ReportFieldCollection();
+            var fields = new ReportFieldCollection();
             foreach (DataColumn column in _table.Columns)
             {
                 fields.Add(column.ColumnName, column.DataType);
@@ -28,7 +28,7 @@ namespace DoddleReport.ReportSources
 
         public object GetFieldValue(object dataItem, string fieldName)
         {
-            DataRow row = dataItem as DataRow;
+            var row = dataItem as DataRow;
             if (row == null)
                 return null;
 

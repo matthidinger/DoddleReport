@@ -2,23 +2,25 @@ namespace DoddleReport
 {
     public class ReportRow
     {
-        private readonly FieldDataDictionary _fieldData = new FieldDataDictionary();
+        private readonly RowFieldDataDictionary _rowFieldData = new RowFieldDataDictionary();
 
-        public RowFieldCollection Fields { get; set; }
-        public ReportRowType RowType { get; set; }
-        public object DataItem { get; set; }
+        public RowFieldCollection Fields { get; private set; }
+        public Report Report { get; private set; }
+        public ReportRowType RowType { get; private set; }
+        public object DataItem { get; private set; }
 
-        internal ReportRow(ReportRowType rowType, ReportFieldCollection fields, IReportSource source, object dataItem)
+        internal ReportRow(Report report, ReportRowType rowType, object dataItem)
         {
+            Report = report;
             RowType = rowType;
             DataItem = dataItem;
 
-            Fields = new RowFieldCollection(fields);
-            foreach (var field in fields)
+            Fields = new RowFieldCollection(this);
+            foreach (var field in report.DataFields)
             {
-                var rowField = new RowField(field);
-                var value = source.GetFieldValue(dataItem, field.Name) ?? string.Empty;
-                _fieldData[rowField] = value;
+                var rowField = new RowField(this, field);
+                var value = report.GetFieldValue(dataItem, field.Name) ?? string.Empty;
+                _rowFieldData[rowField] = value;
             }
         }
 
@@ -27,23 +29,24 @@ namespace DoddleReport
         {
             get
             {
-                return _fieldData[Fields[fieldName]];
+                return _rowFieldData[Fields[fieldName]];
             }
-            set { _fieldData[Fields[fieldName]] = value; }
+            set { _rowFieldData[Fields[fieldName]] = value; }
         }
 
         public object this[RowField field]
         {
             get
             {
-                return _fieldData[field];
+                return _rowFieldData[field];
             }
-            set { _fieldData[field] = value; }
+            set { _rowFieldData[field] = value; }
         }
 
         public string GetFormattedValue(RowField field)
         {
-            return _fieldData.GetFormattedString(field);
+
+            return _rowFieldData.GetFormattedString(field);
         }
     }
 }
