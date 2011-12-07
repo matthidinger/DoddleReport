@@ -34,7 +34,7 @@ namespace DoddleReport.Configuration
         }
 
         [IntegerValidator(MinValue=6, MaxValue=72)]
-        [ConfigurationProperty("fontSize", DefaultValue = 8)]
+        [ConfigurationProperty("fontSize", DefaultValue = 9)]
         public int FontSize
         {
             get { return (int) this["fontSize"]; }
