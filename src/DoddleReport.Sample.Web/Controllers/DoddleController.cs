@@ -29,7 +29,7 @@ namespace DoddleReport.Sample.Web.Controllers
         //  http://localhost:X/doddle/ProductReport.pdf (Requires DoddleReport.iTextSharp or DoddleReport.AbcPdf)
         //  
 
-        public ReportResult ProductReport(string sort)
+        public ReportResult ProductReport()
         {
             // Get the data for the report (any IEnumerable will work)
             var query = DoddleProductRepository.GetAll();
