@@ -19,7 +19,7 @@ namespace DoddleReport.Web
 
             var configuredExtensions = Config.Report.Writers.OfType<WriterElement>().Select(e => e.FileExtension).ToList();
 
-            var requestExtension = Path.GetExtension(httpContext.Request.RawUrl);
+            var requestExtension = Path.GetExtension(httpContext.Request.Url.AbsolutePath);
             return configuredExtensions.Contains(requestExtension, StringComparer.InvariantCultureIgnoreCase);
         }
     }
