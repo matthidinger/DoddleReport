@@ -19,7 +19,7 @@ namespace DoddleReport.Web
         public static Route MapReportingRoute(this AreaRegistrationContext context, string defaultController, string defaultAction)
         {
             return context.Routes.MapRoute(string.Format("{0}_DoddleReport", context.AreaName),
-                                           context.AreaName + "/{controller}/{action}.{extension}",
+                                           context.AreaName + "/{controller}/{action}.{extension}/{*pathInfo}",
                                            new { controller = defaultController, action = defaultAction },
                                            new { extension = new ReportRouteConstraint() }
                 );
@@ -39,7 +39,7 @@ namespace DoddleReport.Web
         public static Route MapReportingRoute(this RouteCollection routes, string defaultController, string defaultAction)
         {
             return routes.MapRoute("DoddleReport",
-                                   "{controller}/{action}.{extension}",
+                                   "{controller}/{action}.{extension}/{*pathInfo}",
                                    new { controller = defaultController, action = defaultAction },
                                    new { extension = new ReportRouteConstraint() }
                 );

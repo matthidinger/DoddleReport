@@ -66,7 +66,7 @@ namespace DoddleReport.Web
 
             // Extension passed in via in URL
             if (Path.HasExtension(request.RawUrl))
-                return Path.GetExtension(request.RawUrl);
+                return Path.GetExtension(request.Url.AbsolutePath);
 
             return defaultExtension;
         }
@@ -76,7 +76,7 @@ namespace DoddleReport.Web
         {
 
             // attempt to get the report format from the extension on the URL (ex. "/action/controller.pdf" yields ".pdf")
-            string extension = Path.GetExtension(context.HttpContext.Request.RawUrl);
+            string extension = Path.GetExtension(context.HttpContext.Request.Url.AbsolutePath);
 
             if (string.IsNullOrEmpty(extension))
             {
