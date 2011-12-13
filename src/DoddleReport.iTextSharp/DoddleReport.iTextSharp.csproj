@@ -31,6 +31,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Properties\Doddle.Reporting.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="itextsharp">
       <HintPath>..\packages\iTextSharp.5.1.1\lib\itextsharp.dll</HintPath>
@@ -48,6 +54,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\Doddle.Reporting.snk" />
     <None Include="DoddleReport.iTextSharp.nuspec" />
     <None Include="packages.config" />
     <None Include="web.config.transform" />

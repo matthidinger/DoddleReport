@@ -61,6 +61,12 @@
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Properties\Doddle.Reporting.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ABCpdf, Version=7.0.3.7, Culture=neutral, PublicKeyToken=a7a0b3f5184f2169, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -104,6 +110,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\Doddle.Reporting.snk" />
     <None Include="DoddleReport.AbcPdf.nuspec" />
     <None Include="web.config.transform" />
   </ItemGroup>
