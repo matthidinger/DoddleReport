@@ -1,0 +1,5 @@
+<Configuration>
+  <NamespaceFolders>
+    <SkipFolder>A02EF71C-C655-4D93-9CAF-15E527AA4FE0/d:Helpers</SkipFolder>
+  </NamespaceFolders>
+</Configuration>
