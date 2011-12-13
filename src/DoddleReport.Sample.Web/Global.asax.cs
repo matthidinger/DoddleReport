@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 using DoddleReport.Web;
+using DoddleReport.Writers;
 
 namespace DoddleReport.Sample.Web
 {
@@ -13,6 +14,7 @@ namespace DoddleReport.Sample.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //DelimitedTextReportWriter.GetHeaderText = field => field.HeaderText;
 
             routes.MapRoute("LegacyUrl",
                     "home/{action}.{extension}",

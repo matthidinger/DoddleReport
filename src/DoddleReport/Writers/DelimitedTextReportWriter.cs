@@ -15,6 +15,12 @@ namespace DoddleReport.Writers
         public const string IncludeHeaderHint = "IncludeHeader";
         public const string EncloseInQuotes = "EncloseInQuotes";
 
+        /// <summary>
+        /// Use this delegate to customize the way headers are formatted on the report. The default is to remove spaces and make upper case
+        /// </summary>
+        public static Func<RowField, string> GetHeaderText = field => field.HeaderText.Replace(" ", "").ToUpper();
+
+
         public void WriteReport(Report report, Stream destination)
         {
             bool includeHeader = report.RenderHints[IncludeHeaderHint] as bool? ?? true;
@@ -31,7 +37,7 @@ namespace DoddleReport.Writers
                     {
                         if (includeHeader)
                         {
-                            builder.AppendFormat("{0}{1}", FormattedHeaderText(field), delimiter);
+                            builder.AppendFormat("{0}{1}", GetHeaderText(field), delimiter);
                         }
                     }
                     else if (row.RowType == ReportRowType.DataRow)
@@ -61,11 +67,6 @@ namespace DoddleReport.Writers
             }
 
             return row.GetFormattedValue(field);
-        }
-
-        protected virtual string FormattedHeaderText(RowField field)
-        {
-            return field.HeaderText.Replace(" ", "").ToUpper();
         }
 
         public void AppendReport(Report source, Report destination)
