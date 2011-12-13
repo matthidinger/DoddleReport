@@ -25,6 +25,10 @@ namespace DoddleReport
                 }
             }
 
+            if (field.FormatAsDelegate != null)
+            {
+                return (string)field.FormatAsDelegate.DynamicInvoke(internalValue);
+            }
 
             return string.Format(field.DataFormatString, internalValue);
         }
