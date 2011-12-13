@@ -4,6 +4,8 @@ namespace DoddleReport
 {
     public class RowField
     {
+        private string _dataFormatString;
+
         public ReportRow Row { get; private set; }
 
         /// <summary>
@@ -23,7 +25,19 @@ namespace DoddleReport
 
         public Type DataType { get; internal set; }
 
-        public string DataFormatString { get; set; }
+        public string DataFormatString
+        {
+            get 
+            { 
+                return this._dataFormatString; 
+            }
+
+            set
+            {
+                this._dataFormatString = value;
+                this.FormatAsDelegate = null;
+            }
+        }
 
         public string HeaderText { get; private set; }
 
@@ -35,6 +49,8 @@ namespace DoddleReport
 
         public bool ShowTotals { get; private set; }
 
+        internal Delegate FormatAsDelegate { get; private set; }
+
         public RowField(ReportRow row, ReportField field)
         {
             Row = row;
@@ -42,11 +58,18 @@ namespace DoddleReport
             Name = field.Name;
             DataType = field.DataType;
             DataFormatString = field.DataFormatString;
+            FormatAsDelegate = field.FormatAsDelegate;
             HeaderText = field.HeaderText;
             DataStyle = field.DataStyle.Copy();
             FooterStyle = field.FooterStyle;
             HeaderStyle = field.HeaderStyle;
             ShowTotals = field.ShowTotals;
+        }
+
+        public void FormatAs<T>(Func<T, string> formatAsDelegate)
+        {
+            this.DataFormatString = null;
+            this.FormatAsDelegate = formatAsDelegate;
         }
 
         public override string ToString()

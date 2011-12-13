@@ -7,6 +7,8 @@ namespace DoddleReport
     /// </summary>
     public class ReportField
     {
+        private string _dataFormatString;
+
         /// <summary>
         /// Gets the name of the field
         /// </summary>
@@ -21,11 +23,25 @@ namespace DoddleReport
 
         public bool ShowTotals { get; set; }
 
-        public string DataFormatString { get; set; }
+        public string DataFormatString
+        {
+            get
+            {
+                return this._dataFormatString;
+            }
+
+            set
+            {
+                this._dataFormatString = value;
+                this.FormatAsDelegate = null;
+            }
+        }
 
         public ReportStyle DataStyle { get; set; }
         public ReportStyle HeaderStyle { get; private set;  }
         public ReportStyle FooterStyle { get; private set; }
+
+        internal Delegate FormatAsDelegate { get; private set; }
     
         public ReportField(string fieldName) 
             : this(fieldName, typeof(object)) {}
@@ -42,7 +58,12 @@ namespace DoddleReport
             DataStyle = new ReportStyle(ReportRowType.DataRow);
             HeaderStyle = new ReportStyle(ReportRowType.HeaderRow);
             FooterStyle = new ReportStyle(ReportRowType.FooterRow);
-           
+        }
+
+        public void FormatAs<T>(Func<T, string> formatAsDelegate)
+        {
+            this.DataFormatString = null;
+            this.FormatAsDelegate = formatAsDelegate;
         }
 
         public override string ToString()
