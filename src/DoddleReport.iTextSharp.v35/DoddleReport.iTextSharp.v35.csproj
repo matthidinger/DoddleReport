@@ -5,12 +5,12 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{347D0716-0297-4866-9FD5-5E019B51C408}</ProjectGuid>
+    <ProjectGuid>{B1A90194-581B-450C-A939-73A9A5FEDA9C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DoddleReport.iTextSharp</RootNamespace>
     <AssemblyName>DoddleReport.iTextSharp</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -50,19 +50,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PdfReportWriter.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="..\DoddleReport.iTextSharp\PdfReportWriter.cs">
+      <Link>PdfReportWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport.iTextSharp\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\Doddle.Reporting.snk" />
-    <None Include="DoddleReport.iTextSharp.nuspec" />
     <None Include="packages.config" />
-    <None Include="web.config.transform" />
+    <None Include="Properties\Doddle.Reporting.snk" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DoddleReport\DoddleReport.csproj">
-      <Project>{F08B2994-4D05-423E-A8FE-7D1E8A63472B}</Project>
-      <Name>DoddleReport</Name>
+    <ProjectReference Include="..\DoddleReport.v35\DoddleReport.v35.csproj">
+      <Project>{B3AC0BE5-952A-41F6-8C13-1D2C112B0238}</Project>
+      <Name>DoddleReport.v35</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
