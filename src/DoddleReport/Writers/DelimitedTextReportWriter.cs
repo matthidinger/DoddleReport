@@ -46,6 +46,7 @@ namespace DoddleReport.Writers
             }
 
             var sw = new StreamWriter(destination);
+            
             sw.Write(builder);
             sw.Flush();
         }
