@@ -28,9 +28,9 @@ namespace DoddleReport.Sample.Web.Models
                 .Select(i => new Product
                                  {
                                      Id = i,
-                                     Name = "Product " + i,
+                                     Name = "Product" + i,
                                      Description =
-                                         "This is an example description showing long text in some of the items, now I am just rambling",
+                                         "This is an example description showing long text in some of the items. Here is some UTF text €",
                                      Price = rand.NextDouble()*100,
                                      OrderCount = rand.Next(1000),
                                      LastPurchase = DateTime.Now.AddDays(rand.Next(1000)),

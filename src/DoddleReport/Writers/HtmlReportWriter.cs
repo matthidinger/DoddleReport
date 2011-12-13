@@ -44,6 +44,7 @@ namespace DoddleReport.Writers
 
         protected void AppendStyling(RenderHintsCollection hints)
         {
+            Html.AppendLine(@"<meta http-equiv=""content-type"" content=""text/html;charset=utf-8"" />");
             Html.AppendLine(@"<style type='text/css'>");
 
             Html.AppendLine(DefaultStyle);
