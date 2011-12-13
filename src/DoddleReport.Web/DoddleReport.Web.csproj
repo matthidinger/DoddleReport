@@ -31,6 +31,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Properties\Doddle.Reporting.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -53,6 +59,7 @@
     <Compile Include="WebReport.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\Doddle.Reporting.snk" />
     <None Include="DoddleReport.Web.nuspec" />
   </ItemGroup>
   <ItemGroup>
