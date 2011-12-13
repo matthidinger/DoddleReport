@@ -38,12 +38,8 @@ namespace DoddleReport.ReportSources
                 return itemType;
             }
 
-            foreach (object i in Source)
-            {
-                return i.GetType();
-            }
-
-            return null;
+            var firstItem = Source.OfType<object>().FirstOrDefault();
+            return firstItem != null ? firstItem.GetType() : null;
         }
 
         public EnumerableReportSource(IEnumerable source)
@@ -93,15 +89,12 @@ namespace DoddleReport.ReportSources
         /// <param name="reportField">The report field.</param>
         private static void SetReportFieldProperties(Type itemType, PropertyInfo propInfo, ReportField reportField)
         {
-            var metadataTypeAttribute = itemType.GetCustomAttributes(typeof(MetadataTypeAttribute), false).Cast<MetadataTypeAttribute>().SingleOrDefault();
+            var metadataTypeAttribute = itemType.GetAttribute<MetadataTypeAttribute>();
             MemberInfo memberInfo;
             if (metadataTypeAttribute != null)
             {
-                memberInfo = itemType.GetProperty(propInfo.Name, BindingFlags.Public | BindingFlags.Instance) as MemberInfo;
-                if (memberInfo == null)
-                {
-                    memberInfo = itemType.GetField(propInfo.Name, BindingFlags.Public | BindingFlags.Instance);
-                }
+                memberInfo = itemType.GetProperty(propInfo.Name, BindingFlags.Public | BindingFlags.Instance) ??
+                             (MemberInfo) itemType.GetField(propInfo.Name, BindingFlags.Public | BindingFlags.Instance);
             }
             else
             {
@@ -110,27 +103,22 @@ namespace DoddleReport.ReportSources
 
             if (memberInfo != null)
             {
-                var dataTypeAttribute = memberInfo.GetCustomAttributes(typeof(DataTypeAttribute), false).Cast<DataTypeAttribute>().SingleOrDefault();
-                DisplayFormatAttribute displayFormatAttribute;
-                if (dataTypeAttribute != null)
-                {
-                    displayFormatAttribute = dataTypeAttribute.DisplayFormat;
-                }
-
-                displayFormatAttribute = memberInfo.GetCustomAttributes(typeof(DisplayFormatAttribute), false).Cast<DisplayFormatAttribute>().SingleOrDefault();
+                var dataTypeAttribute = memberInfo.GetAttribute<DataTypeAttribute>();
+                var displayFormatAttribute = dataTypeAttribute != null ? dataTypeAttribute.DisplayFormat : memberInfo.GetAttribute<DisplayFormatAttribute>();
                 if (displayFormatAttribute != null)
                 {
                     reportField.FormatAs<object>(o => o != null ? string.Format(displayFormatAttribute.DataFormatString, o) : displayFormatAttribute.NullDisplayText);
                 }
 
-#if NET35
-                var displayNameAttribute = memberInfo.GetCustomAttributes(typeof(DisplayNameAttribute), false).Cast<DisplayNameAttribute>().SingleOrDefault();
+
+                var displayNameAttribute = memberInfo.GetAttribute<DisplayNameAttribute>();
                 if (displayNameAttribute != null)
                 {
                     reportField.HeaderText = displayNameAttribute.DisplayName;
                 }
-#else
-                var displayAttribute = memberInfo.GetCustomAttributes(typeof(DisplayAttribute), false).Cast<DisplayAttribute>().SingleOrDefault();
+
+#if !NET35
+                var displayAttribute = memberInfo.GetAttribute<DisplayAttribute>();
                 if (displayAttribute != null)
                 {
                     reportField.HeaderText = displayAttribute.GetShortName();
