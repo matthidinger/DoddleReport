@@ -34,7 +34,7 @@ namespace DoddleReport.Sample.Web.Controllers
             all.Add(d);
             all.Add(d2);
 
-            var report = new Report(all.ToReportSource());
+            var report = new Report(DynamicReportSourceExtensions.ToReportSource(all));
 
             // Customize the Text Fields
             report.TextFields.Title = "Expando Report";
