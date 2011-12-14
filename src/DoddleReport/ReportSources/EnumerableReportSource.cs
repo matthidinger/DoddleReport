@@ -13,6 +13,8 @@ namespace DoddleReport.ReportSources
     /// </summary>
     public class EnumerableReportSource : IReportSource
     {
+        private const int MaxColumn = 10000;
+
         public IEnumerable Source { get; set; }
 
         private IEnumerable<PropertyInfo> GetProperties()
@@ -56,11 +58,18 @@ namespace DoddleReport.ReportSources
             if (properties == null)
                 return fields;
 
+            var fieldsOrder = new Dictionary<ReportField, int>();
             foreach (var propInfo in properties)
             {
                 var reportField = new ReportField(propInfo.Name, propInfo.PropertyType);
-                SetReportFieldProperties(itemType, propInfo, reportField);
-                fields.Add(reportField);
+                var order = SetReportFieldProperties(itemType, propInfo, reportField);
+                fieldsOrder.Add(reportField, order);
+            }
+
+            // Add the fields with the requested order
+            foreach (var field in fieldsOrder.OrderBy(kv => kv.Value).Select(kv => kv.Key))
+            {
+                fields.Add(field);
             }
 
             return fields;
@@ -87,7 +96,8 @@ namespace DoddleReport.ReportSources
         /// <param name="itemType">Type of the item.</param>
         /// <param name="propInfo">The prop info.</param>
         /// <param name="reportField">The report field.</param>
-        private static void SetReportFieldProperties(Type itemType, PropertyInfo propInfo, ReportField reportField)
+        /// <returns>The order number for the field.</returns>
+        private static int SetReportFieldProperties(Type itemType, PropertyInfo propInfo, ReportField reportField)
         {
             var metadataTypeAttribute = itemType.GetAttribute<MetadataTypeAttribute>();
             MemberInfo memberInfo;
@@ -122,9 +132,12 @@ namespace DoddleReport.ReportSources
                 if (displayAttribute != null)
                 {
                     reportField.HeaderText = displayAttribute.GetShortName();
+                    return displayAttribute.GetOrder() ?? MaxColumn;
                 }
 #endif
             }
+
+            return MaxColumn;
         }
     }
 }
