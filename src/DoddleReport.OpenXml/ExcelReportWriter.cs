@@ -25,6 +25,19 @@ namespace DoddleReport.OpenXml
                     {"{0:c}", "$ #,##0.00"}
                 };
 
+        /// <summary>
+        /// Gets the reports to append.
+        /// </summary>
+        internal IList<Report> ReportsToAppend { get; private set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExcelReportWriter"/> class.
+        /// </summary>
+        public ExcelReportWriter()
+        {
+            this.ReportsToAppend = new List<Report>();
+        }
+
         private static string GetOpenXmlDataFormatString(string dataFormatString)
         {
             if (OpenXmlDataFormatStringMap.ContainsKey(dataFormatString))
@@ -41,29 +54,7 @@ namespace DoddleReport.OpenXml
         public void WriteReport(Report report, Stream destination)
         {
             var workbook = new XLWorkbook();
-            var worksheet = workbook.Worksheets.Add(report.RenderHints[SheetName] as string ?? "Data");
-            worksheet.SetShowRowColHeaders(true);
-
-            // Render the header
-            var fieldsCount = report.DataFields.Where(f => !f.Hidden).Count();
-            int rowCount = RenderHeader(worksheet, fieldsCount, report.TextFields, report.RenderHints);
-
-            // Render all the rows
-            foreach (var row in report.GetRows())
-            {
-                rowCount++;
-                var dataRow = worksheet.Row(rowCount);
-                RenderRow(rowCount, row, dataRow);
-            }
-
-            // Render the footer
-            RenderFooter(worksheet, fieldsCount, report.TextFields, report.RenderHints, rowCount);
-
-            // Adjust the width of all the columns
-            foreach (var column in worksheet.Columns())
-            {
-                column.AdjustToContents();
-            }
+            this.WriteReport(report, workbook);
 
             using (var ms = new MemoryStream())
             {
@@ -73,8 +64,6 @@ namespace DoddleReport.OpenXml
             }
         }
 
-
-
         /// <summary>
         /// Appends the report.
         /// </summary>
@@ -82,6 +71,18 @@ namespace DoddleReport.OpenXml
         /// <param name="destination">The report destination.</param>
         public void AppendReport(Report source, Report destination)
         {
+            if (source == null || destination == null)
+            {
+                throw new ArgumentNullException(source == null ? "source" : "destination");
+            }
+
+            var sourceWriter = source.Writer as ExcelReportWriter;
+            if (sourceWriter == null)
+            {
+                throw new InvalidOperationException("Unable to append report, the source Writer is not a ExcelReportWriter");
+            }
+
+            sourceWriter.ReportsToAppend.Add(destination);
         }
 
         /// <summary>
@@ -279,6 +280,57 @@ namespace DoddleReport.OpenXml
             {
                 HorizontalAlignment = HorizontalAlignment.Left
             };
+        }
+
+        /// <summary>
+        /// Writes the report.
+        /// </summary>
+        /// <param name="report">The report.</param>
+        /// <param name="workbook">The workbook.</param>
+        private void WriteReport(Report report, XLWorkbook workbook)
+        {
+            var sheetName = report.RenderHints[SheetName] as string ?? "Data";
+            IXLWorksheet worksheet;
+            int duplicateNameCount = 0;
+            var originalSheetName = sheetName;
+            while (workbook.Worksheets.TryGetWorksheet(sheetName, out worksheet))
+            {
+                sheetName = originalSheetName + ++duplicateNameCount;
+            }
+
+            worksheet = workbook.Worksheets.Add(sheetName);
+            worksheet.SetShowRowColHeaders(true);
+
+            // Render the header
+            var fieldsCount = report.DataFields.Where(f => !f.Hidden).Count();
+            int rowCount = RenderHeader(worksheet, fieldsCount, report.TextFields, report.RenderHints);
+
+            // Render all the rows
+            foreach (var row in report.GetRows())
+            {
+                rowCount++;
+                var dataRow = worksheet.Row(rowCount);
+                RenderRow(rowCount, row, dataRow);
+            }
+
+            // Render the footer
+            RenderFooter(worksheet, fieldsCount, report.TextFields, report.RenderHints, rowCount);
+
+            // Adjust the width of all the columns
+            foreach (var column in worksheet.Columns())
+            {
+                column.AdjustToContents();
+            }
+
+            // Check if the report has an excel writer and the excel writer has reports to append
+            var reportWriter = report.Writer as ExcelReportWriter;
+            if (reportWriter != null)
+            {
+                foreach (var reportToAppend in reportWriter.ReportsToAppend)
+                {
+                    this.WriteReport(reportToAppend, workbook);
+                }
+            }
         }
     }
 }
