@@ -22,20 +22,20 @@ namespace DoddleReport.OpenXml
         public static Dictionary<string, string> OpenXmlDataFormatStringMap =
             new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
                 {
-                    {"{0:c}", "$ #,##0.00"}
+                    { "{0:c}", "$ #,##0.00" }
                 };
 
         /// <summary>
         /// Gets the reports to append.
         /// </summary>
-        internal IList<Report> ReportsToAppend { get; private set; }
+        internal IDictionary<Report, IList<Report>> ReportsToAppend { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ExcelReportWriter"/> class.
         /// </summary>
         public ExcelReportWriter()
         {
-            this.ReportsToAppend = new List<Report>();
+            this.ReportsToAppend = new Dictionary<Report, IList<Report>>();
         }
 
         private static string GetOpenXmlDataFormatString(string dataFormatString)
@@ -82,7 +82,12 @@ namespace DoddleReport.OpenXml
                 throw new InvalidOperationException("Unable to append report, the source Writer is not a ExcelReportWriter");
             }
 
-            sourceWriter.ReportsToAppend.Add(destination);
+            if (!this.ReportsToAppend.ContainsKey(source))
+            {
+                this.ReportsToAppend.Add(source, new List<Report>());
+            }
+
+            this.ReportsToAppend[source].Add(destination);
         }
 
         /// <summary>
@@ -322,11 +327,10 @@ namespace DoddleReport.OpenXml
                 column.AdjustToContents();
             }
 
-            // Check if the report has an excel writer and the excel writer has reports to append
-            var reportWriter = report.Writer as ExcelReportWriter;
-            if (reportWriter != null)
+            // Check if the current writer needs to append another report to the report we just generated
+            if (this.ReportsToAppend.ContainsKey(report))
             {
-                foreach (var reportToAppend in reportWriter.ReportsToAppend)
+                foreach (var reportToAppend in this.ReportsToAppend[report])
                 {
                     this.WriteReport(reportToAppend, workbook);
                 }
