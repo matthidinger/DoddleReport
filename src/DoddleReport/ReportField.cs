@@ -62,7 +62,6 @@ namespace DoddleReport
 
         public void FormatAs<T>(Func<T, string> formatAsDelegate)
         {
-            this.DataFormatString = null;
             this.FormatAsDelegate = formatAsDelegate;
         }
 
