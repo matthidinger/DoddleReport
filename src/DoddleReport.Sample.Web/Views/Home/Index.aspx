@@ -62,7 +62,7 @@
             </td>
         
             <td>
-                <h3>PDF Report - headers repeat on every page</h3>
+                <h3>PDF Report - using iTextSharp - headers repeat on every page</h3>
                 <%: Html.ActionLink("See Live!", "ProductReport", "Doddle", new { extension = "pdf" }, null)%>
             </td>
         </tr>
