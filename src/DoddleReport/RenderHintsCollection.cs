@@ -3,6 +3,9 @@ using System.Drawing;
 
 namespace DoddleReport
 {
+    /// <summary>
+    /// Render hints are passed to each report writer to alter their rendering behavior. Not all render hints are supported in every writer
+    /// </summary>
     public class RenderHintsCollection
     {
         private readonly Dictionary<string, object> _internal = new Dictionary<string, object>();
@@ -43,25 +46,36 @@ namespace DoddleReport
             set { this["PageSize"] = value; }
         }
 
-
+        /// <summary>
+        /// Boolean fields will render as Yes/No instead of true/false on the reports
+        /// </summary>
         public bool BooleansAsYesNo
         {
             get { return (bool)this["BooleansAsYesNo"]; }
             set { this["BooleansAsYesNo"] = value; }
         }
 
+        /// <summary>
+        /// Boolean fields will render as Checkboxes in certain report writers
+        /// </summary>
         public bool BooleanCheckboxes
         {
             get { return (bool) this["BooleanCheckboxes"]; }
             set { this["BooleanCheckboxes"] = value; }
         }
 
+        /// <summary>
+        /// Page numbers will be rendered onto the footer in certain report writers
+        /// </summary>
         public bool IncludePageNumbers
         {
             get { return this["IncludePageNumbers"] as bool? ?? true; }
             set { this["IncludePageNumbers"] = value; }
         }
 
+        /// <summary>
+        /// Toggle the orientation if the report writer supports it
+        /// </summary>
         public ReportOrientation Orientation
         {
             get
@@ -74,7 +88,10 @@ namespace DoddleReport
             }
         }
 
-
+        /// <summary>
+        /// Use this to pass arbitrary render hints to a specific report writer
+        /// </summary>
+        /// <param name="hint">The name of the render hint. The Report Writer must be looking for this hint by name to have any affect</param>
         public object this[string hint]
         {
             get
