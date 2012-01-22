@@ -13,8 +13,6 @@ namespace DoddleReport.iTextSharp
         public const string FooterStyle = "FooterStyle";
         public const string FontFamily = "FontFamily";
 
-
-
         /// <summary>
         /// Writes the report.
         /// </summary>
@@ -22,9 +20,9 @@ namespace DoddleReport.iTextSharp
         /// <param name="destination">The destination.</param>
         public void WriteReport(Report report, Stream destination)
         {
-            var pageSize = report.RenderHints.Orientation == ReportOrientation.Portrait
-                           ? PageSize.LETTER
-                           : PageSize.LETTER.Rotate();
+            Rectangle pageSize = new Rectangle(report.RenderHints.PageSize.Width, report.RenderHints.PageSize.Height);
+            if (report.RenderHints.Orientation == ReportOrientation.Landscape)
+                pageSize = pageSize.Rotate();
 
             var margins = report.RenderHints.Margins;
             var doc = new Document(pageSize, margins.Width, margins.Width, margins.Height, margins.Height);

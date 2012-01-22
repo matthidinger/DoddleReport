@@ -36,7 +36,6 @@ namespace DoddleReport.Sample.Web.Controllers
             var totalProducts = query.Count;
             var totalOrders = query.Sum(p => p.OrderCount);
 
-
             // Create the report and turn our query into a ReportSource
             var report = new Report(query.ToReportSource());
 
@@ -56,6 +55,9 @@ namespace DoddleReport.Sample.Web.Controllers
             report.RenderHints.BooleanCheckboxes = true;
             report.RenderHints.BooleansAsYesNo = true;
             //report.RenderHints.Orientation = ReportOrientation.Landscape;
+            //report.RenderHints.PageSize = new SizeF(8.5f * 72f, 14f * 72f); //US Legal paper size
+            //report.RenderHints.PageSize = new SizeF(595.28f, 841.89f); //A4 paper size
+            //report.RenderHints.PageSize = new SizeF(842f, 1191f); //A3 paper size
             
 
             // Customize the data fields
@@ -63,7 +65,6 @@ namespace DoddleReport.Sample.Web.Controllers
             report.DataFields["Price"].DataFormatString = "{0:c}";
             report.DataFields["Price"].ShowTotals = true;
             report.DataFields["LastPurchase"].DataFormatString = "{0:d}";
-
 
             // Advanced customized on a row-by-row basis
             report.RenderingRow += report_RenderingRow;

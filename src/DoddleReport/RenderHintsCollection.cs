@@ -8,12 +8,14 @@ namespace DoddleReport
         private readonly Dictionary<string, object> _internal = new Dictionary<string, object>();
 
         public static SizeF DefaultMargins = new SizeF(20f, 20f);
+        public static SizeF DefaultPageSize = new SizeF(612f, 792f); //default to letter size in points 8.5*72, 11*72
 
         public RenderHintsCollection()
         {
             BooleanCheckboxes = false;
             BooleansAsYesNo = false;
             Margins = DefaultMargins;
+            PageSize = DefaultPageSize ;
         }
 
         public bool ContainsKey(string hint)
@@ -29,6 +31,18 @@ namespace DoddleReport
             get { return (SizeF)this["Margins"]; }
             set { this["Margins"] = value; }
         }
+
+        /// <summary>
+        /// Page Size of the document. Use .Width and .Height to specify the Page Size.  
+        /// For PDFs, the unit of measure is in points (72 points = 1 inch), but may be interpreted differently based on the IReportWriter.
+        /// <example>Example: to set 8.5in x 11in PageSize: report.RenderHints.PageSize = new SizeF(8.5f * 72f, 11f * 72f);</example>
+        /// </summary>
+        public SizeF PageSize 
+        { 
+            get{ return (SizeF)this["PageSize"];}
+            set { this["PageSize"] = value; }
+        }
+
 
         public bool BooleansAsYesNo
         {
