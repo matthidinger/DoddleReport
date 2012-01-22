@@ -54,6 +54,9 @@ namespace DoddleReport.Sample.Web.Controllers
             // Render hints allow you to pass additional hints to the reports as they are being rendered
             report.RenderHints.BooleanCheckboxes = true;
             report.RenderHints.BooleansAsYesNo = true;
+            
+            // Some writers (like PDF) support Orientation and page sizing
+            //report.RenderHints.Orientation = ReportOrientation.Landscape;
             //report.RenderHints.PageSize = new SizeF(8.5f * 72f, 14f * 72f); //US Legal paper size
             //report.RenderHints.PageSize = new SizeF(595.28f, 841.89f); //A4 paper size
             //report.RenderHints.PageSize = new SizeF(842f, 1191f); //A3 paper size

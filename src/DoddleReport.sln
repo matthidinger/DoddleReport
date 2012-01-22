@@ -34,6 +34,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoddleReport.iTextSharp.v35
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoddleReport.OpenXml.v35", "DoddleReport.OpenXml.v35\DoddleReport.OpenXml.v35.csproj", "{8A4ED6C0-2E7F-41B4-AED5-A85B67BC50D4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoddleReport.Sample.Web.v35", "DoddleReport.Sample.Web.v35\DoddleReport.Sample.Web.v35.csproj", "{96E6EBE9-C9FE-4357-996E-85A44812D193}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = DoddleReport.vsmdi
@@ -167,6 +169,16 @@ Global
 		{8A4ED6C0-2E7F-41B4-AED5-A85B67BC50D4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{8A4ED6C0-2E7F-41B4-AED5-A85B67BC50D4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{8A4ED6C0-2E7F-41B4-AED5-A85B67BC50D4}.Release|x86.ActiveCfg = Release|Any CPU
+		{96E6EBE9-C9FE-4357-996E-85A44812D193}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96E6EBE9-C9FE-4357-996E-85A44812D193}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96E6EBE9-C9FE-4357-996E-85A44812D193}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{96E6EBE9-C9FE-4357-996E-85A44812D193}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{96E6EBE9-C9FE-4357-996E-85A44812D193}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{96E6EBE9-C9FE-4357-996E-85A44812D193}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96E6EBE9-C9FE-4357-996E-85A44812D193}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96E6EBE9-C9FE-4357-996E-85A44812D193}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{96E6EBE9-C9FE-4357-996E-85A44812D193}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{96E6EBE9-C9FE-4357-996E-85A44812D193}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -174,5 +186,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{12A17D7F-C168-4086-8D6A-DFE311E9EE90} = {2E920538-21EC-49E6-BF72-75E82B2E49E2}
 		{28FBF83C-A8A3-418B-A32E-3A725BD37A5C} = {2E920538-21EC-49E6-BF72-75E82B2E49E2}
+		{96E6EBE9-C9FE-4357-996E-85A44812D193} = {2E920538-21EC-49E6-BF72-75E82B2E49E2}
 	EndGlobalSection
 EndGlobal

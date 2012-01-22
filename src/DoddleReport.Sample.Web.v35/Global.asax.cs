@@ -1,7 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 using DoddleReport.Web;
-using DoddleReport.Writers;
 
 namespace DoddleReport.Sample.Web
 {
@@ -10,15 +9,6 @@ namespace DoddleReport.Sample.Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
-            //DelimitedTextReportWriter.GetHeaderText = field => field.HeaderText;
-
-
-            routes.MapRoute("LegacyUrl",
-                    "home/{action}.{extension}",
-                    new { controller = "Doddle" },
-                    new { extension = new ReportRouteConstraint() }
-                );
 
             routes.MapReportingRoute();
 
@@ -31,8 +21,6 @@ namespace DoddleReport.Sample.Web
 
         protected void Application_Start()
         {
-            AreaRegistration.RegisterAllAreas();
-
             RegisterRoutes(RouteTable.Routes);
         }
     }

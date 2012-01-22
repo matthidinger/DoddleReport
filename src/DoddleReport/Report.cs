@@ -5,6 +5,9 @@ using System.Linq;
 
 namespace DoddleReport
 {
+    /// <summary>
+    /// A report consists of the ReportSource, TextFields, RenderHints that are used by an IReportWriter to render the report
+    /// </summary>
     public class Report
     {
         private readonly ReportTextFieldCollection _textFields = new ReportTextFieldCollection();
@@ -15,11 +18,20 @@ namespace DoddleReport
         {
         }
 
+        /// <summary>
+        /// Create a new report by using a specific report source
+        /// </summary>
+        /// <param name="source">The data for the report</param>
         public Report(IReportSource source) : this(source, null)
         {
             
         }
 
+        /// <summary>
+        /// Create a new report by using a specific report source and report writer
+        /// </summary>
+        /// <param name="source">The data for the report</param>
+        /// <param name="writer">The type of writer used to render the report</param>
         public Report(IReportSource source, IReportWriter writer)
         {
             if (source != null)
@@ -32,6 +44,10 @@ namespace DoddleReport
         }
 
         private IReportSource _source;
+
+        /// <summary>
+        /// The data for the report
+        /// </summary>
         public IReportSource Source
         {
             get
@@ -44,19 +60,33 @@ namespace DoddleReport
                 DataFields = _source.GetFields();
             }
         }
+
+        /// <summary>
+        /// The writer that should be used to render the report.
+        /// </summary>
         public IReportWriter Writer { get; set; }
 
+        /// <summary>
+        /// The columns of data returned from the report source. They may be customized by using the indexer of this property.
+        /// </summary>
         public ReportFieldCollection DataFields { get; set; }
 
-
+        /// <summary>
+        /// This event is fired before a row is rendered, allowing some customization of the data
+        /// </summary>
         public event EventHandler<ReportRowEventArgs> RenderingRow;
 
-
+        /// <summary>
+        /// Text fields are passed to the report writers to render the data as they see fit
+        /// </summary>
         public ReportTextFieldCollection TextFields
         {
             get { return _textFields; }
         }
 
+        /// <summary>
+        /// Render hints are passed to each report writer to alter their rendering behavior. Not all render hints are supported in every writer
+        /// </summary>
         public RenderHintsCollection RenderHints
         {
             get { return _renderHints; }
@@ -92,6 +122,10 @@ namespace DoddleReport
             return rows;
         }
 
+        /// <summary>
+        /// Write the report to a stream using the specified report writer
+        /// </summary>
+        /// <param name="destination"></param>
         public void WriteReport(Stream destination)
         {
             if (Source == null)
@@ -105,6 +139,10 @@ namespace DoddleReport
             Writer.WriteReport(this, destination);
         }
 
+        /// <summary>
+        /// Append a report to another. This only works for certain report writers and both reports must be using the same report writer.
+        /// </summary>
+        /// <param name="report"></param>
         public void AppendReport(Report report)
         {
             report.Writer = Writer;
@@ -149,14 +187,6 @@ namespace DoddleReport
 
                 //}
             }
-        }
-
-        public object GetFieldValue(object dataItem, string fieldName)
-        {
-            if(Source == null)
-                throw new InvalidOperationException("The Source for this report has not been set");
-
-            return Source.GetFieldValue(dataItem, fieldName);
         }
     }
 }

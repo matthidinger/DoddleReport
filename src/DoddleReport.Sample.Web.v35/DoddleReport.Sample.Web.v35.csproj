@@ -6,13 +6,13 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{28FBF83C-A8A3-418B-A32E-3A725BD37A5C}</ProjectGuid>
+    <ProjectGuid>{96E6EBE9-C9FE-4357-996E-85A44812D193}</ProjectGuid>
     <ProjectTypeGuids>{F85E285D-A4E0-4152-9332-AB1D724D3325};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DoddleReport.Sample.Web</RootNamespace>
     <AssemblyName>DoddleReport.Sample.Web</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <SccProjectName>
     </SccProjectName>
@@ -43,33 +43,45 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Areas\Reporting\Controllers\DoddleController.cs" />
-    <Compile Include="Areas\Reporting\ReportingAreaRegistration.cs" />
-    <Compile Include="Controllers\AbcPdfController.cs" />
-    <Compile Include="Controllers\DoddleController.cs" />
-    <Compile Include="Controllers\ExpandoController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
-    <Compile Include="Helpers\ProductReportHelper.cs" />
-    <Compile Include="Models\DoddleProductRepository.cs" />
+    <Compile Include="..\DoddleReport.Sample.Web\Controllers\AbcPdfController.cs">
+      <Link>Controllers\AbcPdfController.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport.Sample.Web\Controllers\DoddleController.cs">
+      <Link>Controllers\DoddleController.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport.Sample.Web\Controllers\HomeController.cs">
+      <Link>Controllers\HomeController.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport.Sample.Web\Controllers\TestController.cs">
+      <Link>Controllers\TestController.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport.Sample.Web\Helpers\ProductReportHelper.cs">
+      <Link>Helpers\ProductReportHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport.Sample.Web\Models\DoddleProductRepository.cs">
+      <Link>Models\DoddleProductRepository.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport.Sample.Web\WebForms\ProductReport.ashx.cs">
+      <Link>WebForms\ProductReport.ashx.cs</Link>
+      <DependentUpon>ProductReport.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WebForms\ProductReport.ashx.cs">
-      <DependentUpon>ProductReport.ashx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\doddleHtmlReport.png" />
@@ -93,37 +105,33 @@
     <Content Include="Views\Shared\Site.Master" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Content Include="WebForms\ProductReport.ashx" />
+    <ProjectReference Include="..\DoddleReport.AbcPdf.v35\DoddleReport.AbcPdf.v35.csproj">
+      <Project>{FCE317C9-E02A-4AD5-813D-C29AF6061808}</Project>
+      <Name>DoddleReport.AbcPdf.v35</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DoddleReport.iTextSharp.v35\DoddleReport.iTextSharp.v35.csproj">
+      <Project>{B1A90194-581B-450C-A939-73A9A5FEDA9C}</Project>
+      <Name>DoddleReport.iTextSharp.v35</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DoddleReport.OpenXml.v35\DoddleReport.OpenXml.v35.csproj">
+      <Project>{8A4ED6C0-2E7F-41B4-AED5-A85B67BC50D4}</Project>
+      <Name>DoddleReport.OpenXml.v35</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DoddleReport.v35\DoddleReport.v35.csproj">
+      <Project>{B3AC0BE5-952A-41F6-8C13-1D2C112B0238}</Project>
+      <Name>DoddleReport.v35</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DoddleReport.Web.v35\DoddleReport.Web.v35.csproj">
+      <Project>{910CAA70-55B2-47A4-B679-3366B2DFF613}</Project>
+      <Name>DoddleReport.Web.v35</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DoddleReport.AbcPdf\DoddleReport.AbcPdf.csproj">
-      <Project>{355CAFF3-F806-4194-BE54-2F7640463CED}</Project>
-      <Name>DoddleReport.AbcPdf</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DoddleReport.iTextSharp\DoddleReport.iTextSharp.csproj">
-      <Project>{347D0716-0297-4866-9FD5-5E019B51C408}</Project>
-      <Name>DoddleReport.iTextSharp</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DoddleReport.OpenXml\DoddleReport.OpenXml.csproj">
-      <Project>{0646C575-0EA6-4331-809C-10DC000929F3}</Project>
-      <Name>DoddleReport.OpenXml</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DoddleReport.Web\DoddleReport.Web.csproj">
-      <Project>{A02EF71C-C655-4D93-9CAF-15E527AA4FE0}</Project>
-      <Name>DoddleReport.Web</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DoddleReport\DoddleReport.csproj">
-      <Project>{F08B2994-4D05-423E-A8FE-7D1E8A63472B}</Project>
-      <Name>DoddleReport</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Reporting\Views\Web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Areas\Reporting\Models\" />
-    <Folder Include="Areas\Reporting\Views\Shared\" />
+    <Content Include="..\DoddleReport.Sample.Web\WebForms\ProductReport.ashx">
+      <Link>WebForms\ProductReport.ashx</Link>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
@@ -140,7 +148,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>False</AutoAssignPort>
-          <DevelopmentServerPort>8095</DevelopmentServerPort>
+          <DevelopmentServerPort>8096</DevelopmentServerPort>
           <DevelopmentServerVPath>/Home/Index</DevelopmentServerVPath>
           <IISUrl>http://localhost/DoddleReporting</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
