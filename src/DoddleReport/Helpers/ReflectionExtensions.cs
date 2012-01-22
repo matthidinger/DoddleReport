@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Reflection;
 
 namespace DoddleReport
@@ -16,14 +18,10 @@ namespace DoddleReport
             return default(T);
         }
 
-        public static bool HasAttribute(this Type t, Type attrType)
+        public static TAttribute GetAttribute<TAttribute>(this MemberInfo member)
+            where TAttribute : Attribute
         {
-            return t.GetCustomAttributes(attrType, true) != null;
-        }
-
-        public static bool HasAttribute(this MemberInfo mi, Type attrType)
-        {
-            return mi.GetCustomAttributes(attrType, false) != null;
+            return member.GetCustomAttributes(typeof(TAttribute), false).Cast<TAttribute>().FirstOrDefault();
         }
 
         /// <summary> 
