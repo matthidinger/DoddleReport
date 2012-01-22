@@ -74,10 +74,6 @@
     <Compile Include="..\DoddleReport.Sample.Web\Models\DoddleProductRepository.cs">
       <Link>Models\DoddleProductRepository.cs</Link>
     </Compile>
-    <Compile Include="..\DoddleReport.Sample.Web\WebForms\ProductReport.ashx.cs">
-      <Link>WebForms\ProductReport.ashx.cs</Link>
-      <DependentUpon>ProductReport.ashx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -100,8 +96,6 @@
     </Content>
     <Content Include="Content\Site.css" />
     <Content Include="Views\Home\Index.aspx" />
-    <Content Include="Views\Shared\Error.aspx" />
-    <Content Include="Views\Shared\LogOnUserControl.ascx" />
     <Content Include="Views\Shared\Site.Master" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
@@ -127,11 +121,6 @@
       <Project>{910CAA70-55B2-47A4-B679-3366B2DFF613}</Project>
       <Name>DoddleReport.Web.v35</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="..\DoddleReport.Sample.Web\WebForms\ProductReport.ashx">
-      <Link>WebForms\ProductReport.ashx</Link>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
