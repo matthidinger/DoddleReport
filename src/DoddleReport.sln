@@ -13,7 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoddleReport.Sample.WinForm
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{0E73989A-FF31-4542-88F9-DAC6F9C40FE2}"
 	ProjectSection(SolutionItems) = preProject
-		..\nuget\DoddleReport.Dynamic.nuspec = ..\nuget\DoddleReport.Dynamic.nuspec
 		..\nuget\DoddleReport.Sample.Mvc.nuspec = ..\nuget\DoddleReport.Sample.Mvc.nuspec
 		..\nuget\PackAndPublish.bat = ..\nuget\PackAndPublish.bat
 	EndProjectSection
