@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.Linq;
 
 namespace DoddleReport.Sample.Web.Models
@@ -12,7 +11,7 @@ namespace DoddleReport.Sample.Web.Models
         public string Description { get; set; }
         public double Price { get; set; }
         public int OrderCount { get; set; }
-        public DateTime? LastPurchase { get; set; }
+        public DateTime LastPurchase { get; set; }
         public int UnitsInStock { get; set; }
         public bool? LowStock
         {
@@ -38,25 +37,6 @@ namespace DoddleReport.Sample.Web.Models
                                      UnitsInStock = rand.Next(0, 1000)
                                  })
                 .ToList();
-        }
-
-        public static IEnumerable<ExpandoObject> GetAllExpando()
-        {
-            foreach(var product in GetAll())
-            {
-                dynamic item = new ExpandoObject();
-
-                item.Id = product.Id;
-                item.Name = product.Name;
-                item.Description = product.Description + " (dynamic)";
-                item.Price = product.Price;
-                item.OrderCount = product.OrderCount;
-                item.LastPuchase = product.LastPurchase;
-                item.UnitsInStock = product.UnitsInStock;
-                item.LowStock = product.LowStock;
-
-                yield return item;
-            }
         }
     }
 }

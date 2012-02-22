@@ -71,12 +71,10 @@
     <Compile Include="..\DoddleReport.Sample.Web\Helpers\ProductReportHelper.cs">
       <Link>Helpers\ProductReportHelper.cs</Link>
     </Compile>
-    <Compile Include="..\DoddleReport.Sample.Web\Models\DoddleProductRepository.cs">
-      <Link>Models\DoddleProductRepository.cs</Link>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DoddleProductRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
