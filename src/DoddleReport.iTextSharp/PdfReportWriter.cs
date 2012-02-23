@@ -214,7 +214,7 @@ namespace DoddleReport.iTextSharp
         private static PdfPCell CreateTextCell(ReportStyle reportStyle, string fontName, string text)
         {
             var par = new Paragraph(text, ConvertStyleToFont(reportStyle, fontName));
-            var cell = new PdfPCell(par) {Border = 0};
+            var cell = new PdfPCell(par) { Border = 0 };
             CopyStyleToCell(reportStyle, cell);
             return cell;
         }
@@ -263,6 +263,7 @@ namespace DoddleReport.iTextSharp
         public static void CopyStyleToCell(ReportStyle reportStyle, PdfPCell cell)
         {
             cell.BackgroundColor = new BaseColor(reportStyle.BackColor);
+            cell.Width = reportStyle.Width > 0 ? reportStyle.Width : cell.Width;
             
             switch (reportStyle.HorizontalAlignment)
             {
