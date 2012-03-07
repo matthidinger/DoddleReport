@@ -289,6 +289,9 @@ namespace DoddleReport.iTextSharp
                     cell.VerticalAlignment = Element.ALIGN_TOP;
                     break;
             }
+
+            if(reportStyle.TextRotation % 90 == 0)
+                cell.Rotation = reportStyle.TextRotation;
         }
     }
 }

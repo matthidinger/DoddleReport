@@ -39,6 +39,23 @@ namespace DoddleReport
                 html.AppendFormat("width: {0}px", style.Width);
             }
 
+            if (style.TextRotation != 0)
+            {
+                var degrees = style.TextRotation*-1;
+
+                html.AppendFormat("-webkit-transform: rotate({0}deg);", degrees);
+                html.AppendFormat("-moz-transform: rotate({0}deg);", degrees);
+                html.AppendFormat("-ms-transform: rotate({0}deg);", degrees);
+                html.AppendFormat("-o-transform: rotate({0}deg);", degrees);
+                html.AppendFormat("transform: rotate({0}deg);", degrees);
+
+                var rad = degrees*Math.PI/180;
+                var costheta = Math.Cos(rad);
+                var sintheta = Math.Sin(rad);
+
+                html.AppendFormat("filter: progid:DXImageTransform.Microsoft.Matrix(/* IE6–IE9 */ M11={0}, M12={1}, M21={2}, M22={3}, sizingMethod='auto expand');zoom: 1;", costheta, -sintheta, sintheta, costheta);
+            }
+
             return html.ToString();
 
         }
