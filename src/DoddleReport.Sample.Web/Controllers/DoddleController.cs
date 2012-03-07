@@ -79,14 +79,23 @@ namespace DoddleReport.Sample.Web.Controllers
 
         void report_RenderingRow(object sender, ReportRowEventArgs e)
         {
-            if (e.Row.RowType == ReportRowType.DataRow)
+            switch (e.Row.RowType)
             {
-                var unitsInStock = (int)e.Row["UnitsInStock"];
-                if (unitsInStock < 100)
-                {
-                    e.Row.Fields["UnitsInStock"].DataStyle.Bold = true;
-                    e.Row.Fields["UnitsInStock"].DataStyle.ForeColor = Color.Maroon;
-                }
+                case ReportRowType.HeaderRow:
+                    e.Row.Fields["LastPurchase"].HeaderStyle.TextRotation = -90;
+                    e.Row.Fields["UnitsInStock"].HeaderStyle.TextRotation = -90;
+                    e.Row.Fields["LowStock"].HeaderStyle.TextRotation = -90;
+                    break;
+                case ReportRowType.DataRow:
+                    {
+                        var unitsInStock = (int)e.Row["UnitsInStock"];
+                        if (unitsInStock < 100)
+                        {
+                            e.Row.Fields["UnitsInStock"].DataStyle.Bold = true;
+                            e.Row.Fields["UnitsInStock"].DataStyle.ForeColor = Color.Maroon;
+                        }
+                    }
+                    break;
             }
         }
     }

@@ -46,6 +46,7 @@ namespace DoddleReport.OpenXml
                 reportStyle.VerticalAlignment == VerticalAlignment.Bottom ? XLAlignmentVerticalValues.Bottom :
                 reportStyle.VerticalAlignment == VerticalAlignment.Middle ? XLAlignmentVerticalValues.Center :
                 XLAlignmentVerticalValues.Top;
+            xlStyle.Alignment.TextRotation = reportStyle.TextRotation;
         }
     }
 }
