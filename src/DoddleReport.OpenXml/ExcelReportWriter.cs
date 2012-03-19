@@ -306,6 +306,9 @@ namespace DoddleReport.OpenXml
             worksheet = workbook.Worksheets.Add(sheetName);
             worksheet.SetShowRowColHeaders(true);
 
+            if (report.RenderHints.FreezePanes)
+                worksheet.SheetView.Freeze(report.RenderHints.FreezeRows, report.RenderHints.FreezeColumns);
+
             // Render the header
             var fieldsCount = report.DataFields.Where(f => !f.Hidden).Count();
             int rowCount = RenderHeader(worksheet, fieldsCount, report.TextFields, report.RenderHints);

@@ -89,6 +89,32 @@ namespace DoddleReport
         }
 
         /// <summary>
+        /// Indicates if Freeze Panes is enabled based on current settings of FreezeRows and FreezeColumns
+        /// </summary>
+        public bool FreezePanes
+        {
+            get { return FreezeRows + FreezeColumns > 0; }
+        }
+
+        /// <summary>
+        /// Freeze rows
+        /// </summary>
+        public int FreezeRows
+        {
+            get { return (int)this["FreezeRows"]; }
+            set { this["FreezeRows"] = value; }
+        }
+
+        /// <summary>
+        /// Freeze columns
+        /// </summary>
+        public int FreezeColumns
+        {
+            get { return (int)this["FreezeColumns"]; }
+            set { this["FreezeColumns"] = value; }
+        }
+
+        /// <summary>
         /// Use this to pass arbitrary render hints to a specific report writer
         /// </summary>
         /// <param name="hint">The name of the render hint. The Report Writer must be looking for this hint by name to have any affect</param>
