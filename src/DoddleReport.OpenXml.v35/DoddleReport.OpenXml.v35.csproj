@@ -39,7 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ClosedXML">
-      <HintPath>..\packages\ClosedXML_NET_35.0.60.0\lib\ClosedXML.dll</HintPath>
+      <HintPath>..\packages\ClosedXML.0.64.0\lib\net35-client\ClosedXML.dll</HintPath>
     </Reference>
     <Reference Include="DocumentFormat.OpenXml, Version=2.0.5022.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
