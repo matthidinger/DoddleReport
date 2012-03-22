@@ -1,7 +1,7 @@
-﻿using System.IO;
-using System;
-using System.Drawing;
+﻿using System.Drawing;
+using System.IO;
 using ClosedXML.Excel;
+using System;
 
 namespace DoddleReport.OpenXml
 {
@@ -46,6 +46,16 @@ namespace DoddleReport.OpenXml
                 reportStyle.VerticalAlignment == VerticalAlignment.Bottom ? XLAlignmentVerticalValues.Bottom :
                 reportStyle.VerticalAlignment == VerticalAlignment.Middle ? XLAlignmentVerticalValues.Center :
                 XLAlignmentVerticalValues.Top;
+        }
+
+        /// <summary>
+        /// Pixels to point.
+        /// </summary>
+        /// <param name="pixels">The pixels.</param>
+        /// <returns>The value in points.</returns>
+        public static double PixelsToPoints(this int pixels)
+        {
+            return Convert.ToDouble(pixels) * 72d / 96d;
         }
     }
 }

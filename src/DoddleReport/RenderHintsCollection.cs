@@ -18,7 +18,7 @@ namespace DoddleReport
             BooleanCheckboxes = false;
             BooleansAsYesNo = false;
             Margins = DefaultMargins;
-            PageSize = DefaultPageSize ;
+            PageSize = DefaultPageSize;
         }
 
         public bool ContainsKey(string hint)

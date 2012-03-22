@@ -14,6 +14,7 @@ namespace DoddleReport.OpenXml
         public const string SubTitleStyle = "SubTitleStyle";
         public const string HeaderStyle = "HeaderStyle";
         public const string FooterStyle = "FooterStyle";
+        public const string AdjustColumnWidthToContents = "AdjustColumnWidthToContents";
 
         /// <summary>
         /// This Dictionary maps standard .NET format strings (like {0:c}) to OpenXML Format strings like "$ #,##0.00"
@@ -305,6 +306,8 @@ namespace DoddleReport.OpenXml
 
             worksheet = workbook.Worksheets.Add(sheetName);
             worksheet.SetShowRowColHeaders(true);
+            var orientation = report.RenderHints.Orientation == ReportOrientation.Portrait ? XLPageOrientation.Portrait : XLPageOrientation.Landscape;
+            worksheet.PageSetup.PageOrientation = orientation;
 
             // Render the header
             var fieldsCount = report.DataFields.Where(f => !f.Hidden).Count();
@@ -322,9 +325,28 @@ namespace DoddleReport.OpenXml
             RenderFooter(worksheet, fieldsCount, report.TextFields, report.RenderHints, rowCount);
 
             // Adjust the width of all the columns
-            foreach (var column in worksheet.Columns())
+            for (int i = 0; i < fieldsCount; i++)
             {
-                column.AdjustToContents();
+                var reportField = report.DataFields.Where(f => !f.Hidden).Skip(i).Take(1).Single();
+                var width = new int[] { reportField.DataStyle.Width, reportField.FooterStyle.Width, reportField.HeaderStyle.Width }.Max().PixelsToPoints();
+                var adjustToContents = report.RenderHints[AdjustColumnWidthToContents] as bool? ?? true;
+
+                if (adjustToContents || width > 0)
+                {
+                    var column = worksheet.Column(i + 1);
+                    if (adjustToContents && width > 0)
+                    {
+                        column.AdjustToContents(width, double.MaxValue);
+                    }
+                    else if (adjustToContents)
+                    {
+                        column.AdjustToContents();
+                    }
+                    else
+                    {
+                        column.Width = width;
+                    }
+                }
             }
 
             // Check if the current writer needs to append another report to the report we just generated
