@@ -328,7 +328,7 @@ namespace DoddleReport.OpenXml
             for (int i = 0; i < fieldsCount; i++)
             {
                 var reportField = report.DataFields.Where(f => !f.Hidden).Skip(i).Take(1).Single();
-                var width = new int[] { reportField.DataStyle.Width, reportField.FooterStyle.Width, reportField.HeaderStyle.Width }.Max().PixelsToPoints();
+                var width = new int[] { reportField.DataStyle.Width, reportField.FooterStyle.Width, reportField.HeaderStyle.Width }.Max();
                 var adjustToContents = report.RenderHints[AdjustColumnWidthToContents] as bool? ?? true;
 
                 if (adjustToContents || width > 0)
@@ -336,7 +336,7 @@ namespace DoddleReport.OpenXml
                     var column = worksheet.Column(i + 1);
                     if (adjustToContents && width > 0)
                     {
-                        column.AdjustToContents(width, double.MaxValue);
+                        column.AdjustToContents(width.PixelsToUnits(column.Style.Font), double.MaxValue);
                     }
                     else if (adjustToContents)
                     {
@@ -344,7 +344,7 @@ namespace DoddleReport.OpenXml
                     }
                     else
                     {
-                        column.Width = width;
+                        column.Width = width.PixelsToUnits(column.Style.Font);
                     }
                 }
             }
