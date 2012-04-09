@@ -101,7 +101,7 @@ namespace DoddleReport
         /// </summary>
         public int FreezeRows
         {
-            get { return (int)this["FreezeRows"]; }
+            get { return this["FreezeRows"] as int? ?? 0; }
             set { this["FreezeRows"] = value; }
         }
 
@@ -110,7 +110,7 @@ namespace DoddleReport
         /// </summary>
         public int FreezeColumns
         {
-            get { return (int)this["FreezeColumns"]; }
+            get { return this["FreezeColumns"] as int? ?? 0; }
             set { this["FreezeColumns"] = value; }
         }
 
