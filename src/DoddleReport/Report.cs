@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Reflection;
 
 namespace DoddleReport
 {
@@ -12,7 +14,8 @@ namespace DoddleReport
     {
         private readonly ReportTextFieldCollection _textFields = new ReportTextFieldCollection();
         private readonly RenderHintsCollection _renderHints = new RenderHintsCollection();
-        readonly Dictionary<RowField, decimal> _decTotals = new Dictionary<RowField, decimal>();
+        private readonly Dictionary<RowField, object> _totals = new Dictionary<RowField, object>();
+        private readonly Dictionary<Type, object> _lambdas = new Dictionary<Type, object>();
 
         public Report() : this(null, null)
         {
@@ -151,10 +154,10 @@ namespace DoddleReport
 
         private void AddFooterRow(ReportRowCollection rows)
         {
-            if (_decTotals.Count == 0) return;
+            if (_totals.Count == 0) return;
 
             var footerRow = new ReportRow(this, ReportRowType.FooterRow, null);
-            foreach (var total in _decTotals)
+            foreach (var total in _totals)
             {
                 footerRow[total.Key] = string.Format(total.Key.DataFormatString, total.Value);
             }
@@ -171,21 +174,46 @@ namespace DoddleReport
         {
             foreach (var field in row.Fields)
             {
-                if (field.ShowTotals)
+                if (field.ShowTotals && field.DataType.IsNumericType())
                 {
-                    decimal value = Convert.ToDecimal(row[field]);
-                    if (_decTotals.ContainsKey(field))
-                        _decTotals[field] += value;
-                    else
-                        _decTotals[field] = value;
+                    var numericType = field.DataType.IsGenericType ? field.DataType.GetGenericArguments().Single() : field.DataType;
+                    var addFieldTotalMethod = typeof(Report).GetMethod("AddFieldTotal", BindingFlags.Instance | BindingFlags.NonPublic).MakeGenericMethod(numericType);
+                    object value = row[field];
+                    if (value as string == string.Empty)
+                    {
+                        value = null;
+                    }
+
+                    addFieldTotalMethod.Invoke(this, new object[] { field, value });
+                }
+            }
+        }
+
+        private void AddFieldTotal<T>(RowField field, Nullable<T> value) where T : struct
+        {
+            var numericValue = value != null ? value.Value : default(T);
+            if (_totals.ContainsKey(field))
+            {
+                Func<T, T, T> lambda;
+                if (!_lambdas.ContainsKey(typeof(T)))
+                {
+                    var firstParam = Expression.Parameter(typeof(T), "x");
+                    var secondParam = Expression.Parameter(typeof(T), "y");
+                    lambda = Expression.Lambda<Func<T, T, T>>(Expression.Convert(Expression.Add(firstParam, secondParam), typeof(T)), firstParam, secondParam).Compile();
+                    _lambdas.Add(typeof(T), lambda);
+                }
+                else
+                {
+                    lambda = (Func<T, T, T>)_lambdas[typeof(T)];
                 }
 
-                //// TODO: Fix totals for all numeric types
-                //if (field.DataType == typeof(decimal) || field.DataType == typeof(int) || field.DataType == typeof(short))
-                //{
-
-
-                //}
+                var currentValue = (T)_totals[field];
+                object result = (object)lambda(currentValue, numericValue);
+                _totals[field] = result;
+            }
+            else
+            {
+                _totals[field] = numericValue;
             }
         }
     }

@@ -207,8 +207,13 @@ namespace DoddleReport.OpenXml
                     if (field.ShowTotals)
                     {
                         var cell = dataRow.Cell(colCount);
+                        cell.SetDataType(XLCellValues.Number);
                         cell.FormulaA1 = string.Format(CultureInfo.InvariantCulture, "=SUM({0}{1}:{0}{2})", cell.Address.ColumnLetter, 2, rowCount - 1);
-                        cell.Style.NumberFormat.Format = GetOpenXmlDataFormatString(field.DataFormatString);
+                        if (!string.Equals("{0}", field.DataFormatString))
+                        {
+                            cell.Style.NumberFormat.Format = GetOpenXmlDataFormatString(field.DataFormatString);
+                        }
+
                         field.FooterStyle.CopyToXlStyle(cell.Style);
                     }
                 }
