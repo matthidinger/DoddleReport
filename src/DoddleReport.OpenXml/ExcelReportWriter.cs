@@ -14,6 +14,7 @@ namespace DoddleReport.OpenXml
         public const string SubTitleStyle = "SubTitleStyle";
         public const string HeaderStyle = "HeaderStyle";
         public const string FooterStyle = "FooterStyle";
+        public const string PaperSize = "PaperSize";
         public const string AdjustColumnWidthToContents = "AdjustColumnWidthToContents";
 
         /// <summary>
@@ -313,6 +314,12 @@ namespace DoddleReport.OpenXml
             worksheet.SetShowRowColHeaders(true);
             var orientation = report.RenderHints.Orientation == ReportOrientation.Portrait ? XLPageOrientation.Portrait : XLPageOrientation.Landscape;
             worksheet.PageSetup.PageOrientation = orientation;
+
+            // Set the paper size to what the render hint is set to
+            if (report.RenderHints[PaperSize] != null)
+            {
+                worksheet.PageSetup.PaperSize = (XLPaperSize)Enum.Parse(typeof(XLPaperSize), report.RenderHints[PaperSize].ToString());
+            }
 
             // Render the header
             var fieldsCount = report.DataFields.Where(f => !f.Hidden).Count();

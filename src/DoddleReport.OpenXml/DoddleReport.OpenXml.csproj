@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="ExcelReportWriter.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="PaperSize.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
