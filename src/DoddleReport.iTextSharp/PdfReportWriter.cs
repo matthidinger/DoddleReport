@@ -20,7 +20,7 @@ namespace DoddleReport.iTextSharp
         /// <param name="destination">The destination.</param>
         public void WriteReport(Report report, Stream destination)
         {
-            Rectangle pageSize = new Rectangle(report.RenderHints.PageSize.Width, report.RenderHints.PageSize.Height);
+            var pageSize = new Rectangle(report.RenderHints.PageSize.Width, report.RenderHints.PageSize.Height);
             if (report.RenderHints.Orientation == ReportOrientation.Landscape)
                 pageSize = pageSize.Rotate();
 
@@ -40,7 +40,7 @@ namespace DoddleReport.iTextSharp
                 RenderHeader(globalTable, report.TextFields, report.RenderHints);
 
                 // Render all the rows
-                int fieldsCount = report.DataFields.Where(f => !f.Hidden).Count();
+                int fieldsCount = report.DataFields.Count(f => !f.Hidden);
                 var table = new PdfPTable(fieldsCount)
                                 {
                                     HeaderRows = 1, 
@@ -290,6 +290,9 @@ namespace DoddleReport.iTextSharp
                     cell.VerticalAlignment = Element.ALIGN_TOP;
                     break;
             }
+
+            if(reportStyle.TextRotation % 90 == 0)
+                cell.Rotation = reportStyle.TextRotation;
         }
     }
 }

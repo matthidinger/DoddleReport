@@ -5,9 +5,6 @@ using DoddleReport.Writers;
 
 namespace DoddleReport.Sample.Web
 {
-    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
-    // visit http://go.microsoft.com/?LinkId=9394801
-
     public class MvcApplication : System.Web.HttpApplication
     {
         public static void RegisterRoutes(RouteCollection routes)
@@ -15,6 +12,7 @@ namespace DoddleReport.Sample.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             //DelimitedTextReportWriter.GetHeaderText = field => field.HeaderText;
+
 
             routes.MapRoute("LegacyUrl",
                     "home/{action}.{extension}",
@@ -27,7 +25,7 @@ namespace DoddleReport.Sample.Web
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
+                new { controller = "Home", action = "Index", id = UrlParameter.Optional, area = "" } // Parameter defaults
             );
         }
 

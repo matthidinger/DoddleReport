@@ -7,7 +7,7 @@ namespace DoddleReport
 {
     public static class DynamicReportSourceExtensions
     {
-        public static IReportSource ToReportSource(this IEnumerable<ExpandoObject> source)
+        public static IReportSource ToReportSource(this IEnumerable<dynamic> source)
         {
             return new DynamicReportSource(source);
         }
@@ -18,9 +18,9 @@ namespace DoddleReport
     /// </summary>
     public class DynamicReportSource : IReportSource
     {
-        private readonly IEnumerable<ExpandoObject> _source;
+        private readonly IEnumerable<dynamic> _source;
 
-        public DynamicReportSource(IEnumerable<ExpandoObject> source)
+        public DynamicReportSource(IEnumerable<dynamic> source)
         {
             _source = source;
         }
@@ -35,7 +35,7 @@ namespace DoddleReport
 
             foreach (var t in item)
             {
-                fields.Add(t.Key, t.Value.GetType());
+                fields.Add(t.Key, (t.Value ?? new object()).GetType());
             }
 
             return fields;

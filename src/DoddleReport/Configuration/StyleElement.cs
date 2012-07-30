@@ -41,6 +41,13 @@ namespace DoddleReport.Configuration
             set { this["fontSize"] = value; }
         }
 
+        [IntegerValidator(MinValue = -90, MaxValue = 90)]
+        [ConfigurationProperty("textRotation", DefaultValue = 0)]
+        public int TextRotation
+        {
+            get { return (int)this["textRotation"]; }
+            set { this["textRotation"] = value; }
+        }
 
         [ConfigurationProperty("backColor", DefaultValue = "White")]
         public string BackColorString
@@ -88,6 +95,7 @@ namespace DoddleReport.Configuration
             reportStyle.ForeColor = ForeColor;
 
             reportStyle.FontSize = FontSize;
+            reportStyle.TextRotation = TextRotation;
         }
     }
 }
