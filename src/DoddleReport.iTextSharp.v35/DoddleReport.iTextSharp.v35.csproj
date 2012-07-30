@@ -58,6 +58,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\DoddleReport.iTextSharp\DoddleReport.iTextSharp.nuspec">
+      <Link>DoddleReport.iTextSharp.nuspec</Link>
+    </None>
+    <None Include="..\DoddleReport.iTextSharp\web.config.transform">
+      <Link>web.config.transform</Link>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Doddle.Reporting.snk" />
   </ItemGroup>

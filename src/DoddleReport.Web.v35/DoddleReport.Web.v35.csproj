@@ -77,6 +77,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\DoddleReport.Web\DoddleReport.Web.nuspec">
+      <Link>DoddleReport.Web.nuspec</Link>
+    </None>
     <None Include="Properties\Doddle.Reporting.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
