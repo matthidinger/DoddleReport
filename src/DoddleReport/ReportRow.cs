@@ -19,7 +19,7 @@ namespace DoddleReport
             foreach (var field in report.DataFields)
             {
                 var rowField = new RowField(this, field);
-                var value = report.GetFieldValue(dataItem, field.Name) ?? string.Empty;
+                var value = report.Source.GetFieldValue(dataItem, field.Name) ?? string.Empty;
                 _rowFieldData[rowField] = value;
             }
         }

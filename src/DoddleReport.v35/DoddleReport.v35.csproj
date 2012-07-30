@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B3AC0BE5-952A-41F6-8C13-1D2C112B0238}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DoddleReport</RootNamespace>
+    <AssemblyName>DoddleReport</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NET35</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NET35</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Properties\Doddle.Reporting.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\DoddleReport\Configuration\Config.cs">
+      <Link>Configuration\Config.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport\Configuration\DoddleReportSection.cs">
+      <Link>Configuration\DoddleReportSection.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport\Configuration\StyleElement.cs">
+      <Link>Configuration\StyleElement.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport\Configuration\StyleElementCollection.cs">
+      <Link>Configuration\StyleElementCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport\Configuration\WriterElement.cs">
+      <Link>Configuration\WriterElement.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport\Configuration\WriterElementCollection.cs">
+      <Link>Configuration\WriterElementCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport\Helpers\HtmlFormatHelper.cs">
+      <Link>Helpers\HtmlFormatHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport\Helpers\ReflectionExtensions.cs">
+      <Link>Helpers\ReflectionExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport\Helpers\StringExtensions.cs">
+      <Link>Helpers\StringExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport\HorizontalAlignment.cs">
+      <Link>HorizontalAlignment.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport\IReportSource.cs">
+      <Link>IReportSource.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport\IReportWriter.cs">
+      <Link>IReportWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport\RenderHintsCollection.cs">
+      <Link>RenderHintsCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport\Report.cs">
+      <Link>Report.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport\ReportBuilder.cs">
+      <Link>ReportBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport\ReportField.cs">
+      <Link>ReportField.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport\ReportFieldCollection.cs">
+      <Link>ReportFieldCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport\ReportOrientation.cs">
+      <Link>ReportOrientation.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport\ReportRow.cs">
+      <Link>ReportRow.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport\ReportRowCollection.cs">
+      <Link>ReportRowCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport\ReportRowEventArgs.cs">
+      <Link>ReportRowEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport\ReportRowType.cs">
+      <Link>ReportRowType.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport\ReportSources\DataTableReportSource.cs">
+      <Link>ReportSources\DataTableReportSource.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport\ReportSources\EnumerableReportSource.cs">
+      <Link>ReportSources\EnumerableReportSource.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport\ReportStyle.cs">
+      <Link>ReportStyle.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport\ReportTextFieldCollection.cs">
+      <Link>ReportTextFieldCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport\RowField.cs">
+      <Link>RowField.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport\RowFieldCollection.cs">
+      <Link>RowFieldCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport\RowFieldDataDictionary.cs">
+      <Link>RowFieldDataDictionary.cs</Link>
+    </Compile>
+    <None Include="..\DoddleReport\DoddleReport.nuspec">
+      <Link>DoddleReport.nuspec</Link>
+    </None>
+    <None Include="..\DoddleReport\SharePoint\SPListReportSource.cs">
+      <Link>SharePoint\SPListReportSource.cs</Link>
+    </None>
+    <Compile Include="..\DoddleReport\VerticalAlignment.cs">
+      <Link>VerticalAlignment.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport\Writers\DelimitedTextReportWriter.cs">
+      <Link>Writers\DelimitedTextReportWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport\Writers\ExcelReportWriter.cs">
+      <Link>Writers\ExcelReportWriter.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport\Writers\HtmlReportWriter.cs">
+      <Link>Writers\HtmlReportWriter.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Doddle.Reporting.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

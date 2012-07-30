@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Web.Mvc;
+using DoddleReport.Sample.Web.Models;
 using DoddleReport.Web;
 
 namespace DoddleReport.Sample.Web.Controllers
@@ -11,10 +12,10 @@ namespace DoddleReport.Sample.Web.Controllers
 
         //
         // Sample URLs:
-        //  http://localhost:X/Expando/Expando.html
-        //  http://localhost:X/Expando/Expando.xls
-        //  http://localhost:X/Expando/Expando.txt
-        //  http://localhost:X/Expando/Expando.pdf (REQUIRES ABCPDF INSTALLED)
+        //  http://localhost:X/Home/Index/Reporting/Expando/Expando.html
+        //  http://localhost:X/Home/Index/Reporting/Expando/Expando.xls
+        //  http://localhost:X/Home/Index/Reporting/Expando/Expando.txt
+        //  http://localhost:X/Home/Index/Reporting/Expando/Expando.pdf (REQUIRES ABCPDF INSTALLED)
         //  
 
         public ReportResult Expando()
@@ -47,6 +48,13 @@ namespace DoddleReport.Sample.Web.Controllers
             // Render hints allow you to pass additional hints to the reports as they are being rendered
             report.RenderHints.BooleanCheckboxes = true;
 
+            return new ReportResult(report);
+        }
+
+        public ReportResult ProductReport()
+        {
+            var query = DoddleProductRepository.GetAllExpando();
+            var report = new Report(query.ToReportSource());
             return new ReportResult(report);
         }
     }

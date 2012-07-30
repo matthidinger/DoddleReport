@@ -1,6 +1,7 @@
 using System.Collections;
-using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using DoddleReport.Configuration;
 using DoddleReport.ReportSources;
 
@@ -29,7 +30,5 @@ namespace DoddleReport
             IReportSource reportSource = new EnumerableReportSource(source);
             return reportSource.ToReport(format);
         }
-
-
     }
 }

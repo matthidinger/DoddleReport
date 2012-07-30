@@ -54,11 +54,15 @@ namespace DoddleReport.Sample.Web.Controllers
             // Render hints allow you to pass additional hints to the reports as they are being rendered
             report.RenderHints.BooleanCheckboxes = true;
             report.RenderHints.BooleansAsYesNo = true;
+            report.RenderHints.FreezeRows = 9;
+            report.RenderHints.FreezeColumns = 2;
+
+            // Some writers (like PDF) support Orientation and page sizing
             //report.RenderHints.Orientation = ReportOrientation.Landscape;
             //report.RenderHints.PageSize = new SizeF(8.5f * 72f, 14f * 72f); //US Legal paper size
             //report.RenderHints.PageSize = new SizeF(595.28f, 841.89f); //A4 paper size
             //report.RenderHints.PageSize = new SizeF(842f, 1191f); //A3 paper size
-            
+
 
             // Customize the data fields
             report.DataFields["Id"].Hidden = true;
@@ -77,14 +81,23 @@ namespace DoddleReport.Sample.Web.Controllers
 
         void report_RenderingRow(object sender, ReportRowEventArgs e)
         {
-            if (e.Row.RowType == ReportRowType.DataRow)
+            switch (e.Row.RowType)
             {
-                var unitsInStock = (int)e.Row["UnitsInStock"];
-                if (unitsInStock < 100)
-                {
-                    e.Row.Fields["UnitsInStock"].DataStyle.Bold = true;
-                    e.Row.Fields["UnitsInStock"].DataStyle.ForeColor = Color.Maroon;
-                }
+                case ReportRowType.HeaderRow:
+                    e.Row.Fields["LastPurchase"].HeaderStyle.TextRotation = -90;
+                    e.Row.Fields["UnitsInStock"].HeaderStyle.TextRotation = -90;
+                    e.Row.Fields["LowStock"].HeaderStyle.TextRotation = -90;
+                    break;
+                case ReportRowType.DataRow:
+                    {
+                        var unitsInStock = (int)e.Row["UnitsInStock"];
+                        if (unitsInStock < 100)
+                        {
+                            e.Row.Fields["UnitsInStock"].DataStyle.Bold = true;
+                            e.Row.Fields["UnitsInStock"].DataStyle.ForeColor = Color.Maroon;
+                        }
+                    }
+                    break;
             }
         }
     }
