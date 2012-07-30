@@ -65,6 +65,12 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="..\DoddleReport.AbcPdf\DoddleReport.AbcPdf.nuspec">
+      <Link>DoddleReport.AbcPdf.nuspec</Link>
+    </None>
+    <None Include="..\DoddleReport.AbcPdf\web.config.transform">
+      <Link>web.config.transform</Link>
+    </None>
     <None Include="Properties\Doddle.Reporting.snk" />
   </ItemGroup>
   <ItemGroup>

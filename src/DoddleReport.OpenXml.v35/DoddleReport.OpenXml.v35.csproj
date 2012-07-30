@@ -38,8 +38,9 @@
     <AssemblyOriginatorKeyFile>Properties\Doddle.Reporting.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ClosedXML">
-      <HintPath>..\packages\ClosedXML.0.64.0\lib\net35-client\ClosedXML.dll</HintPath>
+    <Reference Include="ClosedXML, Version=0.66.1.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ClosedXML.0.66.1\lib\net35-client\ClosedXML.dll</HintPath>
     </Reference>
     <Reference Include="DocumentFormat.OpenXml, Version=2.0.5022.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -66,6 +67,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\DoddleReport.OpenXml\DoddleReport.OpenXml.nuspec">
+      <Link>DoddleReport.OpenXml.nuspec</Link>
+    </None>
+    <None Include="..\DoddleReport.OpenXml\web.config.transform">
+      <Link>web.config.transform</Link>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Doddle.Reporting.snk" />
   </ItemGroup>
