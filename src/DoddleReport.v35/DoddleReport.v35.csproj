@@ -131,10 +131,14 @@
     <Compile Include="..\DoddleReport\RowFieldCollection.cs">
       <Link>RowFieldCollection.cs</Link>
     </Compile>
+    <Compile Include="ReportBuilder.cs" />
     <Compile Include="..\DoddleReport\RowFieldDataDictionary.cs">
       <Link>RowFieldDataDictionary.cs</Link>
     </Compile>
-    <Compile Include="ReportBuilder.cs" />
+    <None Include="..\DoddleReport\DoddleReport.nuspec">
+      <Link>DoddleReport.nuspec</Link>
+    </None>
+   
     <None Include="..\DoddleReport\SharePoint\SPListReportSource.cs">
       <Link>SharePoint\SPListReportSource.cs</Link>
     </None>

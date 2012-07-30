@@ -14,6 +14,8 @@ namespace DoddleReport.OpenXml
         public const string SubTitleStyle = "SubTitleStyle";
         public const string HeaderStyle = "HeaderStyle";
         public const string FooterStyle = "FooterStyle";
+        public const string PaperSize = "PaperSize";
+        public const string AdjustColumnWidthToContents = "AdjustColumnWidthToContents";
 
         /// <summary>
         /// This Dictionary maps standard .NET format strings (like {0:c}) to OpenXML Format strings like "$ #,##0.00"
@@ -206,8 +208,13 @@ namespace DoddleReport.OpenXml
                     if (field.ShowTotals)
                     {
                         var cell = dataRow.Cell(colCount);
+                        cell.SetDataType(XLCellValues.Number);
                         cell.FormulaA1 = string.Format(CultureInfo.InvariantCulture, "=SUM({0}{1}:{0}{2})", cell.Address.ColumnLetter, 2, rowCount - 1);
-                        cell.Style.NumberFormat.Format = GetOpenXmlDataFormatString(field.DataFormatString);
+                        if (!string.Equals("{0}", field.DataFormatString))
+                        {
+                            cell.Style.NumberFormat.Format = GetOpenXmlDataFormatString(field.DataFormatString);
+                        }
+
                         field.FooterStyle.CopyToXlStyle(cell.Style);
                     }
                 }
@@ -305,6 +312,14 @@ namespace DoddleReport.OpenXml
 
             worksheet = workbook.Worksheets.Add(sheetName);
             worksheet.SetShowRowColHeaders(true);
+            var orientation = report.RenderHints.Orientation == ReportOrientation.Portrait ? XLPageOrientation.Portrait : XLPageOrientation.Landscape;
+            worksheet.PageSetup.PageOrientation = orientation;
+
+            // Set the paper size to what the render hint is set to
+            if (report.RenderHints[PaperSize] != null)
+            {
+                worksheet.PageSetup.PaperSize = (XLPaperSize)Enum.Parse(typeof(XLPaperSize), report.RenderHints[PaperSize].ToString());
+            }
 
             if (report.RenderHints.FreezePanes)
                 worksheet.SheetView.Freeze(report.RenderHints.FreezeRows, report.RenderHints.FreezeColumns);
@@ -325,9 +340,28 @@ namespace DoddleReport.OpenXml
             RenderFooter(worksheet, fieldsCount, report.TextFields, report.RenderHints, rowCount);
 
             // Adjust the width of all the columns
-            foreach (var column in worksheet.Columns())
+            for (int i = 0; i < fieldsCount; i++)
             {
-                column.AdjustToContents();
+                var reportField = report.DataFields.Where(f => !f.Hidden).Skip(i).Take(1).Single();
+                var width = new int[] { reportField.DataStyle.Width, reportField.FooterStyle.Width, reportField.HeaderStyle.Width }.Max();
+                var adjustToContents = report.RenderHints[AdjustColumnWidthToContents] as bool? ?? true;
+
+                if (adjustToContents || width > 0)
+                {
+                    var column = worksheet.Column(i + 1);
+                    if (adjustToContents && width > 0)
+                    {
+                        column.AdjustToContents(width.PixelsToUnits(column.Style.Font), double.MaxValue);
+                    }
+                    else if (adjustToContents)
+                    {
+                        column.AdjustToContents();
+                    }
+                    else
+                    {
+                        column.Width = width.PixelsToUnits(column.Style.Font);
+                    }
+                }
             }
 
             // Check if the current writer needs to append another report to the report we just generated
