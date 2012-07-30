@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{96E6EBE9-C9FE-4357-996E-85A44812D193}</ProjectGuid>
+    <ProjectTypeGuids>{F85E285D-A4E0-4152-9332-AB1D724D3325};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DoddleReport.Sample.Web</RootNamespace>
+    <AssemblyName>DoddleReport.Sample.Web</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <UseIISExpress>false</UseIISExpress>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Mvc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\DoddleReport.Sample.Web\Controllers\AbcPdfController.cs">
+      <Link>Controllers\AbcPdfController.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport.Sample.Web\Controllers\DoddleController.cs">
+      <Link>Controllers\DoddleController.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport.Sample.Web\Controllers\HomeController.cs">
+      <Link>Controllers\HomeController.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport.Sample.Web\Controllers\TestController.cs">
+      <Link>Controllers\TestController.cs</Link>
+    </Compile>
+    <Compile Include="..\DoddleReport.Sample.Web\Helpers\ProductReportHelper.cs">
+      <Link>Helpers\ProductReportHelper.cs</Link>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DoddleProductRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\doddleHtmlReport.png" />
+    <Content Include="Content\doddlepdfreport.png" />
+    <Content Include="Content\doddleTxtReport.png" />
+    <Content Include="Content\doddlexlsreport.png" />
+    <Content Include="Global.asax" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Content\Site.css" />
+    <Content Include="Views\Home\Index.aspx" />
+    <Content Include="Views\Shared\Site.Master" />
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\DoddleReport.AbcPdf.v35\DoddleReport.AbcPdf.v35.csproj">
+      <Project>{FCE317C9-E02A-4AD5-813D-C29AF6061808}</Project>
+      <Name>DoddleReport.AbcPdf.v35</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DoddleReport.iTextSharp.v35\DoddleReport.iTextSharp.v35.csproj">
+      <Project>{B1A90194-581B-450C-A939-73A9A5FEDA9C}</Project>
+      <Name>DoddleReport.iTextSharp.v35</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DoddleReport.OpenXml.v35\DoddleReport.OpenXml.v35.csproj">
+      <Project>{8A4ED6C0-2E7F-41B4-AED5-A85B67BC50D4}</Project>
+      <Name>DoddleReport.OpenXml.v35</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DoddleReport.v35\DoddleReport.v35.csproj">
+      <Project>{B3AC0BE5-952A-41F6-8C13-1D2C112B0238}</Project>
+      <Name>DoddleReport.v35</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DoddleReport.Web.v35\DoddleReport.Web.v35.csproj">
+      <Project>{910CAA70-55B2-47A4-B679-3366B2DFF613}</Project>
+      <Name>DoddleReport.Web.v35</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target> -->
+  <Target Name="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(ProjectDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>False</AutoAssignPort>
+          <DevelopmentServerPort>8096</DevelopmentServerPort>
+          <DevelopmentServerVPath>/Home/Index</DevelopmentServerVPath>
+          <IISUrl>http://localhost/DoddleReporting</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

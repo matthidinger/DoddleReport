@@ -15,6 +15,7 @@ namespace DoddleReport
             ForeColor = configElement.ForeColor;
 
             FontSize = configElement.FontSize;
+            TextRotation = configElement.TextRotation;
         }
 
         public static ReportStyle Default = new ReportStyle();
@@ -27,6 +28,7 @@ namespace DoddleReport
             BackColor = Color.White;
             ForeColor = Color.Black;
             FontSize = 8;
+            TextRotation = 0;
             HorizontalAlignment = HorizontalAlignment.Left;
             VerticalAlignment = VerticalAlignment.Middle;
         }
@@ -80,7 +82,7 @@ namespace DoddleReport
         public Color ForeColor { get; set; }
 
         public int FontSize { get; set; }
-
+        public int TextRotation { get; set; }
         public int Width { get; set; }
 
         public HorizontalAlignment HorizontalAlignment { get; set; }
@@ -98,6 +100,7 @@ namespace DoddleReport
                 ForeColor = ForeColor,
 
                 FontSize = FontSize,
+                TextRotation = TextRotation,
 
                 HorizontalAlignment = HorizontalAlignment,
                 VerticalAlignment = VerticalAlignment

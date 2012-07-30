@@ -8,14 +8,13 @@ nuget pack DoddleReport.Dynamic.nuspec
 nuget pack DoddleReport.Sample.Mvc.nuspec
 
 
-nuget push DoddleReport.1.2.2.nupkg
+nuget push DoddleReport.1.3.0.nupkg
 nuget push DoddleReport.Abcpdf.1.2.1.nupkg
 nuget push DoddleReport.OpenXml.1.2.1.nupkg
 nuget push DoddleReport.Web.1.2.1.nupkg
 nuget push DoddleReport.iTextSharp.1.2.1.nupkg
 
 
-nuget push DoddleReport.Dynamic.1.2.nupkg
 nuget push DoddleReport.Sample.Mvc.1.2.nupkg
 
 

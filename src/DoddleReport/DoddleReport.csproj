@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DoddleReport</RootNamespace>
     <AssemblyName>DoddleReport</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>
     </SccProjectName>
@@ -64,7 +64,9 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -82,7 +84,7 @@
     <Compile Include="Configuration\WriterElementCollection.cs" />
     <None Include="DoddleReport.nuspec" />
     <None Include="SharePoint\SPListReportSource.cs" />
-    <None Include="Dynamic\DynamicReportSource.cs" />
+    <Compile Include="Dynamic\DynamicReportSource.cs" />
     <Compile Include="ReportSources\DataTableReportSource.cs" />
     <Compile Include="ReportSources\EnumerableReportSource.cs" />
     <Compile Include="RowFieldDataDictionary.cs" />
