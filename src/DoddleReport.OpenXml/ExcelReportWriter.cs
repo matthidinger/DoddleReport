@@ -14,6 +14,8 @@ namespace DoddleReport.OpenXml
         public const string SubTitleStyle = "SubTitleStyle";
         public const string HeaderStyle = "HeaderStyle";
         public const string FooterStyle = "FooterStyle";
+        public const string PaperSize = "PaperSize";
+        public const string AdjustColumnWidthToContents = "AdjustColumnWidthToContents";
 
         /// <summary>
         /// This Dictionary maps standard .NET format strings (like {0:c}) to OpenXML Format strings like "$ #,##0.00"
@@ -22,8 +24,21 @@ namespace DoddleReport.OpenXml
         public static Dictionary<string, string> OpenXmlDataFormatStringMap =
             new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
                 {
-                    {"{0:c}", "$ #,##0.00"}
+                    { "{0:c}", "$ #,##0.00" }
                 };
+
+        /// <summary>
+        /// Gets the reports to append.
+        /// </summary>
+        internal IDictionary<Report, IList<Report>> ReportsToAppend { get; private set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ExcelReportWriter"/> class.
+        /// </summary>
+        public ExcelReportWriter()
+        {
+            this.ReportsToAppend = new Dictionary<Report, IList<Report>>();
+        }
 
         private static string GetOpenXmlDataFormatString(string dataFormatString)
         {
@@ -41,29 +56,7 @@ namespace DoddleReport.OpenXml
         public void WriteReport(Report report, Stream destination)
         {
             var workbook = new XLWorkbook();
-            var worksheet = workbook.Worksheets.Add(report.RenderHints[SheetName] as string ?? "Data");
-            worksheet.SetShowRowColHeaders(true);
-
-            // Render the header
-            var fieldsCount = report.DataFields.Where(f => !f.Hidden).Count();
-            int rowCount = RenderHeader(worksheet, fieldsCount, report.TextFields, report.RenderHints);
-
-            // Render all the rows
-            foreach (var row in report.GetRows())
-            {
-                rowCount++;
-                var dataRow = worksheet.Row(rowCount);
-                RenderRow(rowCount, row, dataRow);
-            }
-
-            // Render the footer
-            RenderFooter(worksheet, fieldsCount, report.TextFields, report.RenderHints, rowCount);
-
-            // Adjust the width of all the columns
-            foreach (var column in worksheet.Columns())
-            {
-                column.AdjustToContents();
-            }
+            this.WriteReport(report, workbook);
 
             using (var ms = new MemoryStream())
             {
@@ -73,8 +66,6 @@ namespace DoddleReport.OpenXml
             }
         }
 
-
-
         /// <summary>
         /// Appends the report.
         /// </summary>
@@ -82,6 +73,23 @@ namespace DoddleReport.OpenXml
         /// <param name="destination">The report destination.</param>
         public void AppendReport(Report source, Report destination)
         {
+            if (source == null || destination == null)
+            {
+                throw new ArgumentNullException(source == null ? "source" : "destination");
+            }
+
+            var sourceWriter = source.Writer as ExcelReportWriter;
+            if (sourceWriter == null)
+            {
+                throw new InvalidOperationException("Unable to append report, the source Writer is not a ExcelReportWriter");
+            }
+
+            if (!this.ReportsToAppend.ContainsKey(source))
+            {
+                this.ReportsToAppend.Add(source, new List<Report>());
+            }
+
+            this.ReportsToAppend[source].Add(destination);
         }
 
         /// <summary>
@@ -200,8 +208,13 @@ namespace DoddleReport.OpenXml
                     if (field.ShowTotals)
                     {
                         var cell = dataRow.Cell(colCount);
+                        cell.SetDataType(XLCellValues.Number);
                         cell.FormulaA1 = string.Format(CultureInfo.InvariantCulture, "=SUM({0}{1}:{0}{2})", cell.Address.ColumnLetter, 2, rowCount - 1);
-                        cell.Style.NumberFormat.Format = GetOpenXmlDataFormatString(field.DataFormatString);
+                        if (!string.Equals("{0}", field.DataFormatString))
+                        {
+                            cell.Style.NumberFormat.Format = GetOpenXmlDataFormatString(field.DataFormatString);
+                        }
+
                         field.FooterStyle.CopyToXlStyle(cell.Style);
                     }
                 }
@@ -279,6 +292,86 @@ namespace DoddleReport.OpenXml
             {
                 HorizontalAlignment = HorizontalAlignment.Left
             };
+        }
+
+        /// <summary>
+        /// Writes the report.
+        /// </summary>
+        /// <param name="report">The report.</param>
+        /// <param name="workbook">The workbook.</param>
+        private void WriteReport(Report report, XLWorkbook workbook)
+        {
+            var sheetName = report.RenderHints[SheetName] as string ?? "Data";
+            IXLWorksheet worksheet;
+            int duplicateNameCount = 0;
+            var originalSheetName = sheetName;
+            while (workbook.Worksheets.TryGetWorksheet(sheetName, out worksheet))
+            {
+                sheetName = originalSheetName + ++duplicateNameCount;
+            }
+
+            worksheet = workbook.Worksheets.Add(sheetName);
+            worksheet.SetShowRowColHeaders(true);
+            var orientation = report.RenderHints.Orientation == ReportOrientation.Portrait ? XLPageOrientation.Portrait : XLPageOrientation.Landscape;
+            worksheet.PageSetup.PageOrientation = orientation;
+
+            // Set the paper size to what the render hint is set to
+            if (report.RenderHints[PaperSize] != null)
+            {
+                worksheet.PageSetup.PaperSize = (XLPaperSize)Enum.Parse(typeof(XLPaperSize), report.RenderHints[PaperSize].ToString());
+            }
+
+            if (report.RenderHints.FreezePanes)
+                worksheet.SheetView.Freeze(report.RenderHints.FreezeRows, report.RenderHints.FreezeColumns);
+
+            // Render the header
+            var fieldsCount = report.DataFields.Where(f => !f.Hidden).Count();
+            int rowCount = RenderHeader(worksheet, fieldsCount, report.TextFields, report.RenderHints);
+
+            // Render all the rows
+            foreach (var row in report.GetRows())
+            {
+                rowCount++;
+                var dataRow = worksheet.Row(rowCount);
+                RenderRow(rowCount, row, dataRow);
+            }
+
+            // Render the footer
+            RenderFooter(worksheet, fieldsCount, report.TextFields, report.RenderHints, rowCount);
+
+            // Adjust the width of all the columns
+            for (int i = 0; i < fieldsCount; i++)
+            {
+                var reportField = report.DataFields.Where(f => !f.Hidden).Skip(i).Take(1).Single();
+                var width = new int[] { reportField.DataStyle.Width, reportField.FooterStyle.Width, reportField.HeaderStyle.Width }.Max();
+                var adjustToContents = report.RenderHints[AdjustColumnWidthToContents] as bool? ?? true;
+
+                if (adjustToContents || width > 0)
+                {
+                    var column = worksheet.Column(i + 1);
+                    if (adjustToContents && width > 0)
+                    {
+                        column.AdjustToContents(width.PixelsToUnits(column.Style.Font), double.MaxValue);
+                    }
+                    else if (adjustToContents)
+                    {
+                        column.AdjustToContents();
+                    }
+                    else
+                    {
+                        column.Width = width.PixelsToUnits(column.Style.Font);
+                    }
+                }
+            }
+
+            // Check if the current writer needs to append another report to the report we just generated
+            if (this.ReportsToAppend.ContainsKey(report))
+            {
+                foreach (var reportToAppend in this.ReportsToAppend[report])
+                {
+                    this.WriteReport(reportToAppend, workbook);
+                }
+            }
         }
     }
 }

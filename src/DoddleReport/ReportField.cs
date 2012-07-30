@@ -14,31 +14,61 @@ namespace DoddleReport
         /// </summary>
         public string Name { get; private set; }
 
+        /// <summary>
+        /// The type of data contained within this field
+        /// </summary>
         public Type DataType { get; set; }
 
+        /// <summary>
+        /// If true, the field will not be displayed on the report
+        /// </summary>
         public bool Hidden { get; set; }
 
+        /// <summary>
+        /// The header displayed for this field of data
+        /// </summary>
         public string HeaderText { get; set; }
+
+        /// <summary>
+        /// The footer displayed for this field of data
+        /// </summary>
         public string FooterText { get; set; }
 
+        /// <summary>
+        /// If true, in some cases (like numeric fields), we can automatically total up the data and render it in the footer of the column
+        /// </summary>
         public bool ShowTotals { get; set; }
 
+        /// <summary>
+        /// A format string to customize how the data is displayed. For example, use "{0:c}" for currency. This property cannot be used in conjunction with the FormatDataAs method.
+        /// </summary>
         public string DataFormatString
         {
             get
             {
-                return this._dataFormatString;
+                return _dataFormatString;
             }
 
             set
             {
-                this._dataFormatString = value;
-                this.FormatAsDelegate = null;
+                _dataFormatString = value;
+                FormatAsDelegate = null;
             }
         }
 
+        /// <summary>
+        /// Customize how the data for this field is rendered
+        /// </summary>
         public ReportStyle DataStyle { get; set; }
+
+        /// <summary>
+        /// Customize how the header for this field is rendered
+        /// </summary>
         public ReportStyle HeaderStyle { get; private set;  }
+
+        /// <summary>
+        /// Customize how the footer for this field is rendered
+        /// </summary>
         public ReportStyle FooterStyle { get; private set; }
 
         internal Delegate FormatAsDelegate { get; private set; }
@@ -60,10 +90,14 @@ namespace DoddleReport
             FooterStyle = new ReportStyle(ReportRowType.FooterRow);
         }
 
+        /// <summary>
+        /// Use this method for advanced formatting of this field using a callback. This method cannot be used in conjunction with DataFormatString
+        /// </summary>
+        /// <typeparam name="T">The type of data contained within this field</typeparam>
+        /// <param name="formatAsDelegate">A callback used to take the data item allowing you to specify how to render it as a string</param>
         public void FormatAs<T>(Func<T, string> formatAsDelegate)
         {
-            this.DataFormatString = null;
-            this.FormatAsDelegate = formatAsDelegate;
+            FormatAsDelegate = formatAsDelegate;
         }
 
         public override string ToString()
