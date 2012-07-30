@@ -19,7 +19,7 @@ namespace DoddleReport.Sample.Web.Controllers
 
         public ReportResult Dynamic()
         {
-            var all = new List<dynamic>();
+            var all = new List<ExpandoObject>();
             dynamic d = new ExpandoObject();
             d.DistrictNumber = 1566;
             d.SchoolId = 1;

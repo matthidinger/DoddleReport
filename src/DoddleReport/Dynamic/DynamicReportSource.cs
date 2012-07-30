@@ -7,7 +7,7 @@ namespace DoddleReport
 {
     public static class DynamicReportSourceExtensions
     {
-        public static IReportSource ToReportSource(this IEnumerable<ExpandoObject> source)
+        public static IReportSource ToReportSource(this IEnumerable<dynamic> source)
         {
             return new DynamicReportSource(source);
         }
