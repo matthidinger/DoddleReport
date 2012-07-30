@@ -92,9 +92,6 @@
     <Compile Include="..\DoddleReport\Report.cs">
       <Link>Report.cs</Link>
     </Compile>
-    <Compile Include="..\DoddleReport\ReportBuilder.cs">
-      <Link>ReportBuilder.cs</Link>
-    </Compile>
     <Compile Include="..\DoddleReport\ReportField.cs">
       <Link>ReportField.cs</Link>
     </Compile>
@@ -137,9 +134,13 @@
     <Compile Include="..\DoddleReport\RowFieldDataDictionary.cs">
       <Link>RowFieldDataDictionary.cs</Link>
     </Compile>
+<<<<<<< local
+    <Compile Include="ReportBuilder.cs" />
+=======
     <None Include="..\DoddleReport\DoddleReport.nuspec">
       <Link>DoddleReport.nuspec</Link>
     </None>
+>>>>>>> other
     <None Include="..\DoddleReport\SharePoint\SPListReportSource.cs">
       <Link>SharePoint\SPListReportSource.cs</Link>
     </None>
