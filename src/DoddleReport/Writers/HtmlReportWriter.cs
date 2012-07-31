@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using DoddleReport.Configuration;
 
 namespace DoddleReport.Writers
 {
@@ -34,11 +35,16 @@ namespace DoddleReport.Writers
         {
             get
             {
-                return @"
-                    .htmlReport { font: 10px Verdana; }
-                    .htmlReport td { font-size: 10px; }
-                    .htmlReport th { font-size: 10px; font-weight: bold; text-decoration: underline; text-align: left; }
-                    .htmlReport h1 { font-size: 14pt; margin-bottom: 10px; }";
+                var style = 
+                    ".htmlReport td { " + ReportStyle.HeaderRowStyle.ToCss() + "}" +
+                    ".htmlReport th { " + ReportStyle.DataRowStyle.ToCss() + "}" +
+                    @"
+                    .htmlReport h1 { font-size: 14pt; margin-bottom: 10px; }
+                    .htmlReport { font-family: Verdana; }
+                    .htmlReport .subTitle { margin-bottom: 3px; margin-top: 1px; }
+                    .htmlReport .title { margin-bottom: 1px; }";
+
+                return style;
             }
         }
 
@@ -74,12 +80,12 @@ namespace DoddleReport.Writers
 
             if (!string.IsNullOrEmpty(textFields.Title))
             {
-                Html.AppendFormat("<center><h4 style='margin-bottom: 1px;'>{0}</h4></center>", textFields.Title.FormatHtml());
+                Html.AppendFormat("<h4 class='title'>{0}</h4>", textFields.Title.FormatHtml());
             }
 
             if (!string.IsNullOrEmpty(textFields.SubTitle))
             {
-                Html.AppendFormat("<center><h5 style='margin-bottom: 3px; margin-top: 1px'>{0}</h5></center>", textFields.SubTitle.FormatHtml());
+                Html.AppendFormat("<h5 class='subTitle'>{0}</h5>", textFields.SubTitle.FormatHtml());
             }
 
             if (!string.IsNullOrEmpty(textFields[HtmlLogo]))
@@ -89,7 +95,7 @@ namespace DoddleReport.Writers
 
             if (!string.IsNullOrEmpty(textFields.Header))
             {
-                Html.AppendFormat("<b>{0}</b><hr />", textFields.Header.FormatHtml());
+                Html.AppendFormat("{0}<hr />", textFields.Header.FormatHtml());
             }
 
             Html.AppendLine("<table border='0' cellpadding='2' cellspacing='0' width='100%'>");
@@ -121,7 +127,7 @@ namespace DoddleReport.Writers
             {
                 if (row.RowType == ReportRowType.HeaderRow)
                 {
-                    Html.AppendFormat("<th style='{1}' align='left'>{0}</th>", field.HeaderText, GetCellStyle(row, field));
+                    Html.AppendFormat("<th class='headerCell' style='{1}'>{0}</th>", field.HeaderText, GetCellStyle(row, field));
                 }
                 else if (row.RowType == ReportRowType.DataRow)
                 {
@@ -141,11 +147,11 @@ namespace DoddleReport.Writers
                         }
                     }
 
-                    Html.AppendFormat("<td style='{1}'>{0}</td>", row.GetFormattedValue(field), GetCellStyle(row, field));
+                    Html.AppendFormat("<td class='dataCell' style='{1}'>{0}</td>", row.GetFormattedValue(field), GetCellStyle(row, field));
                 }
                 else if (row.RowType == ReportRowType.FooterRow)
                 {
-                    Html.AppendFormat("<td style='{1}'>{0}</td>", row.GetFormattedValue(field), GetCellStyle(row, field));
+                    Html.AppendFormat("<td class='footerCell' style='{1}'>{0}</td>", row.GetFormattedValue(field), GetCellStyle(row, field));
                 }
             }
 
@@ -159,11 +165,11 @@ namespace DoddleReport.Writers
             switch (row.RowType)
             {
                 case ReportRowType.HeaderRow:
-                    return field.HeaderStyle.GetHtml();
+                    return field.HeaderStyle.ToCss();
                 case ReportRowType.DataRow:
-                    return field.DataStyle.GetHtml();
+                    return field.DataStyle.ToCss();
                 default:
-                    return field.FooterStyle.GetHtml();
+                    return field.FooterStyle.ToCss();
             }
         }
 
@@ -172,7 +178,7 @@ namespace DoddleReport.Writers
             Html.AppendLine("</table>");
 
             var footerStyle = new ReportStyle { Italic = true };
-            Html.AppendFormat("<p style='{1}'>{0}</p>", textFields.Footer, footerStyle.GetHtml());
+            Html.AppendFormat("<p style='{1}'>{0}</p>", textFields.Footer, footerStyle.ToCss());
 
             Html.AppendLine("</div>");
 
