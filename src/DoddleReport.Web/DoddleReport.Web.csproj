@@ -59,8 +59,8 @@
     <Compile Include="WebReport.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\Doddle.Reporting.snk" />
     <None Include="DoddleReport.Web.nuspec" />
+    <None Include="Properties\Doddle.Reporting.snk" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DoddleReport\DoddleReport.csproj">

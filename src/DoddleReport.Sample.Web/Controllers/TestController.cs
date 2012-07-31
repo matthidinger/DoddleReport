@@ -14,6 +14,19 @@ namespace DoddleReport.Sample.Web.Controllers
             return new ReportResult(report) { FileName = "CustomName.html"};
         }
 
+        public ReportResult CustomHtmlStyle()
+        {
+            var query = DoddleProductRepository.GetAll();
+            var report = new Report(query.ToReportSource());
+
+            //report.RenderHints["HtmlStyle"] = @".htmlReport th { font-size: 40px !important; }";
+            foreach (var dataField in report.DataFields)
+            {
+                dataField.HeaderStyle.FontSize = 13;
+            }
+            return new ReportResult(report);
+        }
+
         public ReportResult WithExtensionAndWriter()
         {
             var query = DoddleProductRepository.GetAll();

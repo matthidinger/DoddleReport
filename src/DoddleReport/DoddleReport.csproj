@@ -82,7 +82,9 @@
     <Compile Include="Configuration\StyleElementCollection.cs" />
     <Compile Include="Configuration\WriterElement.cs" />
     <Compile Include="Configuration\WriterElementCollection.cs" />
-    <None Include="DoddleReport.nuspec" />
+    <None Include="DoddleReport.nuspec">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="SharePoint\SPListReportSource.cs" />
     <Compile Include="Dynamic\DynamicReportSource.cs" />
     <Compile Include="ReportSources\DataTableReportSource.cs" />

@@ -12,7 +12,8 @@
     <AssemblyName>DoddleReport</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -137,9 +138,6 @@
     <Compile Include="..\DoddleReport\RowFieldDataDictionary.cs">
       <Link>RowFieldDataDictionary.cs</Link>
     </Compile>
-    <None Include="..\DoddleReport\DoddleReport.nuspec">
-      <Link>DoddleReport.nuspec</Link>
-    </None>
     <None Include="..\DoddleReport\SharePoint\SPListReportSource.cs">
       <Link>SharePoint\SPListReportSource.cs</Link>
     </None>

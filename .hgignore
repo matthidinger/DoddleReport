@@ -30,6 +30,6 @@ _ReSharper*/
 [Tt]est[Rr]esult*
 [Bb]uild[Ll]og.*
 *.[Pp]ublish.xml
-*.resharper
 LocalHostname.txt
 *.nupkg
+*.[Rr]e[Ss]harper

@@ -2,18 +2,17 @@
 <package>
   <metadata>
     <id>DoddleReport</id>
-    <version>$version$</version>
-    <title>$title$</title>
-    <authors>$author$</authors>
-    <owners>$author$</owners>
+    <version>1.3</version>
+    <title>DoddleReport</title>
+    <authors>Matt Hidinger</authors>
+    <owners>Matt Hidinger</owners>
     <licenseUrl>http://doddlereport.codeplex.com/license</licenseUrl>
     <projectUrl>http://doddlereport.codeplex.com/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>$description$</description>
+    <description>DoddleReport adds tabular reporting over any LINQ Query, IEnumerable, DataTable or SharePoint List, exportable to HTML, PDF, Excel, CSV or your own custom type.
+    
+See DoddleReport.Web for great Web reporting support, and the other DoddleReport packages for even more Report Writers</description>
     <copyright>Copyright 2011</copyright>
     <tags>doddle.report doddle.reporting doddle reporting pdf excel csv itextsharp abcpdf</tags>
   </metadata>
-  <files>
-    <file src="web.config.transform" target="Content" />
-  </files>
 </package>

@@ -51,7 +51,7 @@ namespace DoddleReport.Sample.Web.Controllers
 
         public ReportResult DynamicNulls()
         {
-            var all = new List<dynamic>();
+            var all = new List<ExpandoObject>();
 
             var product = new Product
             {

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
@@ -263,7 +264,8 @@ namespace DoddleReport.iTextSharp
         public static void CopyStyleToCell(ReportStyle reportStyle, PdfPCell cell)
         {
             cell.BackgroundColor = new BaseColor(reportStyle.BackColor);
-            cell.Width = reportStyle.Width > 0 ? reportStyle.Width : cell.Width;
+            //cell.Width = reportStyle.Width > 0 ? reportStyle.Width : cell.Width;
+
             
             switch (reportStyle.HorizontalAlignment)
             {

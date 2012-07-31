@@ -1,7 +1,6 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 using DoddleReport.Web;
-using DoddleReport.Writers;
 
 namespace DoddleReport.Sample.Web
 {
