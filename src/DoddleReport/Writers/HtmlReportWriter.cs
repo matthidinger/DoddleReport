@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using DoddleReport.Configuration;
 
 namespace DoddleReport.Writers
 {
@@ -10,20 +9,19 @@ namespace DoddleReport.Writers
         public const string HtmlStyle = "HtmlStyle";
         public const string HtmlLogo = "HtmlLogo";
 
-        public StringBuilder Html { get; private set; }
+        protected StringBuilder Html { get; private set; }
         protected virtual bool WrapHeadAndBody { get; set; }
 
 
         public HtmlReportWriter()
+            : this(true)
         {
-            Html = new StringBuilder();
-            WrapHeadAndBody = true;
         }
 
         public HtmlReportWriter(bool wrapHeadAndBody)
-            : this()
         {
             WrapHeadAndBody = wrapHeadAndBody;
+            Html = new StringBuilder();
         }
 
         protected virtual string InternalStyling()
@@ -31,18 +29,22 @@ namespace DoddleReport.Writers
             return string.Empty;
         }
 
-        protected virtual string DefaultStyle
+        /// <summary>
+        /// This CSS style will be applied to the top of every report. You may override this property to customize the default CSS that gets rendered on all HTML reports
+        /// </summary>
+        public static string DefaultStyle
         {
             get
             {
-                var style = 
-                    ".htmlReport td { " + ReportStyle.HeaderRowStyle.ToCss() + "}" +
-                    ".htmlReport th { " + ReportStyle.DataRowStyle.ToCss() + "}" +
-                    @"
-                    .htmlReport h1 { font-size: 14pt; margin-bottom: 10px; }
-                    .htmlReport { font-family: Verdana; }
+                var style = @"
+                    .htmlReport { font: 12px Verdana; }
+                    .htmlReport h1 { font-size: 12pt; margin-bottom: 10px; }
+                    .htmlReport .title { margin-bottom: 1px; }
                     .htmlReport .subTitle { margin-bottom: 3px; margin-top: 1px; }
-                    .htmlReport .title { margin-bottom: 1px; }";
+                    .htmlReport .header { padding-bottom: 8px; border-bottom: solid 1px #ccc; } \r\n";
+
+                style += ".htmlReport td { " + ReportStyle.HeaderRowStyle.ToCss() + "}\r\n";
+                style += ".htmlReport th { " + ReportStyle.DataRowStyle.ToCss() + "}\r\n";
 
                 return style;
             }
@@ -53,10 +55,15 @@ namespace DoddleReport.Writers
             Html.AppendLine(@"<meta http-equiv=""content-type"" content=""text/html;charset=utf-8"" />");
             Html.AppendLine(@"<style type='text/css'>");
 
+            // Add the default styles
             Html.AppendLine(DefaultStyle);
 
+            // Add any custom CSS passed into RenderHints
             Html.AppendFormat("{0}", hints[HtmlStyle]);
+
+            // Add any internal styles, such as the ExcelReportWriter CSS
             Html.AppendLine(InternalStyling());
+
             Html.AppendLine("</style>");
 
         }
@@ -95,7 +102,7 @@ namespace DoddleReport.Writers
 
             if (!string.IsNullOrEmpty(textFields.Header))
             {
-                Html.AppendFormat("{0}<hr />", textFields.Header.FormatHtml());
+                Html.AppendFormat("<p class='header'>{0}</p>", textFields.Header.FormatHtml());
             }
 
             Html.AppendLine("<table border='0' cellpadding='2' cellspacing='0' width='100%'>");
@@ -112,10 +119,7 @@ namespace DoddleReport.Writers
             }
             catch
             {
-                if (input.ToString() == "Yes")
-                    return true;
-
-                return false;
+                return input.ToString().Equals("yes", StringComparison.OrdinalIgnoreCase);
             }
         }
 
