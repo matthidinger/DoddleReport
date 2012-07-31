@@ -40,13 +40,14 @@
     <Exec Command='$(NuGetExe) pack "$(PackageDir)\$(PackageName).nuspec" -OutputDirectory "$(PackageOutputDir)"' />
   </Target>
   
-  <Target Name="CreateAllPackages" DependsOnTargets="Clean" AfterTargets="Clean">
-    <!--<MSBuild Projects="$(MSBuildProjectFullPath)" Targets="CreatePackage" Properties="PackageName=DoddleReport" />-->
+  <Target Name="CreateAllPackages" DependsOnTargets="Clean">
+    <MSBuild Projects="$(MSBuildProjectFullPath)" Targets="CreatePackage" Properties="PackageName=DoddleReport" />
     <MSBuild Projects="$(MSBuildProjectFullPath)" Targets="CreatePackage" Properties="PackageName=DoddleReport.AbcPdf" />
     <MSBuild Projects="$(MSBuildProjectFullPath)" Targets="CreatePackage" Properties="PackageName=DoddleReport.iTextSharp" />
     <MSBuild Projects="$(MSBuildProjectFullPath)" Targets="CreatePackage" Properties="PackageName=DoddleReport.OpenXml" />
     <MSBuild Projects="$(MSBuildProjectFullPath)" Targets="CreatePackage" Properties="PackageName=DoddleReport.Web" />
     <Exec Command='$(NuGetExe) pack DoddleReport.Sample.Mvc.nuspec -OutputDirectory "$(PackageOutputDir)"' />
+    <RemoveDir Directories="$(WorkingDir)" />
   </Target>
 
 
