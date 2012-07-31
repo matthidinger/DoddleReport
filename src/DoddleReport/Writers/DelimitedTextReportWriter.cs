@@ -7,7 +7,11 @@ namespace DoddleReport.Writers
     // TODO: Need to properly encode characters like double quote
     public class DelimitedTextReportWriter : IReportWriter
     {
-        public const string DefaultDelimiter = TabDelimiter;
+        /// <summary>
+        /// Override this property to change the default delimiter for all delimited-text reports
+        /// </summary>
+        public static string DefaultDelimiter = TabDelimiter;
+
         public const string TabDelimiter = "\t";
         public const string CommaDelimiter = ",";
 
