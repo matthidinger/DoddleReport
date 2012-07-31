@@ -26,7 +26,7 @@ namespace DoddleReport
 
             if (style.FontSize != 8)
             {
-                html.AppendFormat("font-size: {0} pt;", style.FontSize);
+                html.AppendFormat("font-size: {0}pt;", style.FontSize);
             }
 
             

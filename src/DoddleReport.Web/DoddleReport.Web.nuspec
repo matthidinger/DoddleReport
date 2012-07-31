@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <package>
   <metadata>
-    <id>$id$</id>
-    <version>$version$</version>
-    <title>$title$</title>
-    <authors>$author$</authors>
-    <owners>$author$</owners>
+    <id>DoddleReport.Web</id>
+    <version>1.3</version>
+    <title>DoddleReport.Web</title>
+    <authors>Matt Hidinger</authors>
+    <owners>Matt Hidinger</owners>
     <licenseUrl>http://doddlereport.codeplex.com/license</licenseUrl>
     <projectUrl>http://doddlereport.codeplex.com/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>$description$</description>
+    <description>Adds Web Reporting support to DoddleReport. MVC apps can use the new ActionResult called ReportResult. WebForms apps can use the WebReport IHttpHandler (.ashx)</description>
     <copyright>Copyright 2011</copyright>
     <tags>doddle.report doddle.reporting doddle reporting pdf excel csv</tags>
     <dependencies>

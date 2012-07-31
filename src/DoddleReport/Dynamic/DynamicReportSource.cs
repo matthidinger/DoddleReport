@@ -5,22 +5,23 @@ using System.Linq;
 
 namespace DoddleReport
 {
-    public static class DynamicReportSourceExtensions
+    public static class DynamicReportBuilder
     {
-        public static IReportSource ToReportSource(this IEnumerable<dynamic> source)
+        public static IReportSource ToReportSource(this IEnumerable<ExpandoObject> source)
         {
             return new DynamicReportSource(source);
         }
     }
+
 
     /// <summary>
     /// Generate a Report for a collection of dynamic ExpandoObjects
     /// </summary>
     public class DynamicReportSource : IReportSource
     {
-        private readonly IEnumerable<dynamic> _source;
+        private readonly IEnumerable<ExpandoObject> _source;
 
-        public DynamicReportSource(IEnumerable<dynamic> source)
+        public DynamicReportSource(IEnumerable<ExpandoObject> source)
         {
             _source = source;
         }
