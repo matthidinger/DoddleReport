@@ -45,12 +45,12 @@ namespace DoddleReport
 
         public static ReportStyle HeaderRowStyle
         {
-            get { return new ReportStyle(Config.Report.DataRowStyleName); }
+            get { return new ReportStyle(Config.Report.HeaderRowStyleName); }
         }
 
         public static ReportStyle FooterRowStyle
         {
-            get { return new ReportStyle(Config.Report.DataRowStyleName); }
+            get { return new ReportStyle(Config.Report.FooterRowStyleName); }
         }
 
         // TODO: Move this to central config or something
