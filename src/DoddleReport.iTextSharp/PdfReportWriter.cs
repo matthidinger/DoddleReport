@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using Font = iTextSharp.text.Font;
+using Rectangle = iTextSharp.text.Rectangle;
 
 namespace DoddleReport.iTextSharp
 {
@@ -62,8 +65,11 @@ namespace DoddleReport.iTextSharp
                         }
                         else
                         {
-                            cell = CreateTextCell(field.DataStyle, report.RenderHints[FontFamily] as string,
-                                                  row.GetFormattedValue(field));
+							var url = row.GetUrlString(field);
+
+							cell = url == null
+								? CreateTextCell(field.DataStyle, report.RenderHints[FontFamily] as string, row.GetFormattedValue(field))
+								: CreateHyperLinkCell(url, row.GetFormattedValue(field));
                         }
 
                         cell.Border = 0;
@@ -219,6 +225,14 @@ namespace DoddleReport.iTextSharp
             CopyStyleToCell(reportStyle, cell);
             return cell;
         }
+
+		private static PdfPCell CreateHyperLinkCell(string url, string text)
+		{
+			Font linkFont = FontFactory.GetFont("Arial", 12, Font.UNDERLINE, new BaseColor(Color.Blue));
+			Anchor anchor = new Anchor(text, linkFont);
+			anchor.Reference = url;
+			return new PdfPCell(anchor) { Border = 0 };
+		}
 
         /// <summary>
         /// Converts a report style to a new font definition.

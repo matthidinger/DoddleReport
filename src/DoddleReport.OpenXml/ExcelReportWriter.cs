@@ -202,6 +202,11 @@ namespace DoddleReport.OpenXml
                         cell.Value = reportRow.GetFormattedValue(field);
                     }
 
+					var url = reportRow.GetUrlString(field);
+					if (url != null)
+					{
+						cell.Hyperlink = new XLHyperlink(url);
+					}
                 }
                 else if (reportRow.RowType == ReportRowType.FooterRow)
                 {

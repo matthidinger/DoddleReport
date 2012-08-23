@@ -48,5 +48,10 @@ namespace DoddleReport
 
             return _rowFieldData.GetFormattedString(field);
         }
+
+		public string GetUrlString(RowField field)
+		{
+			return _rowFieldData.GetUrlString(field);
+		}
     }
 }

@@ -71,9 +71,11 @@ namespace DoddleReport
         /// </summary>
         public ReportStyle FooterStyle { get; private set; }
 
-        internal Delegate FormatAsDelegate { get; private set; }
-    
-        public ReportField(string fieldName) 
+		internal Delegate FormatAsDelegate { get; private set; }
+
+		internal Delegate UrlDelegate { get; private set; }
+		
+		public ReportField(string fieldName) 
             : this(fieldName, typeof(object)) {}
 
         public ReportField(string fieldName, Type dataType)
@@ -99,6 +101,16 @@ namespace DoddleReport
         {
             FormatAsDelegate = formatAsDelegate;
         }
+
+		/// <summary>
+		/// A delegate to generate a uri/url to be used as the href attribute for a link in the given field.
+		/// </summary>
+		/// <typeparam name="T">The type of the DataItem of the current row</typeparam>
+		/// <param name="hrefLambda">A function that consumes the curent DataItem to create a string representation of a url</param>
+		public void Url<T>(Func<T, string> hrefLambda)
+		{
+			UrlDelegate = hrefLambda;
+		}
 
         public override string ToString()
         {

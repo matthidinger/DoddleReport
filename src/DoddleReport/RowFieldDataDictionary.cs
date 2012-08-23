@@ -33,6 +33,19 @@ namespace DoddleReport
             return string.Format(field.DataFormatString, internalValue);
         }
 
+		internal string GetUrlString(RowField field)
+		{
+			object dataItem = field.Row.DataItem;
+
+			if (dataItem == null)
+				return null;
+
+			if (field.UrlDelegate != null)
+				return (string) field.UrlDelegate.DynamicInvoke(dataItem);
+
+			return null;
+		}
+
         public object this[RowField field]
         {
             get

@@ -51,7 +51,9 @@ namespace DoddleReport
 
         internal Delegate FormatAsDelegate { get; private set; }
 
-        public RowField(ReportRow row, ReportField field)
+		internal Delegate UrlDelegate { get; private set; }
+		
+		public RowField(ReportRow row, ReportField field)
         {
             Row = row;
             Hidden = field.Hidden;
@@ -64,6 +66,7 @@ namespace DoddleReport
             FooterStyle = field.FooterStyle;
             HeaderStyle = field.HeaderStyle;
             ShowTotals = field.ShowTotals;
+			UrlDelegate = field.UrlDelegate;
         }
 
         public void FormatAs<T>(Func<T, string> formatAsDelegate)

@@ -151,8 +151,16 @@ namespace DoddleReport.Writers
                         }
                     }
 
-                    Html.AppendFormat("<td class='dataCell' style='{1}'>{0}</td>", row.GetFormattedValue(field), GetCellStyle(row, field));
-                }
+					var formattedValue = row.GetFormattedValue(field);
+					var url = row.GetUrlString(field);
+
+					if (url != null)
+					{
+						formattedValue = string.Format("<a href='{1}'>{0}</a>", formattedValue, url);
+					}
+
+					Html.AppendFormat("<td style='{1}'>{0}</td>", formattedValue, GetCellStyle(row, field));
+				}
                 else if (row.RowType == ReportRowType.FooterRow)
                 {
                     Html.AppendFormat("<td class='footerCell' style='{1}'>{0}</td>", row.GetFormattedValue(field), GetCellStyle(row, field));
