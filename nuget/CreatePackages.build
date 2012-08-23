@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="CreateAllPackages" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <SrcDir>$(MSBuildProjectDirectory)\..\src</SrcDir>
+    <NuGetExe>"$(MSBuildProjectDirectory)\NuGet.exe"</NuGetExe>
+    <WorkingDir>$(MSBuildProjectDirectory)\packageTemp</WorkingDir>
+    <PackageOutputDir>$(MSBuildProjectDirectory)\packages</PackageOutputDir>
+    <DefaultBuildProperties>Configuration=Release</DefaultBuildProperties>
+  </PropertyGroup>
+
+  <Target Name="Clean">
+    <RemoveDir Directories="$(WorkingDir);$(PackageOutputDir)" />
+  </Target>
+  
+  <Target Name="CreatePackage">
+    <MakeDir Directories="$(PackageOutputDir)" />
+    <PropertyGroup>
+      <PackageName Condition="$(PackageName)==''"></PackageName>
+      <PackageDir>$(WorkingDir)\$(PackageName)</PackageDir>
+    </PropertyGroup>
+    
+    <!-- Build the projects -->
+    <MSBuild Projects="$(SrcDir)\$(PackageName)\$(PackageName).csproj" Properties="$(DefaultBuildProperties);OutputPath=$(PackageDir)\lib\net40" />
+    <MSBuild Projects="$(SrcDir)\$(PackageName).Net35\$(PackageName).Net35.csproj" Properties="$(DefaultBuildProperties);OutputPath=$(PackageDir)\lib\net35" />
+
+    <!-- Copy any additional content for the package -->
+    <CreateItem Include="$(SrcDir)\$(PackageName)\web.config.transform">
+      <Output ItemName="ItemsThatNeedToBeCopied" TaskParameter="Include"/>
+    </CreateItem>
+    
+    <Copy SourceFiles="@(ItemsThatNeedToBeCopied)"
+          DestinationFolder="$(PackageDir)\content"
+          Condition="Exists('%(RootDir)%(Directory)%(Filename)%(Extension)')"/>
+
+    <!-- Copy the nuspec into the package -->
+    <Copy SourceFiles="$(SrcDir)\$(PackageName)\$(PackageName).nuspec" DestinationFolder="$(PackageDir)" />
+    
+    <!-- Pack it up-->
+    <Exec Command='$(NuGetExe) pack "$(PackageDir)\$(PackageName).nuspec" -OutputDirectory "$(PackageOutputDir)"' />
+  </Target>
+  
+  <Target Name="CreateAllPackages" DependsOnTargets="Clean">
+    <MSBuild Projects="$(MSBuildProjectFullPath)" Targets="CreatePackage" Properties="PackageName=DoddleReport" />
+    <MSBuild Projects="$(MSBuildProjectFullPath)" Targets="CreatePackage" Properties="PackageName=DoddleReport.AbcPdf" />
+    <MSBuild Projects="$(MSBuildProjectFullPath)" Targets="CreatePackage" Properties="PackageName=DoddleReport.iTextSharp" />
+    <MSBuild Projects="$(MSBuildProjectFullPath)" Targets="CreatePackage" Properties="PackageName=DoddleReport.OpenXml" />
+    <MSBuild Projects="$(MSBuildProjectFullPath)" Targets="CreatePackage" Properties="PackageName=DoddleReport.Web" />
+    <Exec Command='$(NuGetExe) pack DoddleReport.Sample.Mvc.nuspec -OutputDirectory "$(PackageOutputDir)"' />
+    <RemoveDir Directories="$(WorkingDir)" />
+  </Target>
+
+
+  <Target Name="Publish" DependsOnTargets="CreateAllPackages">
+    <CreateItem Include="$(PackageOutputDir)\*.nupkg">
+      <Output ItemName="Packages" TaskParameter="Include"/>
+    </CreateItem>
+    <Message Importance="high" Text="nuget push %(Packages.RootDir)%(Packages.Directory)%(Packages.Filename)%(Packages.Extension)" />
+    <Exec Command="$(NuGetExe) push %(Packages.RootDir)%(Packages.Directory)%(Packages.Filename)%(Packages.Extension)" />
+  </Target>
+</Project>

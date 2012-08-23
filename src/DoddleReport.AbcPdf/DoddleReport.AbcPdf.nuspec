@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>DoddleReport.AbcPdf</id>
+    <version>1.3</version>
+    <title>DoddleReport.AbcPdf</title>
+    <authors>Matt Hidinger</authors>
+    <owners>Matt Hidinger</owners>
+    <licenseUrl>http://doddlereport.codeplex.com/license</licenseUrl>
+    <projectUrl>http://doddlereport.codeplex.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Adds ABCpdf support to DoddleReport. Requires an ABCpdf license to work properly</description>
+    <copyright>Copyright 2011</copyright>
+    <tags>doddle.report doddle.reporting doddle reporting pdf excel csv abcpdf</tags>
+    <dependencies>
+      <dependency id="DoddleReport" version="1.3" />
+    </dependencies>
+  </metadata>
+</package>
