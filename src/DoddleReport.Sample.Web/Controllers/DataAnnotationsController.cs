@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using DoddleReport.Web;
 
@@ -16,6 +13,8 @@ namespace DoddleReport.Sample.Web.Controllers
             public string Name { get; set; }
 
             public decimal Price { get; set; }
+
+            public bool OutOfStock { get; set; }
         }
 
         public ReportResult Index()
@@ -28,6 +27,11 @@ namespace DoddleReport.Sample.Web.Controllers
             list.Add(new AnnotatedProduct { Name = "Product 3", Price = 700 });
 
             var report = new Report(list.ToReportSource());
+
+
+            // Adavanced data field formatting using a callback delegate
+            report.DataFields["OutOfStock"].FormatAs<bool>(value => value ? "Yes" : "No");
+
             return new ReportResult(report);
         }
     }
