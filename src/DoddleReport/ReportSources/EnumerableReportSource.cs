@@ -17,13 +17,13 @@ namespace DoddleReport.ReportSources
 
         public IEnumerable Source { get; set; }
 
-        private IEnumerable<PropertyInfo> GetProperties()
+
+        private static IEnumerable<PropertyInfo> GetProperties(Type itemType)
         {
-            var itemType = GetItemType();
             if (itemType == null)
                 return null;
 
-            return itemType.GetProperties();
+            return itemType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
         }
 
         private Type GetItemType()
@@ -35,7 +35,11 @@ namespace DoddleReport.ReportSources
                             where i.IsGenericType &&
                                   i.GetGenericTypeDefinition() == typeof(IEnumerable<>)
                             select i.GetGenericArguments().Single()).SingleOrDefault();
-            if (itemType != null)
+
+
+            // If the itemType is Object, we assume they are using an anonymous type
+            // and need to get the type of the first item, instead of the IEnumerable
+            if (itemType != null && itemType != typeof(object))
             {
                 return itemType;
             }
@@ -52,8 +56,8 @@ namespace DoddleReport.ReportSources
         public ReportFieldCollection GetFields()
         {
             var fields = new ReportFieldCollection();
-            var properties = GetProperties();
             var itemType = GetItemType();
+            var properties = GetProperties(itemType);
 
             if (properties == null)
                 return fields;
