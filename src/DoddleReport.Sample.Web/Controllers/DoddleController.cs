@@ -9,7 +9,7 @@ namespace DoddleReport.Sample.Web.Controllers
 {
 	// **********************
 	//  
-	// Don't forget to edit Global.asax and call the following method within RegisterRoutes()
+	// Don't forget to edit Global.asax and call the following method at the top of RegisterRoutes()
 	//
 	//      routes.MapReportingRoute();
 	//
@@ -77,7 +77,7 @@ namespace DoddleReport.Sample.Web.Controllers
 			// given web project (e.g. excel or pdf)
 			// ReSharper disable Mvc.ActionNotResolved
 			// ReSharper disable Mvc.ControllerNotResolved
-			report.DataFields["Name"].Url<Product>(p => "http://localhost:8095" + Url.Action("Index", "Products", new { p.Id }));
+			report.DataFields["Name"].Url<Product>(p => Url.Action("Index", "Products", new { p.Id }, "http"));
 			// ReSharper restore Mvc.ControllerNotResolved
 			// ReSharper restore Mvc.ActionNotResolved
 
