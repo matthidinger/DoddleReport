@@ -56,6 +56,6 @@
       <Output ItemName="Packages" TaskParameter="Include"/>
     </CreateItem>
     <Message Importance="high" Text="nuget push %(Packages.RootDir)%(Packages.Directory)%(Packages.Filename)%(Packages.Extension)" />
-    <Exec Command="$(NuGetExe) push %(Packages.RootDir)%(Packages.Directory)%(Packages.Filename)%(Packages.Extension)" />
+    <Exec Command="$(NuGetExe) push %(Packages.RootDir)%(Packages.Directory)%(Packages.Filename)%(Packages.Extension)" ContinueOnError="true" />
   </Target>
 </Project>
