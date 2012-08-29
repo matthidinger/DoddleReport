@@ -33,3 +33,5 @@ _ReSharper*/
 LocalHostname.txt
 *.nupkg
 *.[Rr]e[Ss]harper
+_UpgradeReport_Files/*
+UpgradeLog.*

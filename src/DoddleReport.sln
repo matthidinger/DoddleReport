@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoddleReport", "DoddleReport\DoddleReport.csproj", "{F08B2994-4D05-423E-A8FE-7D1E8A63472B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoddleReport.AbcPdf", "DoddleReport.AbcPdf\DoddleReport.AbcPdf.csproj", "{355CAFF3-F806-4194-BE54-2F7640463CED}"
@@ -13,9 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoddleReport.Sample.WinForm
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{0E73989A-FF31-4542-88F9-DAC6F9C40FE2}"
 	ProjectSection(SolutionItems) = preProject
+		..\nuget\CreatePackages.bat = ..\nuget\CreatePackages.bat
 		..\nuget\CreatePackages.build = ..\nuget\CreatePackages.build
 		..\nuget\DoddleReport.Sample.Mvc.nuspec = ..\nuget\DoddleReport.Sample.Mvc.nuspec
-		..\nuget\PackAndPublish.bat = ..\nuget\PackAndPublish.bat
+		..\nuget\PublishPackages.bat = ..\nuget\PublishPackages.bat
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoddleReport.Web", "DoddleReport.Web\DoddleReport.Web.csproj", "{A02EF71C-C655-4D93-9CAF-15E527AA4FE0}"
