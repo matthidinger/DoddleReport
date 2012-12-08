@@ -35,3 +35,4 @@ LocalHostname.txt
 *.[Rr]e[Ss]harper
 _UpgradeReport_Files/*
 UpgradeLog.*
+packages/**
