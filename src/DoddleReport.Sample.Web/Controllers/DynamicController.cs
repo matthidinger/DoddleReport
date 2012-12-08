@@ -11,10 +11,10 @@ namespace DoddleReport.Sample.Web.Controllers
     {
         //
         // Sample URLs:
-        //  http://localhost:X/Home/Index/Reporting/Dynamic/Dynamic.html
-        //  http://localhost:X/Home/Index/Reporting/Dynamic/Dynamic.xls
-        //  http://localhost:X/Home/Index/Reporting/Dynamic/Dynamic.txt
-        //  http://localhost:X/Home/Index/Reporting/Dynamic/Dynamic.pdf (REQUIRES ABCPDF INSTALLED)
+        //  http://localhost:X/Reporting/Dynamic/Dynamic.html
+        //  http://localhost:X/Reporting/Dynamic/Dynamic.xls
+        //  http://localhost:X/Reporting/Dynamic/Dynamic.txt
+        //  http://localhost:X/Reporting/Dynamic/Dynamic.pdf (REQUIRES ABCPDF INSTALLED)
         //  
 
         public ReportResult Dynamic()

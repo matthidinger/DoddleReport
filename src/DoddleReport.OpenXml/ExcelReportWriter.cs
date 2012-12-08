@@ -37,7 +37,7 @@ namespace DoddleReport.OpenXml
         /// </summary>
         public ExcelReportWriter()
         {
-            this.ReportsToAppend = new Dictionary<Report, IList<Report>>();
+            ReportsToAppend = new Dictionary<Report, IList<Report>>();
         }
 
         private static string GetOpenXmlDataFormatString(string dataFormatString)
@@ -56,7 +56,7 @@ namespace DoddleReport.OpenXml
         public void WriteReport(Report report, Stream destination)
         {
             var workbook = new XLWorkbook();
-            this.WriteReport(report, workbook);
+            WriteReport(report, workbook);
 
             using (var ms = new MemoryStream())
             {
@@ -84,12 +84,12 @@ namespace DoddleReport.OpenXml
                 throw new InvalidOperationException("Unable to append report, the source Writer is not a ExcelReportWriter");
             }
 
-            if (!this.ReportsToAppend.ContainsKey(source))
+            if (!ReportsToAppend.ContainsKey(source))
             {
-                this.ReportsToAppend.Add(source, new List<Report>());
+                ReportsToAppend.Add(source, new List<Report>());
             }
 
-            this.ReportsToAppend[source].Add(destination);
+            ReportsToAppend[source].Add(destination);
         }
 
         /// <summary>
@@ -138,7 +138,7 @@ namespace DoddleReport.OpenXml
         /// <returns>The row it last wrote on.</returns>
         private static int RenderTextItem(IXLWorksheet worksheet, int fieldsCount, string itemText, int currentRow, ReportStyle reportStyle)
         {
-            foreach (var s in itemText.Split(new[] { Environment.NewLine }, StringSplitOptions.None))
+            foreach (var s in itemText.Split(new[] { "\r\n"}, StringSplitOptions.None))
             {
                 currentRow++;
                 var row = worksheet.Row(currentRow);
@@ -330,7 +330,7 @@ namespace DoddleReport.OpenXml
                 worksheet.SheetView.Freeze(report.RenderHints.FreezeRows, report.RenderHints.FreezeColumns);
 
             // Render the header
-            var fieldsCount = report.DataFields.Where(f => !f.Hidden).Count();
+            var fieldsCount = report.DataFields.Count(f => !f.Hidden);
             int rowCount = RenderHeader(worksheet, fieldsCount, report.TextFields, report.RenderHints);
 
             // Render all the rows
@@ -343,6 +343,9 @@ namespace DoddleReport.OpenXml
 
             // Render the footer
             RenderFooter(worksheet, fieldsCount, report.TextFields, report.RenderHints, rowCount);
+
+
+            // TODO: AdjustToContents renders horribly when deployed to an Azure Website, need to determine why
 
             // Adjust the width of all the columns
             for (int i = 0; i < fieldsCount; i++)
@@ -360,7 +363,7 @@ namespace DoddleReport.OpenXml
                     }
                     else if (adjustToContents)
                     {
-                        column.AdjustToContents();
+                        column.AdjustToContents(1, 50, 5.0, 100.0);
                     }
                     else
                     {
@@ -369,12 +372,14 @@ namespace DoddleReport.OpenXml
                 }
             }
 
+            worksheet.Columns().AdjustToContents();
+
             // Check if the current writer needs to append another report to the report we just generated
-            if (this.ReportsToAppend.ContainsKey(report))
+            if (ReportsToAppend.ContainsKey(report))
             {
-                foreach (var reportToAppend in this.ReportsToAppend[report])
+                foreach (var reportToAppend in ReportsToAppend[report])
                 {
-                    this.WriteReport(reportToAppend, workbook);
+                    WriteReport(reportToAppend, workbook);
                 }
             }
         }
