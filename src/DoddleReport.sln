@@ -13,13 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{0E73989A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample Projects", "Sample Projects", "{2E920538-21EC-49E6-BF72-75E82B2E49E2}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6C8662B3-EA61-4102-B797-F066DE622BB4}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoddleReport", "DoddleReport\DoddleReport.csproj", "{F08B2994-4D05-423E-A8FE-7D1E8A63472B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoddleReport.AbcPdf", "DoddleReport.AbcPdf\DoddleReport.AbcPdf.csproj", "{355CAFF3-F806-4194-BE54-2F7640463CED}"
@@ -33,18 +26,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoddleReport.Web", "DoddleReport.Web\DoddleReport.Web.csproj", "{A02EF71C-C655-4D93-9CAF-15E527AA4FE0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoddleReport.iTextSharp", "DoddleReport.iTextSharp\DoddleReport.iTextSharp.csproj", "{347D0716-0297-4866-9FD5-5E019B51C408}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoddleReport.AbcPdf.Net35", "DoddleReport.AbcPdf.Net35\DoddleReport.AbcPdf.Net35.csproj", "{FCE317C9-E02A-4AD5-813D-C29AF6061808}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoddleReport.iTextSharp.Net35", "DoddleReport.iTextSharp.Net35\DoddleReport.iTextSharp.Net35.csproj", "{B1A90194-581B-450C-A939-73A9A5FEDA9C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoddleReport.OpenXml.Net35", "DoddleReport.OpenXml.Net35\DoddleReport.OpenXml.Net35.csproj", "{8A4ED6C0-2E7F-41B4-AED5-A85B67BC50D4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoddleReport.Sample.Web.Net35", "DoddleReport.Sample.Web.Net35\DoddleReport.Sample.Web.Net35.csproj", "{A843155F-94B4-4473-96E0-86373E1ABB11}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoddleReport.Net35", "DoddleReport.Net35\DoddleReport.Net35.csproj", "{B3AC0BE5-952A-41F6-8C13-1D2C112B0238}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoddleReport.Web.Net35", "DoddleReport.Web.Net35\DoddleReport.Web.Net35.csproj", "{910CAA70-55B2-47A4-B679-3366B2DFF613}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -126,66 +107,6 @@ Global
 		{347D0716-0297-4866-9FD5-5E019B51C408}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{347D0716-0297-4866-9FD5-5E019B51C408}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{347D0716-0297-4866-9FD5-5E019B51C408}.Release|x86.ActiveCfg = Release|Any CPU
-		{FCE317C9-E02A-4AD5-813D-C29AF6061808}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FCE317C9-E02A-4AD5-813D-C29AF6061808}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FCE317C9-E02A-4AD5-813D-C29AF6061808}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{FCE317C9-E02A-4AD5-813D-C29AF6061808}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{FCE317C9-E02A-4AD5-813D-C29AF6061808}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{FCE317C9-E02A-4AD5-813D-C29AF6061808}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FCE317C9-E02A-4AD5-813D-C29AF6061808}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FCE317C9-E02A-4AD5-813D-C29AF6061808}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{FCE317C9-E02A-4AD5-813D-C29AF6061808}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{FCE317C9-E02A-4AD5-813D-C29AF6061808}.Release|x86.ActiveCfg = Release|Any CPU
-		{B1A90194-581B-450C-A939-73A9A5FEDA9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B1A90194-581B-450C-A939-73A9A5FEDA9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B1A90194-581B-450C-A939-73A9A5FEDA9C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{B1A90194-581B-450C-A939-73A9A5FEDA9C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{B1A90194-581B-450C-A939-73A9A5FEDA9C}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{B1A90194-581B-450C-A939-73A9A5FEDA9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B1A90194-581B-450C-A939-73A9A5FEDA9C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B1A90194-581B-450C-A939-73A9A5FEDA9C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{B1A90194-581B-450C-A939-73A9A5FEDA9C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{B1A90194-581B-450C-A939-73A9A5FEDA9C}.Release|x86.ActiveCfg = Release|Any CPU
-		{8A4ED6C0-2E7F-41B4-AED5-A85B67BC50D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8A4ED6C0-2E7F-41B4-AED5-A85B67BC50D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8A4ED6C0-2E7F-41B4-AED5-A85B67BC50D4}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{8A4ED6C0-2E7F-41B4-AED5-A85B67BC50D4}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{8A4ED6C0-2E7F-41B4-AED5-A85B67BC50D4}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{8A4ED6C0-2E7F-41B4-AED5-A85B67BC50D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8A4ED6C0-2E7F-41B4-AED5-A85B67BC50D4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8A4ED6C0-2E7F-41B4-AED5-A85B67BC50D4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{8A4ED6C0-2E7F-41B4-AED5-A85B67BC50D4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{8A4ED6C0-2E7F-41B4-AED5-A85B67BC50D4}.Release|x86.ActiveCfg = Release|Any CPU
-		{A843155F-94B4-4473-96E0-86373E1ABB11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A843155F-94B4-4473-96E0-86373E1ABB11}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A843155F-94B4-4473-96E0-86373E1ABB11}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{A843155F-94B4-4473-96E0-86373E1ABB11}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{A843155F-94B4-4473-96E0-86373E1ABB11}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{A843155F-94B4-4473-96E0-86373E1ABB11}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A843155F-94B4-4473-96E0-86373E1ABB11}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A843155F-94B4-4473-96E0-86373E1ABB11}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{A843155F-94B4-4473-96E0-86373E1ABB11}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{A843155F-94B4-4473-96E0-86373E1ABB11}.Release|x86.ActiveCfg = Release|Any CPU
-		{B3AC0BE5-952A-41F6-8C13-1D2C112B0238}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B3AC0BE5-952A-41F6-8C13-1D2C112B0238}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B3AC0BE5-952A-41F6-8C13-1D2C112B0238}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{B3AC0BE5-952A-41F6-8C13-1D2C112B0238}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{B3AC0BE5-952A-41F6-8C13-1D2C112B0238}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{B3AC0BE5-952A-41F6-8C13-1D2C112B0238}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B3AC0BE5-952A-41F6-8C13-1D2C112B0238}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B3AC0BE5-952A-41F6-8C13-1D2C112B0238}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{B3AC0BE5-952A-41F6-8C13-1D2C112B0238}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{B3AC0BE5-952A-41F6-8C13-1D2C112B0238}.Release|x86.ActiveCfg = Release|Any CPU
-		{910CAA70-55B2-47A4-B679-3366B2DFF613}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{910CAA70-55B2-47A4-B679-3366B2DFF613}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{910CAA70-55B2-47A4-B679-3366B2DFF613}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{910CAA70-55B2-47A4-B679-3366B2DFF613}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{910CAA70-55B2-47A4-B679-3366B2DFF613}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{910CAA70-55B2-47A4-B679-3366B2DFF613}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{910CAA70-55B2-47A4-B679-3366B2DFF613}.Release|Any CPU.Build.0 = Release|Any CPU
-		{910CAA70-55B2-47A4-B679-3366B2DFF613}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{910CAA70-55B2-47A4-B679-3366B2DFF613}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{910CAA70-55B2-47A4-B679-3366B2DFF613}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -193,7 +114,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{28FBF83C-A8A3-418B-A32E-3A725BD37A5C} = {2E920538-21EC-49E6-BF72-75E82B2E49E2}
 		{12A17D7F-C168-4086-8D6A-DFE311E9EE90} = {2E920538-21EC-49E6-BF72-75E82B2E49E2}
-		{A843155F-94B4-4473-96E0-86373E1ABB11} = {2E920538-21EC-49E6-BF72-75E82B2E49E2}
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = DoddleReport.vsmdi
