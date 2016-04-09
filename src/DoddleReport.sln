@@ -1,6 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{0E73989A-FF31-4542-88F9-DAC6F9C40FE2}"
+	ProjectSection(SolutionItems) = preProject
+		..\nuget\CreatePackages.bat = ..\nuget\CreatePackages.bat
+		..\nuget\CreatePackages.build = ..\nuget\CreatePackages.build
+		..\nuget\DoddleReport.Sample.Mvc.nuspec = ..\nuget\DoddleReport.Sample.Mvc.nuspec
+		..\nuget\PublishPackages.bat = ..\nuget\PublishPackages.bat
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample Projects", "Sample Projects", "{2E920538-21EC-49E6-BF72-75E82B2E49E2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6C8662B3-EA61-4102-B797-F066DE622BB4}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoddleReport", "DoddleReport\DoddleReport.csproj", "{F08B2994-4D05-423E-A8FE-7D1E8A63472B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoddleReport.AbcPdf", "DoddleReport.AbcPdf\DoddleReport.AbcPdf.csproj", "{355CAFF3-F806-4194-BE54-2F7640463CED}"
@@ -11,17 +30,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoddleReport.Sample.Web", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoddleReport.Sample.WinForms", "DoddleReport.Sample.WinForms\DoddleReport.Sample.WinForms.csproj", "{12A17D7F-C168-4086-8D6A-DFE311E9EE90}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{0E73989A-FF31-4542-88F9-DAC6F9C40FE2}"
-	ProjectSection(SolutionItems) = preProject
-		..\nuget\CreatePackages.bat = ..\nuget\CreatePackages.bat
-		..\nuget\CreatePackages.build = ..\nuget\CreatePackages.build
-		..\nuget\DoddleReport.Sample.Mvc.nuspec = ..\nuget\DoddleReport.Sample.Mvc.nuspec
-		..\nuget\PublishPackages.bat = ..\nuget\PublishPackages.bat
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoddleReport.Web", "DoddleReport.Web\DoddleReport.Web.csproj", "{A02EF71C-C655-4D93-9CAF-15E527AA4FE0}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample Projects", "Sample Projects", "{2E920538-21EC-49E6-BF72-75E82B2E49E2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoddleReport.iTextSharp", "DoddleReport.iTextSharp\DoddleReport.iTextSharp.csproj", "{347D0716-0297-4866-9FD5-5E019B51C408}"
 EndProject
@@ -37,17 +46,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoddleReport.Net35", "Doddl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoddleReport.Web.Net35", "DoddleReport.Web.Net35\DoddleReport.Web.Net35.csproj", "{910CAA70-55B2-47A4-B679-3366B2DFF613}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6C8662B3-EA61-4102-B797-F066DE622BB4}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\NuGet.Config = .nuget\NuGet.Config
-		.nuget\NuGet.exe = .nuget\NuGet.exe
-		.nuget\NuGet.targets = .nuget\NuGet.targets
-	EndProjectSection
-EndProject
 Global
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = DoddleReport.vsmdi
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -192,8 +191,11 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{12A17D7F-C168-4086-8D6A-DFE311E9EE90} = {2E920538-21EC-49E6-BF72-75E82B2E49E2}
 		{28FBF83C-A8A3-418B-A32E-3A725BD37A5C} = {2E920538-21EC-49E6-BF72-75E82B2E49E2}
+		{12A17D7F-C168-4086-8D6A-DFE311E9EE90} = {2E920538-21EC-49E6-BF72-75E82B2E49E2}
 		{A843155F-94B4-4473-96E0-86373E1ABB11} = {2E920538-21EC-49E6-BF72-75E82B2E49E2}
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = DoddleReport.vsmdi
 	EndGlobalSection
 EndGlobal
