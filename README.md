@@ -4,46 +4,52 @@ Out of the box it can render reports to Excel, PDF, HTML, and CSV – fully plug
 
 ### New to DoddleReport?
 
-*   Look at the [[Building your first report]] page
-*   If you’re using ASP.NET make sure to check out [[ASP.NET Reporting]] section
+*   Look at the **[Building your first report](https://github.com/matthidinger/DoddleReport/wiki/Building-your-first-report)** page
+*   If you’re using ASP.NET make sure to check out **[ASP.NET Reporting](https://github.com/matthidinger/DoddleReport/wiki/ASP.NET-Reporting)** section
 *   Review the ```DoddleReport.Sample.Web``` project in the solution
-*   Check out the [[Wiki]] for advanced customization and configuration
+*   Check out the **[Wiki](https://github.com/matthidinger/DoddleReport/wiki/)** for advanced customization and configuration
 
 ### Find it on NuGet
 
 DoddleReport has been split into multiple packages to support more users’ needs. See their Descriptions within NuGet for more on the differences
 
-*   **Install-Package DoddleReport**
-*   **Install-Package DoddleReport.Web**
-*   **Install-Package DoddleReport.iTextSharp**
-*   **Install-Package DoddleReport.AbcPdf**
-*   **Install-Package DoddleReport.OpenXml**
+#### Main package
+*   ```Install-Package DoddleReport```
 
-### So what does it generate?
+#### ASP.NET integration
+*   ```Install-Package DoddleReport.Web```
 
-The following samples are generated live in real-time (notice the data will change every time you open the report)
+#### Additional Report Writers
+*   ```Install-Package DoddleReport.iTextSharp```
+*   ```Install-Package DoddleReport.AbcPdf```
+*   ```Install-Package DoddleReport.OpenXml```
 
-### Excel Report (OpenXML)
+### Live Samples!
+
+To showcase the functionality take a look at the following sample reports, which are being generated **live in real-time** (notice the data will change every time you open the report)
+
+#### Excel Report (OpenXML)
 
 *   Creates a native Excel file using OpenXML
-*   Requires the DoddleReport.OpenXml package
+*   Requires the ```DoddleReport.OpenXml``` package
 *   Automatic Sticky/Frozen Headers stay at the top when scrolling through the data
 *   [**See it live!**](http://doddlereport.azurewebsites.net/Doddle/ProductReport.xlsx)
 
 [![doddlexlsreport](http://download.codeplex.com/download?ProjectName=doddlereport&DownloadId=204393 "doddlexlsreport")](http://download.codeplex.com/download?ProjectName=doddlereport&DownloadId=204392)
 
 
-### PDF Report (using iTextSharper)
+#### PDF Reports 
+
+##### Using iTextSharp
 
 *   Automatically repeats title and column headers numbers on every page
-*   Requires the DoddleReport.iTextSharp package
+*   Requires the ```DoddleReport.iTextSharp``` package
 *   [**See it live!**](http://doddlereport.azurewebsites.net/Doddle/productreport.pdf)
 
+##### Using ABCpdf
 
-### PDF Report (ABCpdf)
-
-*   Automatically repeats title, column headers, and page numbers on every page
-*   Requires the DoddleReport.AbcPdf package
+*   Automatically repeats title and column headers numbers on every page
+*   Requires the ```DoddleReport.AbcPdf``` package
 *   _Requires an_ [_ABCpdf license_](http://www.websupergoo.com/products.htm#pd)
 *   [**See it live!**](http://doddlereport.azurewebsites.net/AbcPdf/ProductReport.pdf)
 
@@ -51,7 +57,7 @@ The following samples are generated live in real-time (notice the data will chan
 [![image](http://download.codeplex.com/Download?ProjectName=doddlereport&DownloadId=310428 "image")](http://download.codeplex.com/Download?ProjectName=doddlereport&DownloadId=310427)
 
 
-### CSV/Delimited
+#### CSV/Delimited
 
 *   Use any kind of delimiter you want
 *   [**See it live!**](http://doddlereport.azurewebsites.net/Doddle/productreport.txt)
@@ -59,13 +65,12 @@ The following samples are generated live in real-time (notice the data will chan
 [![doddleTxtReport](http://download.codeplex.com/download?ProjectName=doddlereport&DownloadId=204395 "doddleTxtReport")](http://download.codeplex.com/download?ProjectName=doddlereport&DownloadId=204394)
 
 
-### HTML Report
+#### HTML Report
 
 *   Good old HTML report
 *   [**See it live!**](http://doddlereport.azurewebsites.net/Doddle/productreport.html)
 
-
- [![doddleHtmlReport](http://download.codeplex.com/download?ProjectName=doddlereport&DownloadId=204399 "doddleHtmlReport")](http://download.codeplex.com/download?ProjectName=doddlereport&DownloadId=204398) |
+[![doddleHtmlReport](http://download.codeplex.com/download?ProjectName=doddlereport&DownloadId=204399 "doddleHtmlReport")](http://download.codeplex.com/download?ProjectName=doddlereport&DownloadId=204398)
 
 ### Basic Usage
 
