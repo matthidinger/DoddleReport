@@ -20,8 +20,9 @@
     </SccAuxPath>
     <SccProvider>
     </SccProvider>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>Properties\Doddle.Reporting.snk</AssemblyOriginatorKeyFile>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
@@ -116,9 +117,6 @@
     <Compile Include="Writers\ExcelReportWriter.cs" />
     <Compile Include="Writers\HtmlReportWriter.cs" />
     <None Include="web.config.transform" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Properties\Doddle.Reporting.snk" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

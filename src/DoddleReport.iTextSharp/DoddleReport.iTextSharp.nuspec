@@ -1,16 +1,14 @@
 <?xml version="1.0"?>
 <package>
   <metadata>
-    <id>DoddleReport.iTextSharp</id>
-    <version>1.4</version>
-    <title>DoddleReport.iTextSharp</title>
-    <authors>Matt Hidinger</authors>
-    <owners>Matt Hidinger</owners>
-    <licenseUrl>http://doddlereport.codeplex.com/license</licenseUrl>
-    <projectUrl>http://doddlereport.codeplex.com/</projectUrl>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$id$</title>
+    <description>$description$</description>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <projectUrl>https://github.com/matthidinger/DoddleReport</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Adds iTextSharp PDF support to DoddleReport. iTextSharp is an open source PDF component that is free of charge. Please see the iTextSharp license for details</description>
-    <copyright>Copyright 2011</copyright>
     <tags>doddle.report doddle.reporting doddle reporting pdf itextsharp</tags>
     <dependencies>
       <dependency id="DoddleReport" version="1.4" />

@@ -3,7 +3,7 @@
 
   <PropertyGroup>
     <SrcDir>$(MSBuildProjectDirectory)\..\src</SrcDir>
-    <NuGetExe>"$(MSBuildProjectDirectory)\NuGet.exe"</NuGetExe>
+    <NuGetExe>nuget</NuGetExe>
     <WorkingDir>$(MSBuildProjectDirectory)\packageTemp</WorkingDir>
     <PackageOutputDir>$(MSBuildProjectDirectory)\packages</PackageOutputDir>
     <DefaultBuildProperties>Configuration=Release</DefaultBuildProperties>
@@ -22,7 +22,6 @@
     
     <!-- Build the projects -->
     <MSBuild Projects="$(SrcDir)\$(PackageName)\$(PackageName).csproj" Properties="$(DefaultBuildProperties);OutputPath=$(PackageDir)\lib\net40" />
-    <MSBuild Projects="$(SrcDir)\$(PackageName).Net35\$(PackageName).Net35.csproj" Properties="$(DefaultBuildProperties);OutputPath=$(PackageDir)\lib\net35" />
 
     <!-- Copy any additional content for the package -->
     <CreateItem Include="$(SrcDir)\$(PackageName)\web.config.transform">
@@ -37,7 +36,7 @@
     <Copy SourceFiles="$(SrcDir)\$(PackageName)\$(PackageName).nuspec" DestinationFolder="$(PackageDir)" />
     
     <!-- Pack it up-->
-    <Exec Command='$(NuGetExe) pack "$(PackageDir)\$(PackageName).nuspec" -OutputDirectory "$(PackageOutputDir)"' />
+    <Exec Command='$(NuGetExe) pack "$(SrcDir)\$(PackageName)\$(PackageName).csproj" -prop Configuration=Release -Build -Symbols -OutputDirectory "$(PackageOutputDir)"' />
   </Target>
   
   <Target Name="CreateAllPackages" DependsOnTargets="Clean">
@@ -47,6 +46,7 @@
     <MSBuild Projects="$(MSBuildProjectFullPath)" Targets="CreatePackage" Properties="PackageName=DoddleReport.OpenXml" />
     <MSBuild Projects="$(MSBuildProjectFullPath)" Targets="CreatePackage" Properties="PackageName=DoddleReport.Web" />
     <Exec Command='$(NuGetExe) pack DoddleReport.Sample.Mvc.nuspec -OutputDirectory "$(PackageOutputDir)"' />
+    <Exec Command="SLEEP 1000" IgnoreExitCode="true" />
     <RemoveDir Directories="$(WorkingDir)" />
   </Target>
 
