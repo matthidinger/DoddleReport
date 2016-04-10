@@ -6,7 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{0E73989A-FF31-4542-88F9-DAC6F9C40FE2}"
 	ProjectSection(SolutionItems) = preProject
 		..\nuget\CreatePackages.bat = ..\nuget\CreatePackages.bat
-		..\nuget\CreatePackages.build = ..\nuget\CreatePackages.build
 		..\nuget\PublishPackages.bat = ..\nuget\PublishPackages.bat
 	EndProjectSection
 EndProject
