@@ -40,6 +40,7 @@
   </Target>
   
   <Target Name="CreateAllPackages" DependsOnTargets="Clean">
+    <Exec Command='$(NuGetExe) restore "$(SrcDir)\DoddleReport.sln"' />
     <MSBuild Projects="$(MSBuildProjectFullPath)" Targets="CreatePackage" Properties="PackageName=DoddleReport" />
     <MSBuild Projects="$(MSBuildProjectFullPath)" Targets="CreatePackage" Properties="PackageName=DoddleReport.AbcPdf" />
     <MSBuild Projects="$(MSBuildProjectFullPath)" Targets="CreatePackage" Properties="PackageName=DoddleReport.iTextSharp" />
