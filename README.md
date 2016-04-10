@@ -4,10 +4,10 @@ Out of the box it can render reports to Excel, PDF, HTML, and CSV – fully plug
 
 ### New to DoddleReport?
 
-*   Look at the [**Building Your First Report**](http://doddlereport.codeplex.com/wikipage?title=Building%20your%20first%20report) page
-*   If you’re using ASP.NET make sure to read the [**Web Reporting**](http://doddlereport.codeplex.com/wikipage?title=Web%20Reporting) section
-*   Review the [**sample project**](http://doddlereport.codeplex.com/wikipage?title=Check%20out%20the%20sample%20project) in the solution
-*   Check out the [**full documentation**](http://doddlereport.codeplex.com/documentation) for advanced customization and configuration
+*   Look at the [[Building your first report]] page
+*   If you’re using ASP.NET make sure to check out [[ASP.NET Reporting]] section
+*   Review the ```DoddleReport.Sample.Web``` project in the solution
+*   Check out the [[Wiki]] for advanced customization and configuration
 
 ### Find it on NuGet
 
