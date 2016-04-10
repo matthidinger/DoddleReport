@@ -78,20 +78,13 @@ To showcase the functionality take a look at the following sample reports, which
 // Get the data for the report (any IEnumerable will work) 
 var query = ProductRepository.GetAll();
 
-var totalProducts = query.Count;
-var totalOrders = query.Sum(p => p.OrderCount);
-
 // Create the report and turn our query into a ReportSource 
 var report = new Report(query.ToReportSource());
 
 // Customize the Text Fields report.TextFields.Title = "Products Report";
 report.TextFields.SubTitle = "This is a sample report showing how Doddle Report works";
-report.TextFields.Footer = "Copyright 2011 © The Doddle Project";
-report.TextFields.Header = string.Format(@"
-    Report Generated: {0}
-    Total Products: {1}
-    Total Orders: {2}
-    Total Sales: {3:c}", DateTime.Now, totalProducts, totalOrders, totalProducts * totalOrders);
+report.TextFields.Footer = "Copyright 2016 © The Doddle Project";
+
 
 // Render hints allow you to pass additional hints to the reports as they are being rendered 
 report.RenderHints.BooleanCheckboxes = true;
