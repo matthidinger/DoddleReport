@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>DoddleReport.Sample.Mvc</id>
-    <version>1.5</version>
+    <version>1.5.1</version>
     <title>DoddleReport.Sample.Mvc</title>
     <authors>Matt Hidinger</authors>
     <owners>Matt Hidinger</owners>
@@ -11,11 +11,10 @@
     <description>Sample usage of DoddleReport in an MVC application</description>
     <tags>doddle.report doddle.reporting doddle reporting pdf excel csv</tags>
     <dependencies>
-      <dependency id="DoddleReport.Web" version="1.5" />
+      <dependency id="DoddleReport.Web" version="1.5.1" />
     </dependencies>
   </metadata>
   <files>
-    <file src="..\src\DoddleReport.Sample.Web\Models\DoddleProductRepository.cs" target="Content\Models" />
-    <file src="..\src\DoddleReport.Sample.Web\Controllers\DoddleController.cs" target="Content\Controllers" />
+    <file src="Controllers\DoddleController.cs.pp" target="Content\Controllers" />
   </files>
 </package>

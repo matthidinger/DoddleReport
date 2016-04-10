@@ -111,6 +111,7 @@
     <Compile Include="Areas\Reporting\ReportingAreaRegistration.cs" />
     <Compile Include="Controllers\AbcPdfController.cs" />
     <Compile Include="Controllers\DataAnnotationsController.cs" />
+    <None Include="Controllers\DoddleController.cs.pp" />
     <Compile Include="Controllers\DoddleController.cs" />
     <Compile Include="Controllers\DynamicController.cs" />
     <Compile Include="Controllers\ExpandoController.cs" />
@@ -197,6 +198,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+    <Content Include="DoddleReport.Sample.Mvc.nuspec" />
     <None Include="Properties\PublishProfiles\doddlereport - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\doddlereport - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\Profile1.pubxml" />

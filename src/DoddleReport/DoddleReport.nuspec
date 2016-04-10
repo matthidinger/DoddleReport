@@ -11,4 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>doddle.report doddle.reporting doddle reporting pdf excel csv itextsharp abcpdf</tags>
   </metadata>
+  <files>
+    <file src="web.config.transform" target="content" />
+  </files>
 </package>

@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <tags>doddle.report doddle.reporting doddle reporting pdf excel csv</tags>
     <dependencies>
-      <dependency id="DoddleReport" version="1.5" />
+      <dependency id="DoddleReport" version="$version$" />
     </dependencies>
   </metadata>
 </package>

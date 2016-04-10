@@ -1,4 +1,5 @@
-set msbuild=%WINDIR%\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe
+@echo off
 
-%msbuild% CreatePackages.build /t:Publish
-pause
+rem CreatePackages.bat
+
+forfiles /p packages /m *.nupkg /c "cmd /c nuget push @path"
