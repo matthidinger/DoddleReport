@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>DoddleReport.Sample.Mvc</id>
-    <version>1.5.1</version>
+    <version>1.5.2</version>
     <title>DoddleReport.Sample.Mvc</title>
     <authors>Matt Hidinger</authors>
     <owners>Matt Hidinger</owners>
@@ -11,7 +11,7 @@
     <description>Sample usage of DoddleReport in an MVC application</description>
     <tags>doddle.report doddle.reporting doddle reporting pdf excel csv</tags>
     <dependencies>
-      <dependency id="DoddleReport.Web" version="1.5.1" />
+      <dependency id="DoddleReport.Web" version="1.5.2" />
     </dependencies>
   </metadata>
   <files>

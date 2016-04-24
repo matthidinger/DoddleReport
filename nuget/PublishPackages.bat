@@ -1,5 +1,8 @@
 @echo off
 
-CreatePackages.bat
+
+call CreatePackages.bat
+
+pause
 
 forfiles /p packages /m *.nupkg /c "cmd /c nuget push @path"

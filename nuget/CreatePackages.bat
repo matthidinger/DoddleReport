@@ -13,4 +13,3 @@ nuget pack ..\src\DoddleReport.Web\DoddleReport.Web.csproj -prop Configuration=R
 
 nuget pack ..\src\DoddleReport.Sample.Web\DoddleReport.Sample.Mvc.nuspec -OutputDirectory .\packages
 
-pause

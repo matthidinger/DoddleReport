@@ -51,7 +51,6 @@ namespace DoddleReport.iTextSharp
                                     WidthPercentage = 100
                                 };
 
-                globalTable.AddCell(new PdfPCell(table) {Border = 0});
 
                 foreach (ReportRow row in report.GetRows())
                 {
@@ -77,6 +76,9 @@ namespace DoddleReport.iTextSharp
                         table.AddCell(cell);
                     }
                 }
+
+                globalTable.AddCell(new PdfPCell(table) { Border = 0 });
+
 
                 // Render the footer
                 RenderFooter(globalTable, report.TextFields, report.RenderHints);
