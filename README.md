@@ -1,8 +1,8 @@
 # Introduction
 
-DoddleReport generates tabular reports from any IEnumerable datasource.
+DoddleReport generates a variety of reports from any IEnumerable datasource.
 
-Out of the box it can render reports to Excel, PDF, HTML, and CSV – fully pluggable of course. I designed the project to provide reporting output over the LINQ queries we had already written for the application, but maybe you can find other uses for it.
+Out of the box it can render reports to Excel, PDF, HTML, and CSV – fully extensible of course. I designed the project to provide reporting output over the LINQ queries we had already written for the application, but maybe you can find other uses for it.
 
 ## New to DoddleReport?
 
@@ -25,6 +25,27 @@ DoddleReport has been split into multiple packages to support more users’ need
 *   ```Install-Package DoddleReport.iTextSharp```
 *   ```Install-Package DoddleReport.AbcPdf```
 *   ```Install-Package DoddleReport.OpenXml```
+
+# Basic Usage
+
+```csharp
+// Get the data for the report (any IEnumerable will work) 
+var query = ProductRepository.GetAll();
+
+// Create the report and turn our query into a ReportSource 
+var report = new Report(query.ToReportSource());
+
+// Customize the Text Fields report.TextFields.Title = "Products Report";
+report.TextFields.SubTitle = "This is a sample report showing how Doddle Report works";
+report.TextFields.Footer = "Copyright 2016 © The Doddle Project";
+
+// Render hints allow you to pass additional hints to the reports as they are being rendered 
+report.RenderHints.BooleanCheckboxes = true;
+
+// Customize the data fields report.DataFields["Id"].Hidden = true;
+report.DataFields["Price"].DataFormatString = "{0:c}";
+report.DataFields["LastPurchase"].DataFormatString = "{0:d}";
+```
 
 # Live Samples!
 
@@ -74,24 +95,3 @@ To showcase the functionality take a look at the following sample reports, which
 
 [![doddleHtmlReport](http://download.codeplex.com/download?ProjectName=doddlereport&DownloadId=204399 "doddleHtmlReport")](http://download.codeplex.com/download?ProjectName=doddlereport&DownloadId=204398)
 
-# Basic Usage
-
-```csharp
-// Get the data for the report (any IEnumerable will work) 
-var query = ProductRepository.GetAll();
-
-// Create the report and turn our query into a ReportSource 
-var report = new Report(query.ToReportSource());
-
-// Customize the Text Fields report.TextFields.Title = "Products Report";
-report.TextFields.SubTitle = "This is a sample report showing how Doddle Report works";
-report.TextFields.Footer = "Copyright 2016 © The Doddle Project";
-
-
-// Render hints allow you to pass additional hints to the reports as they are being rendered 
-report.RenderHints.BooleanCheckboxes = true;
-
-// Customize the data fields report.DataFields["Id"].Hidden = true;
-report.DataFields["Price"].DataFormatString = "{0:c}";
-report.DataFields["LastPurchase"].DataFormatString = "{0:d}";
-```
