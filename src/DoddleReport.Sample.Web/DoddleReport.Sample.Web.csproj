@@ -168,22 +168,6 @@
     <Content Include="WebForms\ProductReport.ashx" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DoddleReport.AbcPdf\DoddleReport.AbcPdf.csproj">
-      <Project>{355CAFF3-F806-4194-BE54-2F7640463CED}</Project>
-      <Name>DoddleReport.AbcPdf</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DoddleReport.iTextSharp\DoddleReport.iTextSharp.csproj">
-      <Project>{347D0716-0297-4866-9FD5-5E019B51C408}</Project>
-      <Name>DoddleReport.iTextSharp</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DoddleReport.OpenXml\DoddleReport.OpenXml.csproj">
-      <Project>{0646C575-0EA6-4331-809C-10DC000929F3}</Project>
-      <Name>DoddleReport.OpenXml</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DoddleReport.Web\DoddleReport.Web.csproj">
-      <Project>{A02EF71C-C655-4D93-9CAF-15E527AA4FE0}</Project>
-      <Name>DoddleReport.Web</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DoddleReport\DoddleReport.csproj">
       <Project>{F08B2994-4D05-423E-A8FE-7D1E8A63472B}</Project>
       <Name>DoddleReport</Name>

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <configSections>
+      <section name="doddleReport" type="DoddleReport.Configuration.DoddleReportSection, DoddleReport" />
+  </configSections>
+
+  <doddleReport defaultWriter="Html" dataRowStyle="DataRowStyle" headerRowStyle="HeaderRowStyle" footerRowStyle="FooterRowStyle">
+    <styles>
+      <style name="DataRowStyle" />
+      <style name="HeaderRowStyle" bold="true" underline="true" />
+      <style name="FooterRowStyle" bold="true" />
+      <style name="Footer" italic="true" />
+      <style name="Title" fontSize="16" />
+    </styles>
+    <writers>
+      <clear />
+      <add format="Html" type="DoddleReport.Writers.HtmlReportWriter, DoddleReport" contentType="text/html;charset=UTF-8" fileExtension=".html" />
+      <add format="Text" type="DoddleReport.Writers.DelimitedTextReportWriter, DoddleReport" contentType="text/plain;charset=UTF-8" fileExtension=".txt" offerDownload="true" />
+      <add format="Excel" type="DoddleReport.Writers.ExcelReportWriter, DoddleReport" contentType="application/vnd.ms-excel" offerDownload="true" fileExtension=".xls" />
+    </writers>
+  </doddleReport>
+
+</configuration>
