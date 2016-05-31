@@ -1,15 +1,16 @@
 using System;
 using System.Linq;
-using System.Web;
-using System.Web.Routing;
 using System.IO;
-using DoddleReport.Configuration;
+using DoddleReport;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
 
 namespace DoddleReport.Web
 {
     public class ReportRouteConstraint : IRouteConstraint
     {
-        public bool Match(HttpContextBase httpContext, Route route, string parameterName, RouteValueDictionary values, RouteDirection routeDirection)
+
+        public bool Match(HttpContext httpContext, IRouter route, string routeKey, RouteValueDictionary values, RouteDirection routeDirection)
         {
             if (routeDirection == RouteDirection.UrlGeneration)
             {
@@ -17,10 +18,12 @@ namespace DoddleReport.Web
             }
 
 
-            var configuredExtensions = Config.Report.Writers.OfType<WriterElement>().Select(e => e.FileExtension).ToList();
+            return false;
+            // TODO: implement ReportRoute
+            //var configuredExtensions = Config.Report.Writers.OfType<WriterElement>().Select(e => e.FileExtension).ToList();
 
-            var requestExtension = Path.GetExtension(httpContext.Request.Url.AbsolutePath);
-            return configuredExtensions.Contains(requestExtension, StringComparer.InvariantCultureIgnoreCase);
+            //var requestExtension = Path.GetExtension(httpContext.Request.Url.AbsolutePath);
+            //return configuredExtensions.Contains(requestExtension, StringComparer.InvariantCultureIgnoreCase);
         }
     }
 }

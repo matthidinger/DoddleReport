@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿#if !NO_DYNAMIC
+using System.Collections;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
 
 namespace DoddleReport
 {
+
     public static class DynamicReportBuilder
     {
         public static IReportSource ToReportSource(this IEnumerable<ExpandoObject> source)
@@ -57,3 +59,4 @@ namespace DoddleReport
         }
     }
 }
+#endif

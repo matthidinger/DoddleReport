@@ -11,11 +11,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet", "NuGet", "{0E73989A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample Projects", "Sample Projects", "{2E920538-21EC-49E6-BF72-75E82B2E49E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoddleReport", "DoddleReport\DoddleReport.csproj", "{F08B2994-4D05-423E-A8FE-7D1E8A63472B}"
-EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DoddleReport.Core", "DoddleReport.Core\DoddleReport.Core.xproj", "{05A5C02F-D751-4A21-80BB-0FDE1188E48B}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DoddleReport.Sample.AspnetCore", "DoddleReport.Sample.AspnetCore\DoddleReport.Sample.AspnetCore.xproj", "{4D932621-78A9-4A31-8DDF-568472F7CC17}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C705E27D-A56E-4039-8C73-1C520335A8BE}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DoddleReport.Core.Tests", "..\test\DoddleReport.Core.Tests\DoddleReport.Core.Tests.xproj", "{1BB2ED1B-4AE0-46EA-B8FB-C8C984D01326}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,16 +29,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F08B2994-4D05-423E-A8FE-7D1E8A63472B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F08B2994-4D05-423E-A8FE-7D1E8A63472B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F08B2994-4D05-423E-A8FE-7D1E8A63472B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{F08B2994-4D05-423E-A8FE-7D1E8A63472B}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{F08B2994-4D05-423E-A8FE-7D1E8A63472B}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{F08B2994-4D05-423E-A8FE-7D1E8A63472B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F08B2994-4D05-423E-A8FE-7D1E8A63472B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F08B2994-4D05-423E-A8FE-7D1E8A63472B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{F08B2994-4D05-423E-A8FE-7D1E8A63472B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{F08B2994-4D05-423E-A8FE-7D1E8A63472B}.Release|x86.ActiveCfg = Release|Any CPU
 		{05A5C02F-D751-4A21-80BB-0FDE1188E48B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{05A5C02F-D751-4A21-80BB-0FDE1188E48B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05A5C02F-D751-4A21-80BB-0FDE1188E48B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -61,12 +53,25 @@ Global
 		{4D932621-78A9-4A31-8DDF-568472F7CC17}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{4D932621-78A9-4A31-8DDF-568472F7CC17}.Release|x86.ActiveCfg = Release|Any CPU
 		{4D932621-78A9-4A31-8DDF-568472F7CC17}.Release|x86.Build.0 = Release|Any CPU
+		{1BB2ED1B-4AE0-46EA-B8FB-C8C984D01326}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BB2ED1B-4AE0-46EA-B8FB-C8C984D01326}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BB2ED1B-4AE0-46EA-B8FB-C8C984D01326}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{1BB2ED1B-4AE0-46EA-B8FB-C8C984D01326}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{1BB2ED1B-4AE0-46EA-B8FB-C8C984D01326}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1BB2ED1B-4AE0-46EA-B8FB-C8C984D01326}.Debug|x86.Build.0 = Debug|Any CPU
+		{1BB2ED1B-4AE0-46EA-B8FB-C8C984D01326}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BB2ED1B-4AE0-46EA-B8FB-C8C984D01326}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BB2ED1B-4AE0-46EA-B8FB-C8C984D01326}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{1BB2ED1B-4AE0-46EA-B8FB-C8C984D01326}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{1BB2ED1B-4AE0-46EA-B8FB-C8C984D01326}.Release|x86.ActiveCfg = Release|Any CPU
+		{1BB2ED1B-4AE0-46EA-B8FB-C8C984D01326}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4D932621-78A9-4A31-8DDF-568472F7CC17} = {2E920538-21EC-49E6-BF72-75E82B2E49E2}
+		{1BB2ED1B-4AE0-46EA-B8FB-C8C984D01326} = {C705E27D-A56E-4039-8C73-1C520335A8BE}
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = DoddleReport.vsmdi

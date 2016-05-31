@@ -6,7 +6,10 @@
     },
     "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0-rc2-final",
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.0-rc2-final",
-    "DoddleReport.Core": "1.0.0-*",
+    "DoddleReport.Core": {
+      "version": "1.0.0-*",
+      "target" : "project"
+    },
     "Microsoft.AspNetCore.Mvc": "1.0.0-rc2-final",
     "Microsoft.AspNetCore.Mvc.DataAnnotations": "1.0.0-rc2-final"
   },
@@ -17,7 +20,6 @@
       "imports": "portable-net45+win8+dnxcore50"
     }
   },
-
   "frameworks": {
     "netcoreapp1.0": {
       "imports": [
@@ -48,3 +50,4 @@
     "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
   }
 }
+

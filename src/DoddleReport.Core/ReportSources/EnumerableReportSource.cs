@@ -19,20 +19,13 @@ namespace DoddleReport.ReportSources
         public IEnumerable Source { get; set; }
 
 
-        private static IEnumerable<PropertyInfo> GetProperties(Type itemType)
-        {
-            var i = itemType?.GetTypeInfo();
-
-            return itemType?.GetProperties(BindingFlags.Public | BindingFlags.Instance);
-        }
-
         private Type GetItemType()
         {
             // If the list implements IEnumerable<T> get the type from the generic
             // declaration so that we don't query the a query that could take
             // some time to connect
-            var itemType = (from i in Source.GetType().GetTypeInfo().GetInterfaces()
-                            where i.GetTypeInfo().IsGenericType &&
+            var itemType = (from i in Source.GetType().GetInterfaces()
+                            where i._IsGenericType() &&
                                   i.GetGenericTypeDefinition() == typeof(IEnumerable<>)
                             select i.GetGenericArguments().Single()).SingleOrDefault();
 
@@ -57,7 +50,7 @@ namespace DoddleReport.ReportSources
         {
             var fields = new ReportFieldCollection();
             var itemType = GetItemType();
-            var properties = GetProperties(itemType);
+            var properties = itemType.GetProperties();
 
             if (properties == null)
                 return fields;

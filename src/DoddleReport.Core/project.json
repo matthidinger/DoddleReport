@@ -1,23 +1,39 @@
 {
   "version": "1.0.0-*",
 
-  "dependencies": {
-    "NETStandard.Library": "1.5.0-rc2-24027",
-    "System.ComponentModel": "4.0.1-rc2-24027",
-    "System.ComponentModel.Annotations": "4.1.0-rc2-24027",
-    "System.Data.Common": "4.0.1-rc2-24027",
-    "System.Drawing.Primitives": "4.0.0-rc2-24027",
-    "System.Dynamic.Runtime": "4.0.11-rc2-24027",
-    "System.Linq.Expressions": "4.0.11-rc2-24027",
-    "System.Reflection": "4.1.0-rc2-24027",
-    "System.Reflection.TypeExtensions": "4.1.0-rc2-24027",
-    "System.Runtime.Extensions": "4.1.0-rc2-24027",
-    "System.Runtime.Numerics": "4.0.1-rc2-24027"
-  },
-
   "frameworks": {
     "netstandard1.5": {
-      "imports": "dnxcore50"
+      "imports": "dnxcore50",
+      "dependencies": {
+        "NETStandard.Library": "1.5.0-rc2-24027",
+        "System.ComponentModel": "4.0.1-rc2-24027",
+        "System.ComponentModel.Annotations": "4.1.0-rc2-24027",
+        "System.Data.Common": "4.0.1-rc2-24027",
+        "System.Drawing.Primitives": "4.0.0-rc2-24027",
+        "System.Dynamic.Runtime": "4.0.11-rc2-24027",
+        "System.Linq.Expressions": "4.0.11-rc2-24027",
+        "System.Reflection": "4.1.0-rc2-24027",
+        "System.Reflection.TypeExtensions": "4.1.0-rc2-24027",
+        "System.Runtime.Extensions": "4.1.0-rc2-24027",
+        "System.Runtime.Numerics": "4.0.1-rc2-24027"
+      }
+    },
+    "net40": {
+      "frameworkAssemblies": {
+        "System.ComponentModel.DataAnnotations": "4.0.0.0",
+        "System.Data": "4.0.0.0",
+        "System.Drawing": "4.0.0.0"
+      }
+    },
+    "net35": {
+      "frameworkAssemblies": {
+        "System.ComponentModel.DataAnnotations": "3.5.0.0",
+        "System.Data": "2.0.0.0",
+        "System.Drawing": "2.0.0.0"
+      },
+      "buildOptions": {
+        "define": [ "NO_DYNAMIC" ]
+      }
     }
   }
 }
