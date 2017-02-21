@@ -6,6 +6,7 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Font = iTextSharp.text.Font;
 using Rectangle = iTextSharp.text.Rectangle;
+using Image = iTextSharp.text.Image;
 
 namespace DoddleReport.iTextSharp
 {
@@ -108,10 +109,10 @@ namespace DoddleReport.iTextSharp
                                             RenderHintsCollection renderHints)
         {
             int rowCount = 0;
+            
             if (!string.IsNullOrEmpty(textFields.Title))
             {
-                ReportStyle reportStyle = renderHints[TitleStyle] as ReportStyle ?? GetDefaultTitleStyle();
-                globalTable.AddCell(CreateTextCell(reportStyle, renderHints[FontFamily] as string, textFields.Title));
+                globalTable.AddCell(CreateTitleCell(textFields.Title, renderHints));
                 rowCount++;
             }
 
@@ -141,6 +142,56 @@ namespace DoddleReport.iTextSharp
         }
 
         /// <summary>
+        /// Creates a new Title cell
+        /// </summary>
+        /// <param name="titleText">Title text.</param>
+        /// <param name="renderHints">The render hints.</param>
+        /// <returns>The newly created Title cell</returns>
+        private static PdfPCell CreateTitleCell(string titleText, RenderHintsCollection renderHints)
+        {
+            var reportStyle = renderHints[TitleStyle] as ReportTitleStyle ?? GetDefaultTitleStyle();
+
+            var table = new PdfPTable(2);
+            table.SetWidths(new[] {reportStyle.ImageWidthPercentage, (100 - reportStyle.ImageWidthPercentage)});
+
+            if (reportStyle.Image != null)
+            {
+                table.AddCell(CreateImageCell(reportStyle.Image));
+            }
+            else
+            {
+                table.AddCell(CreateEmptyCell());
+            }
+
+            table.AddCell(CreateTextCell(reportStyle, renderHints[FontFamily] as string, titleText));
+
+
+            var headerTableCell = new PdfPCell(table) {Border = 0};
+            return headerTableCell;
+        }
+
+        /// <summary>
+        /// Creates a new Image cell
+        /// </summary>
+        /// <param name="imageDetails">The image details</param>
+        /// <returns>The newly created Image cell</returns>
+        private static PdfPCell CreateImageCell(ReportImage imageDetails)
+        {
+            var headerImage = Image.GetInstance(imageDetails.ImageData);
+            headerImage.ScaleToFit(imageDetails.Width, imageDetails.Height);
+            return new PdfPCell(headerImage) {Border = 0};
+        }
+
+        /// <summary>
+        /// Creates an Empty cell
+        /// </summary>
+        /// <returns>The empty cell</returns>
+        private static PdfPCell CreateEmptyCell()
+        {
+            return new PdfPCell() { Border = 0 };
+        }
+
+        /// <summary>
         /// Renders the footer.
         /// </summary>
         /// <param name="globalTable">The global table.</param>
@@ -161,14 +212,15 @@ namespace DoddleReport.iTextSharp
         /// Gets the default title style.
         /// </summary>
         /// <returns>The default title style.</returns>
-        private static ReportStyle GetDefaultTitleStyle()
+        private static ReportTitleStyle GetDefaultTitleStyle()
         {
-            return new ReportStyle
-                       {
-                           Bold = true,
-                           FontSize = 18,
-                           HorizontalAlignment = HorizontalAlignment.Center
-                       };
+            return new ReportTitleStyle
+            {
+                Bold = true,
+                FontSize = 18,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                ImageWidthPercentage = 0
+            };
         }
 
         /// <summary>
