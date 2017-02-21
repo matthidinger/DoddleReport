@@ -149,14 +149,15 @@ namespace DoddleReport.iTextSharp
         /// <returns>The newly created Title cell</returns>
         private static PdfPCell CreateTitleCell(string titleText, RenderHintsCollection renderHints)
         {
-            var reportStyle = renderHints[TitleStyle] as ReportTitleStyle ?? GetDefaultTitleStyle();
+            var reportTitleStyle = renderHints[TitleStyle] as ReportTitleStyle ?? GetDefaultTitleStyle();
+            var reportStyle = renderHints[TitleStyle] as ReportStyle ?? GetDefaultTitleStyle();
 
             var table = new PdfPTable(2);
-            table.SetWidths(new[] {reportStyle.ImageWidthPercentage, (100 - reportStyle.ImageWidthPercentage)});
+            table.SetWidths(new[] { reportTitleStyle.ImageWidthPercentage, (100 - reportTitleStyle.ImageWidthPercentage)});
 
-            if (reportStyle.Image != null)
+            if (reportTitleStyle.Image != null)
             {
-                table.AddCell(CreateImageCell(reportStyle.Image));
+                table.AddCell(CreateImageCell(reportTitleStyle.Image));
             }
             else
             {
