@@ -8,6 +8,7 @@ namespace DoddleReport.Writers
         {
             Html.AppendLine(ExcelHeaderHtml(textFields));
             WrapHeadAndBody = true;
+            IgnoreTitleImage = true;
 
             base.RenderHeader(textFields, hints);
 

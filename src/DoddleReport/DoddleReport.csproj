@@ -89,8 +89,10 @@
     </None>
     <None Include="SharePoint\SPListReportSource.cs" />
     <Compile Include="Dynamic\DynamicReportSource.cs" />
+    <Compile Include="ReportImage.cs" />
     <Compile Include="ReportSources\DataTableReportSource.cs" />
     <Compile Include="ReportSources\EnumerableReportSource.cs" />
+    <Compile Include="ReportTitleStyle.cs" />
     <Compile Include="RowFieldDataDictionary.cs" />
     <Compile Include="Helpers\ReflectionExtensions.cs" />
     <Compile Include="Helpers\StringExtensions.cs" />
