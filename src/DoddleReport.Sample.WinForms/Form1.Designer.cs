@@ -39,7 +39,8 @@
             this.cmbReportType.Items.AddRange(new object[] {
             "Excel (Open XML)",
             "PDF with title image (ITextSharp)",
-            "HTML with custom title style & image"});
+            "HTML with custom title style & image",
+            "Excel using HTML"});
             this.cmbReportType.Location = new System.Drawing.Point(98, 31);
             this.cmbReportType.Name = "cmbReportType";
             this.cmbReportType.Size = new System.Drawing.Size(218, 21);

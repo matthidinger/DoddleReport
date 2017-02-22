@@ -36,6 +36,11 @@ namespace DoddleReport.Sample.WinForms
             {
                 RenderHtmlWithImage();
             }
+            else if (cmbReportType.Text == "Excel using HTML")
+            {
+                RenderExcelFromHtml();
+            }
+            
         }
 
         private static void RenderExcel()
@@ -191,5 +196,41 @@ namespace DoddleReport.Sample.WinForms
 
             Process.Start("Report.html");
         }
+
+        private static void RenderExcelFromHtml()
+        {
+            var query = DoddleProductRepository.GetAll();
+            var totalProducts = query.Count;
+            var totalOrders = query.Sum(p => p.OrderCount);
+
+            // Create the report and turn our query into a ReportSource
+            var report = new Report(query.ToReportSource(), new ExcelReportWriter());
+
+            // Customize the Text Fields
+            report.TextFields.Title = "Products Report";
+            report.TextFields.SubTitle = "This is a sample report showing how Doddle Report works";
+            report.TextFields.Footer = "Copyright 2011 &copy; The Doddle Project";
+            report.TextFields.Header = string.Format(@"
+    Report Generated: {0}
+    Total Products: {1}
+    Total Orders: {2}
+    Total Sales: {3:c}", DateTime.Now, totalProducts, totalOrders, totalProducts * totalOrders);
+
+            // Render hints allow you to pass additional hints to the reports as they are being rendered
+            report.RenderHints.BooleanCheckboxes = true;
+            
+            // Customize the data fields
+            report.DataFields["Id"].Hidden = true;
+            report.DataFields["Price"].DataFormatString = "{0:c}";
+            report.DataFields["LastPurchase"].DataFormatString = "{0:d}";
+
+            using (var stream = File.Create("Report.xls"))
+            {
+                report.WriteReport(stream);
+            }
+
+            Process.Start("Report.xls");
+        }
+        
     }
 }

@@ -14,6 +14,11 @@ namespace DoddleReport.Writers
 
         protected StringBuilder Html { get; private set; }
         protected virtual bool WrapHeadAndBody { get; set; }
+        /// <summary>
+        /// Tells the writer to ignore the Image passed via TitleStyle render hints.
+        /// Used in ExcelReportWriter
+        /// </summary>
+        protected virtual bool IgnoreTitleImage { get; set; }
 
 
         public HtmlReportWriter()
@@ -123,11 +128,11 @@ namespace DoddleReport.Writers
 
                 Html.AppendFormat("<h4 class='title titleHint'>");
 
-                if (reportTitleStyle?.Image != null)
+                if ((!IgnoreTitleImage)&&(reportTitleStyle?.Image != null))
                 {
                     Html.AppendFormat("<img class='titleImage' src='data:image/png;base64,{0}' height='{1}' width='{2}'>", Convert.ToBase64String(reportTitleStyle.Image.ImageData), reportTitleStyle.Image.Height, reportTitleStyle.Image.Width);
                 }
-
+                
                 Html.AppendFormat("<span class='title titleHint'>{0}</span></h4>", textFields.Title.FormatHtml());
            }
 
