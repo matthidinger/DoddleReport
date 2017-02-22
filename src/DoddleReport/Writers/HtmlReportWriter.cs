@@ -6,6 +6,9 @@ namespace DoddleReport.Writers
 {
     public class HtmlReportWriter : IReportWriter
     {
+        public const string TitleStyle = "TitleStyle";
+        public const string SubTitleStyle = "SubTitleStyle";
+        public const string HeaderStyle = "HeaderStyle";
         public const string HtmlStyle = "HtmlStyle";
         public const string HtmlLogo = "HtmlLogo";
 
@@ -32,22 +35,48 @@ namespace DoddleReport.Writers
         /// <summary>
         /// This CSS style will be applied to the top of every report. You may override this property to customize the default CSS that gets rendered on all HTML reports
         /// </summary>
-        public static string DefaultStyle
+        public static string GetDefaultStyle()
         {
-            get
-            {
-                var style = @"
+
+            var style = @"
                     .htmlReport { font: 12px Verdana; }
                     .htmlReport h1 { font-size: 12pt; margin-bottom: 10px; }
-                    .htmlReport .title { margin-bottom: 1px; }
+                    .htmlReport .titleImage { vertical-align:middle; }
+                    .htmlReport .title { margin-bottom: 1px; vertical-align:middle; }
                     .htmlReport .subTitle { margin-bottom: 3px; margin-top: 1px; }
                     .htmlReport .header { padding-bottom: 8px; border-bottom: solid 1px #ccc; } \r\n";
+            
+            style += ".htmlReport td { " + ReportStyle.HeaderRowStyle.ToCss() + "}\r\n";
+            style += ".htmlReport th { " + ReportStyle.DataRowStyle.ToCss() + "}\r\n";
+            
+            return style;
+        }
 
-                style += ".htmlReport td { " + ReportStyle.HeaderRowStyle.ToCss() + "}\r\n";
-                style += ".htmlReport th { " + ReportStyle.DataRowStyle.ToCss() + "}\r\n";
+        /// <summary>
+        /// Generates the custom CSS styles passed in via the render hints
+        /// </summary>
+        public static string GetCustomStyle(RenderHintsCollection hints)
+        {
 
-                return style;
+            var style = string.Empty;
+
+            var titleStyle = hints[TitleStyle] as ReportStyle;
+            if (titleStyle != null)
+            {
+                style += ".htmlReport .titleHint { " + titleStyle.ToCss() + "}\r\n";
             }
+            var subTitleStyle = hints[SubTitleStyle] as ReportStyle;
+            if (subTitleStyle != null)
+            {
+                style += ".htmlReport .subTitleHint { " + subTitleStyle.ToCss() + "}\r\n";
+            }
+            var headerStyle = hints[HeaderStyle] as ReportStyle;
+            if (headerStyle != null)
+            {
+                style += ".htmlReport .headerHint { " + headerStyle.ToCss() + "}\r\n";
+            }
+
+            return style;
         }
 
         protected void AppendStyling(RenderHintsCollection hints)
@@ -56,9 +85,12 @@ namespace DoddleReport.Writers
             Html.AppendLine(@"<style type='text/css'>");
 
             // Add the default styles
-            Html.AppendLine(DefaultStyle);
+            Html.AppendLine(GetDefaultStyle());
 
             // Add any custom CSS passed into RenderHints
+            Html.AppendLine(GetCustomStyle(hints));
+
+            // Add any global custom CSS passed into RenderHints
             Html.AppendFormat("{0}", hints[HtmlStyle]);
 
             // Add any internal styles, such as the ExcelReportWriter CSS
@@ -87,12 +119,21 @@ namespace DoddleReport.Writers
 
             if (!string.IsNullOrEmpty(textFields.Title))
             {
-                Html.AppendFormat("<h4 class='title'>{0}</h4>", textFields.Title.FormatHtml());
-            }
+                var reportTitleStyle = hints[TitleStyle] as ReportTitleStyle;
+
+                Html.AppendFormat("<h4 class='title titleHint'>");
+
+                if (reportTitleStyle?.Image != null)
+                {
+                    Html.AppendFormat("<img class='titleImage' src='data:image/png;base64,{0}' height='{1}' width='{2}'>", Convert.ToBase64String(reportTitleStyle.Image.ImageData), reportTitleStyle.Image.Height, reportTitleStyle.Image.Width);
+                }
+
+                Html.AppendFormat("<span class='title titleHint'>{0}</span></h4>", textFields.Title.FormatHtml());
+           }
 
             if (!string.IsNullOrEmpty(textFields.SubTitle))
             {
-                Html.AppendFormat("<h5 class='subTitle'>{0}</h5>", textFields.SubTitle.FormatHtml());
+                Html.AppendFormat("<h5 class='subTitle subTitleHint'>{0}</h5>", textFields.SubTitle.FormatHtml());
             }
 
             if (!string.IsNullOrEmpty(textFields[HtmlLogo]))
@@ -102,7 +143,7 @@ namespace DoddleReport.Writers
 
             if (!string.IsNullOrEmpty(textFields.Header))
             {
-                Html.AppendFormat("<p class='header'>{0}</p>", textFields.Header.FormatHtml());
+                Html.AppendFormat("<p class='header headerHint'>{0}</p>", textFields.Header.FormatHtml());
             }
 
             Html.AppendLine("<table border='0' cellpadding='2' cellspacing='0' width='100%'>");
