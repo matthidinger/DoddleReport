@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+
 using System.Reflection;
 
 namespace DoddleReport.ReportSources
@@ -18,21 +19,13 @@ namespace DoddleReport.ReportSources
         public IEnumerable Source { get; set; }
 
 
-        private static IEnumerable<PropertyInfo> GetProperties(Type itemType)
-        {
-            if (itemType == null)
-                return null;
-
-            return itemType.GetProperties(BindingFlags.Public | BindingFlags.Instance);
-        }
-
         private Type GetItemType()
         {
             // If the list implements IEnumerable<T> get the type from the generic
             // declaration so that we don't query the a query that could take
             // some time to connect
             var itemType = (from i in Source.GetType().GetInterfaces()
-                            where i.IsGenericType &&
+                            where i._IsGenericType() &&
                                   i.GetGenericTypeDefinition() == typeof(IEnumerable<>)
                             select i.GetGenericArguments().Single()).SingleOrDefault();
 
@@ -57,7 +50,7 @@ namespace DoddleReport.ReportSources
         {
             var fields = new ReportFieldCollection();
             var itemType = GetItemType();
-            var properties = GetProperties(itemType);
+            var properties = itemType.GetProperties();
 
             if (properties == null)
                 return fields;
@@ -103,17 +96,18 @@ namespace DoddleReport.ReportSources
         /// <returns>The order number for the field.</returns>
         private static int SetReportFieldProperties(Type itemType, PropertyInfo propInfo, ReportField reportField)
         {
-            var metadataTypeAttribute = itemType.GetAttribute<MetadataTypeAttribute>();
+            // TODO: Light up MetadataTypeAttribute
+            //var metadataTypeAttribute = itemType.GetTypeInfo().GetAttribute<MetadataTypeAttribute>();
             MemberInfo memberInfo;
-            if (metadataTypeAttribute != null)
-            {
-                memberInfo = itemType.GetProperty(propInfo.Name, BindingFlags.Public | BindingFlags.Instance) ??
-                             (MemberInfo) itemType.GetField(propInfo.Name, BindingFlags.Public | BindingFlags.Instance);
-            }
-            else
-            {
+            //if (metadataTypeAttribute != null)
+            //{
+            //    memberInfo = itemType.GetProperty(propInfo.Name, BindingFlags.Public | BindingFlags.Instance) ??
+            //                 (MemberInfo) itemType.GetField(propInfo.Name, BindingFlags.Public | BindingFlags.Instance);
+            //}
+            //else
+            //{
                 memberInfo = propInfo;
-            }
+            //}
 
             if (memberInfo != null)
             {
@@ -124,12 +118,12 @@ namespace DoddleReport.ReportSources
                     reportField.FormatAs<object>(o => o != null ? string.Format(displayFormatAttribute.DataFormatString, o) : displayFormatAttribute.NullDisplayText);
                 }
 
-
-                var displayNameAttribute = memberInfo.GetAttribute<DisplayNameAttribute>();
-                if (displayNameAttribute != null)
-                {
-                    reportField.HeaderText = displayNameAttribute.DisplayName;
-                }
+                // TODO: Wire up DisplayNameAttribute
+                //var displayNameAttribute = memberInfo.GetAttribute<DisplayNameAttribute>();
+                //if (displayNameAttribute != null)
+                //{
+                //    reportField.HeaderText = displayNameAttribute.DisplayName;
+                //}
 
 #if !NET35
                 var displayAttribute = memberInfo.GetAttribute<DisplayAttribute>();

@@ -1,5 +1,3 @@
-using System.Configuration;
-
 namespace DoddleReport.Configuration
 {
     public static class Config
@@ -8,10 +6,11 @@ namespace DoddleReport.Configuration
         {
             get
             {
-                var section = ConfigurationManager.GetSection("doddleReport") as DoddleReportSection;
-                return section ?? new DoddleReportSection();
+                // TODO: blows up on netstandard
+                //var section = ConfigurationManager.GetSection("doddleReport") as DoddleReportSection;
+                //return section ?? new DoddleReportSection();
+                return new DoddleReportSection();
             }
         }
-
     }
 }

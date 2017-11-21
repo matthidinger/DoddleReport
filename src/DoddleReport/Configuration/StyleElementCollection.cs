@@ -2,7 +2,7 @@ using System.Configuration;
 
 namespace DoddleReport.Configuration
 {
-    [ConfigurationCollection(typeof(StyleElement), CollectionType = ConfigurationElementCollectionType.BasicMap, AddItemName="style")]
+    [ConfigurationCollection(typeof(StyleElement), CollectionType = ConfigurationElementCollectionType.BasicMap, AddItemName = "style")]
     public class StyleElementCollection : ConfigurationElementCollection
     {
         protected override ConfigurationElement CreateNewElement()

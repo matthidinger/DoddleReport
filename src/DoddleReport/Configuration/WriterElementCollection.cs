@@ -1,5 +1,5 @@
-using System.Configuration;
 using System;
+using System.Configuration;
 using System.Linq;
 
 namespace DoddleReport.Configuration
@@ -15,12 +15,12 @@ namespace DoddleReport.Configuration
         public void AddDefaults()
         {
             var htmlElement = new WriterElement
-             {
-                 Format = "Html",
-                 TypeName = "DoddleReport.Writers.HtmlReportWriter, DoddleReport",
-                 ContentType = "text/html",
-                 FileExtension = ".htm"
-             };
+            {
+                Format = "Html",
+                TypeName = "DoddleReport.Writers.HtmlReportWriter, DoddleReport",
+                ContentType = "text/html",
+                FileExtension = ".htm"
+            };
 
             var excelElement = new WriterElement
             {
@@ -38,7 +38,7 @@ namespace DoddleReport.Configuration
                 FileExtension = ".txt",
                 OfferDownload = true
             };
-   
+
 
             BaseAdd(htmlElement);
             BaseAdd(txtElement);
@@ -57,11 +57,11 @@ namespace DoddleReport.Configuration
 
         public WriterElement GetWriterConfigurationByFormat(string format)
         {
-            var key = 
+            var key =
                 BaseGetAllKeys().OfType<string>().FirstOrDefault(
                     k => k.Equals(format, StringComparison.OrdinalIgnoreCase));
 
-            if(key == null)
+            if (key == null)
                 throw new ArgumentException(string.Format("Unable to locate a ReportWriter Configuration with the format '{0}'. Has this format been registered in web.config?", format));
 
             return ((WriterElement)BaseGet(key));
@@ -73,8 +73,8 @@ namespace DoddleReport.Configuration
                 BaseGetAllKeys()
                     .Cast<string>()
                     .Where(key =>
-                           GetWriterConfigurationByFormat(key).FileExtension.Equals(extension,
-                                                                                    StringComparison.InvariantCultureIgnoreCase))
+                        GetWriterConfigurationByFormat(key).FileExtension.Equals(extension,
+                            StringComparison.InvariantCultureIgnoreCase))
                     .Select(GetWriterConfigurationByFormat)
                     .FirstOrDefault();
         }
@@ -102,7 +102,7 @@ namespace DoddleReport.Configuration
             }
             catch
             {
-                throw new InvalidOperationException(string.Format("Unable to locate report writer by the name of '{0}'")); 
+                throw new InvalidOperationException(string.Format("Unable to locate report writer by the name of '{0}'"));
             }
         }
 

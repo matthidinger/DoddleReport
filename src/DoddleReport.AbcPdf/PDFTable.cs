@@ -6,7 +6,7 @@ using System;
 using System.Drawing;
 using System.Collections;
 using System.Globalization;
-using WebSupergoo.ABCpdf7;
+using WebSupergoo.ABCpdf10;
 
 namespace DoddleReport.AbcPdf
 {
@@ -742,7 +742,7 @@ namespace DoddleReport.AbcPdf
                     mDoc.Rect.Bottom = mDoc.Rect.Top - inImage.Height * scale;
 
                     PagePos thePos = new PagePos(this);
-                    id = mDoc.AddImage(inImage);
+                    id = mDoc.AddImageObject(inImage);
                     thePos -= inImage.Height * scale;
                     if (thePos < RowBottom) RowBottom = thePos;
                     SaveRowObject(id, inImage);

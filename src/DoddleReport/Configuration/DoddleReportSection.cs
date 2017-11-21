@@ -1,4 +1,4 @@
-﻿using System.Configuration;
+using System.Configuration;
 
 namespace DoddleReport.Configuration
 {
@@ -28,21 +28,21 @@ namespace DoddleReport.Configuration
         [ConfigurationProperty("dataRowStyle", DefaultValue = "DataRowStyle")]
         public string DataRowStyleName
         {
-            get { return (string) this["dataRowStyle"]; }
+            get { return (string)this["dataRowStyle"]; }
             set { this["dataRowStyle"] = value; }
         }
 
         [ConfigurationProperty("headerRowStyle", DefaultValue = "HeaderRowStyle")]
         public string HeaderRowStyleName
         {
-            get { return (string) this["headerRowStyle"]; }
+            get { return (string)this["headerRowStyle"]; }
             set { this["headerRowStyle"] = value; }
         }
 
         [ConfigurationProperty("footerRowStyle", DefaultValue = "FooterRowStyle")]
         public string FooterRowStyleName
         {
-            get { return (string) this["footerRowStyle"]; }
+            get { return (string)this["footerRowStyle"]; }
             set { this["footerRowStyle"] = value; }
         }
     }

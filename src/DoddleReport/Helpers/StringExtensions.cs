@@ -1,5 +1,7 @@
 ﻿using System;
-using System.Collections.Specialized;
+using System.Collections.Generic;
+using System.Reflection;
+
 
 namespace DoddleReport
 {
@@ -13,9 +15,9 @@ namespace DoddleReport
         /// <returns></returns>
         public static TEnum ParseEnum<TEnum>(this string source)
         {
-            Type t = typeof(TEnum);
+            var t = typeof(TEnum);
 
-            if (!t.IsEnum)
+            if (!t._IsEnum())
                 throw new ArgumentException("TEnum must be a valid Enumeration", "TEnum");
 
             return (TEnum)Enum.Parse(t, source);
@@ -80,7 +82,7 @@ namespace DoddleReport
             if (source.Length == 0)
                 return new string[] { "" };
 
-            StringCollection words = new StringCollection();
+            var words = new List<string>();
             int wordStartIndex = 0;
 
             char[] letters = source.ToCharArray();

@@ -8,14 +8,14 @@ namespace DoddleReport.Configuration
         [ConfigurationProperty("name", IsRequired = true)]
         public string Name
         {
-            get { return (string) this["name"]; }
+            get { return (string)this["name"]; }
             set { this["name"] = value; }
         }
 
         [ConfigurationProperty("bold", DefaultValue = false)]
         public bool Bold
         {
-            get { return (bool) this["bold"]; }
+            get { return (bool)this["bold"]; }
             set { this["bold"] = value; }
         }
 
@@ -33,11 +33,11 @@ namespace DoddleReport.Configuration
             set { this["italic"] = value; }
         }
 
-        [IntegerValidator(MinValue=6, MaxValue=72)]
+        [IntegerValidator(MinValue = 6, MaxValue = 72)]
         [ConfigurationProperty("fontSize", DefaultValue = 9)]
         public int FontSize
         {
-            get { return (int) this["fontSize"]; }
+            get { return (int)this["fontSize"]; }
             set { this["fontSize"] = value; }
         }
 
@@ -52,14 +52,14 @@ namespace DoddleReport.Configuration
         [ConfigurationProperty("backColor", DefaultValue = "White")]
         public string BackColorString
         {
-            get { return (string) this["backColor"]; }
+            get { return (string)this["backColor"]; }
             set { this["backColor"] = value; }
         }
 
         [ConfigurationProperty("foreColor", DefaultValue = "Black")]
         public string ForeColorString
         {
-            get { return (string) this["foreColor"]; }
+            get { return (string)this["foreColor"]; }
             set { this["foreColor"] = value; }
         }
 
@@ -67,8 +67,9 @@ namespace DoddleReport.Configuration
         {
             get
             {
-                var c = new ColorConverter();
-                return (Color)c.ConvertFrom(BackColorString);
+                //var c = new ColorConverter();
+                //return (Color)c.ConvertFrom(BackColorString);
+                return Color.White;
             }
             set { this["backColor"] = value.ToString(); }
         }
@@ -77,8 +78,10 @@ namespace DoddleReport.Configuration
         {
             get
             {
-                var c = new ColorConverter();
-                return (Color)c.ConvertFrom(ForeColorString);
+                // TODO: fix colors
+                //var c = new ColorConverter();
+                //return (Color)c.ConvertFrom(ForeColorString);
+                return Color.Black;
             }
             set { this["foreColor"] = value.ToString(); }
         }
@@ -98,4 +101,6 @@ namespace DoddleReport.Configuration
             reportStyle.TextRotation = TextRotation;
         }
     }
+
+
 }

@@ -12,15 +12,11 @@ namespace DoddleReport
             return new EnumerableReportSource(source);
         }
 
-        public static IReportSource ToReportSource(this DataTable table)
-        {
-            return new DataTableReportSource(table);
-        }
-
         public static Report ToReport(this IReportSource source, string format)
         {
-            var writer = Config.Report.Writers.GetWriterByName(format);
-            return new Report(source, writer);
+            // TODO: Get a Writer
+            //var writer = Config.Report.Writers.GetWriterByName(format);
+            return new Report(source, null);
         }
 
         public static Report ToReport(this IEnumerable source, string format)

@@ -176,7 +176,7 @@ namespace DoddleReport
             {
                 if (field.ShowTotals && field.DataType.IsNumericType())
                 {
-                    var numericType = field.DataType.IsGenericType ? field.DataType.GetGenericArguments().Single() : field.DataType;
+                    var numericType = field.DataType.GetGenericDataType();
                     var addFieldTotalMethod = typeof(Report).GetMethod("AddFieldTotal", BindingFlags.Instance | BindingFlags.NonPublic).MakeGenericMethod(numericType);
                     object value = row[field];
                     if (value as string == string.Empty)

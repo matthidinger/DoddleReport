@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.Text;
 
 namespace DoddleReport
@@ -14,15 +13,16 @@ namespace DoddleReport
             css.Append(style.Underline ? "text-decoration: underline;" : "text-decoration: none;");
             css.Append(style.Italic ? "font-style: italic;" : "font-style: none;");
 
-            if (style.BackColor != Color.White)
-            {
-                css.AppendFormat("background-color: {0};", ColorTranslator.ToHtml(style.BackColor));
-            }
+            // TODO: Fix color
+            //if (style.BackColor != Color.White)
+            //{
+            //    css.AppendFormat("background-color: {0};", ColorTranslator.ToHtml(style.BackColor));
+            //}
 
-            if (style.ForeColor != Color.Black)
-            {
-                css.AppendFormat("color: {0};", ColorTranslator.ToHtml(style.ForeColor));
-            }
+            //if (style.ForeColor != Color.Black)
+            //{
+            //    css.AppendFormat("color: {0};", ColorTranslator.ToHtml(style.ForeColor));
+            //}
 
             if (style.FontSize != 8)
             {

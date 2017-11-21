@@ -18,7 +18,7 @@ namespace DoddleReport.Configuration
             {
                 return Type.GetType(TypeName);
             }
-            
+
         }
 
         [ConfigurationProperty("type", IsRequired = true)]
@@ -37,21 +37,21 @@ namespace DoddleReport.Configuration
         [ConfigurationProperty("contentType", DefaultValue = "text/html")]
         public string ContentType
         {
-            get { return (string) this["contentType"]; }
+            get { return (string)this["contentType"]; }
             set { this["contentType"] = value; }
         }
 
         [ConfigurationProperty("offerDownload", DefaultValue = false)]
         public bool OfferDownload
         {
-            get { return (bool) this["offerDownload"]; }
+            get { return (bool)this["offerDownload"]; }
             set { this["offerDownload"] = value; }
         }
 
         [ConfigurationProperty("fileExtension", IsRequired = true)]
         public string FileExtension
         {
-            get { return (string) this["fileExtension"]; }
+            get { return (string)this["fileExtension"]; }
             set { this["fileExtension"] = value; }
         }
 
@@ -66,6 +66,6 @@ namespace DoddleReport.Configuration
             {
                 throw new InvalidOperationException(string.Format("Unable to load the ReportWriter format '{0}' because the type '{1}' could not be created", Format, TypeName), ex);
             }
-        }     
+        }
     }
 }
