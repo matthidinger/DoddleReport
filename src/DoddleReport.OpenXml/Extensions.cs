@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Windows.Forms;
 using ClosedXML.Excel;
 
 namespace DoddleReport.OpenXml
@@ -72,16 +71,18 @@ namespace DoddleReport.OpenXml
         /// </remarks>
         public static double PixelsToUnits(this int pixels, IXLFont xlFont)
         {
+            // TODO: This doesn't work in NETStandard, need to find a workaround
+            throw new PlatformNotSupportedException();
             if (pixels < 5)
             {
                 pixels = 5;
             }
 
-            var fontSize = (float)xlFont.FontSize;
-            var font = new Font(xlFont.FontName, fontSize, FontStyle.Regular);
-            int underscoreWidth = TextRenderer.MeasureText("__", font).Width;
-            double maxDigitWidth = Digits.Select(d => TextRenderer.MeasureText("_" + d + "_", font).Width - underscoreWidth).Max();
-            return Math.Truncate((pixels - 5) / maxDigitWidth * 100 + 0.5) / 100;
+            //var fontSize = (float)xlFont.FontSize;
+            //var font = new Font(xlFont.FontName, fontSize, FontStyle.Regular);
+            //int underscoreWidth = TextRenderer.MeasureText("__", font).Width;
+            //double maxDigitWidth = Digits.Select(d => TextRenderer.MeasureText("_" + d + "_", font).Width - underscoreWidth).Max();
+            //return Math.Truncate((pixels - 5) / maxDigitWidth * 100 + 0.5) / 100;
         }
 
         #endregion

@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Web;
-using System.Web.Mvc;
 using System.IO;
-
 using DoddleReport.Configuration;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DoddleReport.Web
 {

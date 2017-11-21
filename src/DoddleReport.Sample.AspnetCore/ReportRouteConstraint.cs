@@ -1,11 +1,7 @@
-using System;
-using System.Linq;
-using System.IO;
-using DoddleReport;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 
-namespace DoddleReport.Web
+namespace DoddleReport.Sample.AspnetCore
 {
     public class ReportRouteConstraint : IRouteConstraint
     {
