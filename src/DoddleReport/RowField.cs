@@ -43,6 +43,8 @@ namespace DoddleReport
 
         public bool Hidden { get; private set; }
 
+        public string ExcelFormula { get; set; }
+
         public ReportStyle DataStyle { get; private set; }
         public ReportStyle HeaderStyle { get; private set; }
         public ReportStyle FooterStyle { get; private set; }
@@ -67,6 +69,7 @@ namespace DoddleReport
             HeaderStyle = field.HeaderStyle;
             ShowTotals = field.ShowTotals;
 			UrlDelegate = field.UrlDelegate;
+            ExcelFormula = field.ExcelFormula;
         }
 
         public void FormatAs<T>(Func<T, string> formatAsDelegate)
