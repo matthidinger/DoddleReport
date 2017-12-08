@@ -74,8 +74,9 @@ namespace DoddleReport
 		internal Delegate FormatAsDelegate { get; private set; }
 
 		internal Delegate UrlDelegate { get; private set; }
-		
-		public ReportField(string fieldName) 
+        public string ExcelFormula { get; set; }
+
+        public ReportField(string fieldName) 
             : this(fieldName, typeof(object)) {}
 
         public ReportField(string fieldName, Type dataType)

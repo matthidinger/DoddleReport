@@ -36,6 +36,7 @@
     <IISExpressUseClassicPipelineMode />
     <MvcProjectUpgradeChecked>true</MvcProjectUpgradeChecked>
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -110,6 +111,7 @@
     <Compile Include="Areas\Reporting\Controllers\DoddleController.cs" />
     <Compile Include="Areas\Reporting\ReportingAreaRegistration.cs" />
     <Compile Include="Controllers\AbcPdfController.cs" />
+    <Compile Include="Controllers\BuilderPaternController.cs" />
     <Compile Include="Controllers\DataAnnotationsController.cs" />
     <None Include="Controllers\DoddleController.cs.pp" />
     <Compile Include="Controllers\DoddleController.cs" />
@@ -171,6 +173,10 @@
     <ProjectReference Include="..\DoddleReport.AbcPdf\DoddleReport.AbcPdf.csproj">
       <Project>{355CAFF3-F806-4194-BE54-2F7640463CED}</Project>
       <Name>DoddleReport.AbcPdf</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DoddleReport.Builder\DoddleReport.Builder.csproj">
+      <Project>{10fae193-e8eb-4239-8579-97e2adc28f9d}</Project>
+      <Name>DoddleReport.Builder</Name>
     </ProjectReference>
     <ProjectReference Include="..\DoddleReport.iTextSharp\DoddleReport.iTextSharp.csproj">
       <Project>{347D0716-0297-4866-9FD5-5E019B51C408}</Project>

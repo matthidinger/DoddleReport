@@ -16,6 +16,8 @@ namespace DoddleReport.OpenXml
         public const string FooterStyle = "FooterStyle";
         public const string PaperSize = "PaperSize";
         public const string AdjustColumnWidthToContents = "AdjustColumnWidthToContents";
+        public const string Password = "Password";
+        public const string CustomProperties = "CustomProperties";
 
         /// <summary>
         /// This Dictionary maps standard .NET format strings (like {0:c}) to OpenXML Format strings like "$ #,##0.00"
@@ -138,7 +140,7 @@ namespace DoddleReport.OpenXml
         /// <returns>The row it last wrote on.</returns>
         private static int RenderTextItem(IXLWorksheet worksheet, int fieldsCount, string itemText, int currentRow, ReportStyle reportStyle)
         {
-            foreach (var s in itemText.Split(new[] { "\r\n"}, StringSplitOptions.None))
+            foreach (var s in itemText.Split(new[] { "\r\n" }, StringSplitOptions.None))
             {
                 currentRow++;
                 var row = worksheet.Row(currentRow);
@@ -172,9 +174,22 @@ namespace DoddleReport.OpenXml
                 }
                 else if (reportRow.RowType == ReportRowType.DataRow)
                 {
+
                     var cell = dataRow.Cell(colCount);
                     field.DataStyle.CopyToXlStyle(cell.Style);
-                    if (field.DataType == typeof(bool))
+                    if (!string.IsNullOrWhiteSpace(field.ExcelFormula))
+                    {
+                        cell.FormulaA1 = field.ExcelFormula.Replace("#ROW#", rowCount.ToString());
+                        if (field.DataType.IsNumericType())
+                        {
+                            cell.SetDataType(XLCellValues.Number);
+                            if (!string.Equals("{0}", field.DataFormatString))
+                            {
+                                cell.Style.NumberFormat.Format = GetOpenXmlDataFormatString(field.DataFormatString);
+                            }
+                        }
+                    }
+                    else if (field.DataType == typeof(bool))
                     {
                         cell.SetDataType(XLCellValues.Boolean);
                         cell.Value = reportRow[field];
@@ -202,11 +217,11 @@ namespace DoddleReport.OpenXml
                         cell.Value = reportRow.GetFormattedValue(field);
                     }
 
-					var url = reportRow.GetUrlString(field);
-					if (url != null)
-					{
-						cell.Hyperlink = new XLHyperlink(url);
-					}
+                    var url = reportRow.GetUrlString(field);
+                    if (url != null)
+                    {
+                        cell.Hyperlink = new XLHyperlink(url);
+                    }
                 }
                 else if (reportRow.RowType == ReportRowType.FooterRow)
                 {
@@ -307,6 +322,9 @@ namespace DoddleReport.OpenXml
         private void WriteReport(Report report, XLWorkbook workbook)
         {
             var sheetName = report.RenderHints[SheetName] as string ?? "Data";
+            var customProperties = report.RenderHints[CustomProperties] as Dictionary<string, string> ??
+                                   new Dictionary<string, string>();
+            var password = report.RenderHints[Password] as string ?? "";
             IXLWorksheet worksheet;
             int duplicateNameCount = 0;
             var originalSheetName = sheetName;
@@ -320,11 +338,14 @@ namespace DoddleReport.OpenXml
             var orientation = report.RenderHints.Orientation == ReportOrientation.Portrait ? XLPageOrientation.Portrait : XLPageOrientation.Landscape;
             worksheet.PageSetup.PageOrientation = orientation;
 
+            // Password protext the worksheet
+            PassordProtext(password, worksheet);
+
+            // Add custom properties if any.
+            AddCustomProperties(workbook, customProperties);
+
             // Set the paper size to what the render hint is set to
-            if (report.RenderHints[PaperSize] != null)
-            {
-                worksheet.PageSetup.PaperSize = (XLPaperSize)Enum.Parse(typeof(XLPaperSize), report.RenderHints[PaperSize].ToString());
-            }
+            SetPaperSize(report, worksheet);
 
             if (report.RenderHints.FreezePanes)
                 worksheet.SheetView.Freeze(report.RenderHints.FreezeRows, report.RenderHints.FreezeColumns);
@@ -334,12 +355,7 @@ namespace DoddleReport.OpenXml
             int rowCount = RenderHeader(worksheet, fieldsCount, report.TextFields, report.RenderHints);
 
             // Render all the rows
-            foreach (var row in report.GetRows())
-            {
-                rowCount++;
-                var dataRow = worksheet.Row(rowCount);
-                RenderRow(rowCount, row, dataRow);
-            }
+            rowCount = AddRows(report, rowCount, worksheet);
 
             // Render the footer
             RenderFooter(worksheet, fieldsCount, report.TextFields, report.RenderHints, rowCount);
@@ -381,6 +397,45 @@ namespace DoddleReport.OpenXml
                 {
                     WriteReport(reportToAppend, workbook);
                 }
+            }
+        }
+
+        private int AddRows(Report report, int rowCount, IXLWorksheet worksheet)
+        {
+            foreach (var row in report.GetRows())
+            {
+                rowCount++;
+                var dataRow = worksheet.Row(rowCount);
+                RenderRow(rowCount, row, dataRow);
+            }
+            return rowCount;
+        }
+
+        private void SetPaperSize(Report report, IXLWorksheet worksheet)
+        {
+            if (report.RenderHints[PaperSize] != null)
+            {
+                worksheet.PageSetup.PaperSize =
+                    (XLPaperSize)Enum.Parse(typeof(XLPaperSize), report.RenderHints[PaperSize].ToString());
+            }
+        }
+
+        private void AddCustomProperties(XLWorkbook workbook, Dictionary<string, string> customProperties)
+        {
+            if (customProperties.Any())
+            {
+                foreach (var property in customProperties)
+                {
+                    workbook.CustomProperties.Add(property.Key, property.Value);
+                }
+            }
+        }
+
+        private void PassordProtext(string password, IXLWorksheet worksheet)
+        {
+            if (!string.IsNullOrWhiteSpace(password))
+            {
+                worksheet.Protect(password);
             }
         }
     }
