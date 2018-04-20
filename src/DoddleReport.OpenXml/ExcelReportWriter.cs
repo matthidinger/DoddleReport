@@ -176,12 +176,12 @@ namespace DoddleReport.OpenXml
                     field.DataStyle.CopyToXlStyle(cell.Style);
                     if (field.DataType == typeof(bool))
                     {
-                        cell.SetDataType(XLCellValues.Boolean);
+                        cell.SetDataType(XLDataType.Boolean);
                         cell.Value = reportRow[field];
                     }
                     else if (field.DataType.IsNumericType())
                     {
-                        cell.SetDataType(XLCellValues.Number);
+                        cell.SetDataType(XLDataType.Number);
                         if (!string.Equals("{0}", field.DataFormatString))
                         {
                             cell.Style.NumberFormat.Format = GetOpenXmlDataFormatString(field.DataFormatString);
@@ -194,7 +194,7 @@ namespace DoddleReport.OpenXml
                     }
                     else if (field.DataType == typeof(DateTime) || field.DataType == typeof(DateTime?))
                     {
-                        cell.SetDataType(XLCellValues.DateTime);
+                        cell.SetDataType(XLDataType.DateTime);
                         cell.Value = reportRow.GetFormattedValue(field);
                     }
                     else
@@ -213,7 +213,7 @@ namespace DoddleReport.OpenXml
                     if (field.ShowTotals)
                     {
                         var cell = dataRow.Cell(colCount);
-                        cell.SetDataType(XLCellValues.Number);
+                        cell.SetDataType(XLDataType.Number);
                         cell.FormulaA1 = string.Format(CultureInfo.InvariantCulture, "=SUM({0}{1}:{0}{2})", cell.Address.ColumnLetter, 2, rowCount - 1);
                         if (!string.Equals("{0}", field.DataFormatString))
                         {
